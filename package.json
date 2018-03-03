@@ -1,0 +1,62 @@
+{
+  "name": "progress-app",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "babel-eslint": "8.2.2",
+    "eslint": "4.18.1",
+    "eslint-config-universe": "1.0.7",
+    "flow-bin": "0.66.0",
+    "husky": "0.14.3",
+    "jest-expo": "25.1.0",
+    "lint-staged": "7.0.0",
+    "prettier": "1.11.1",
+    "react-native-scripts": "1.11.1",
+    "react-test-renderer": "16.2.0"
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "flow": "flow",
+    "precommit": "flow && lint-staged",
+    "prettier": "prettier src/**/*.{js,json}",
+    "start": "react-native-scripts start",
+    "lint": "eslint ./src",
+    "lint:fix": "yarn lint --fix",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js"
+  },
+  "lint-staged": {
+    "src/**/*.{js,json}": [
+      "yarn lint:fix",
+      "git add"
+    ]
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "axios": "0.18.0",
+    "expo": "^25.0.0",
+    "formik": "0.11.11",
+    "ramda": "^0.25.0",
+    "ramda-adjunct": "2.5.0",
+    "react": "16.2.0",
+    "react-native": "0.52.0",
+    "react-native-elements": "^0.19.0",
+    "react-native-sentry": "0.34.0",
+    "react-native-style-tachyons": "^3.5.1",
+    "react-navigation": "^1.3.0",
+    "react-redux": "^5.0.6",
+    "recompose": "^0.26.0",
+    "redux": "^3.7.2",
+    "redux-actions": "^2.2.1",
+    "redux-promise-middleware": "5.0.0",
+    "redux-thunk": "^2.2.0",
+    "sentry-expo": "1.7.0",
+    "styled-components": "3.1.6",
+    "type-to-reducer": "1.0.4",
+    "update-creator": "^1.1.1"
+  }
+}

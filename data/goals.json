@@ -1,0 +1,18 @@
+{
+  "goals": [
+    {
+      "id": 1,
+      "title": "Goal 1",
+      "start": 0,
+      "current": 10,
+      "end": "100"
+    },
+    {
+      "id": 2,
+      "title": "Goal 2",
+      "start": 0,
+      "current": 82,
+      "end": "100"
+    }
+  ]
+}

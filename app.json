@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "Progress App",
+    "description": "Track progress of your goals",
+    "slug": "progress-app",
+    "sdkVersion": "25.0.0",
+    "githubUrl": "https://github.com/phanhoangloc/progress-app",
+    "orientation": "portrait",
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "pycogroup",
+            "project": "progress app",
+            "authToken": "069695df29d047abad306df4d7ea389534f4533f556e4b8b8ff8b9c41ab40e2d"
+          }
+        }
+      ]
+    }
+  }
+}
