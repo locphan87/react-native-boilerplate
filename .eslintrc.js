@@ -18,6 +18,7 @@ module.exports = {
 
     // react
     'react/jsx-no-bind': ['error'],
+    'react/prefer-stateless-function': ['warn'],
 
     // import
     'import/order': ['error', { 'newlines-between': 'always' }],
