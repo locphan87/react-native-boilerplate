@@ -1,7 +1,7 @@
 // @flow
 import withApp from '../../hoc/withApp/withApp.hoc'
 
-import GoalListView, { update } from './GoalList.view'
+import GoalListView from './GoalList.view'
 import { actions } from './GoalList.reducer'
 
 const mapStateToProps = (state): Object => ({
@@ -10,13 +10,19 @@ const mapStateToProps = (state): Object => ({
 const mapDispatchToProps = {
   getGoalList: actions.getGoalList
 }
+const handlers = {
+  OPEN_DETAILS: ({ navigation }) => id => () => {
+    navigation.navigate('GoalDetails')
+    alert(`Navigate to the goal id ${id}`)
+  }
+}
 
 export default withApp({
   connect: { mapStateToProps, mapDispatchToProps },
-  update,
   lifecycle: {
     componentDidMount() {
       this.props.getGoalList()
     }
-  }
+  },
+  withHandlers: handlers
 })(GoalListView)

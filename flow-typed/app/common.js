@@ -1,4 +1,4 @@
-declare type Goal = {
+declare type GoalProp = {
   id: number,
   title: string,
   start: number,

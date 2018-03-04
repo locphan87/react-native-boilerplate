@@ -7,8 +7,8 @@ import GoalItem from '../GoalItem/GoalItem.component'
 import styles from './GoalList.component.style'
 
 type Props = {
-  list: Goal[],
-  onPress: any => void
+  list: GoalProp[],
+  onPress: Function
 }
 
 const GoalList = ({ list, onPress }: Props) => (

@@ -1,4 +1,2 @@
-import Wrapper from './Wrapper/Wrapper.component'
-import Text from './Text/Text.component'
-
-export { Wrapper, Text }
+export { default as Wrapper } from './Wrapper/Wrapper.component'
+export { default as Text } from './Text/Text.component'

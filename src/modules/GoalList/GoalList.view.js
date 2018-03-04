@@ -1,30 +1,20 @@
 // @flow
 import React from 'react'
+import type { NavigationState, NavigationScreenProp } from 'react-navigation'
 
 import GoalList from '../../components/GoalList/GoalList.component'
 import { Wrapper } from '../../components/Styled'
 
 type Props = {
-  navigation: Object,
-  update: string => Function,
-  goalList: Goal[]
+  navigation: NavigationScreenProp<NavigationState>,
+  OPEN_DETAILS: Function,
+  goalList: GoalProp[]
 }
 
-const MSG = {
-  OPEN_DETAILS: 'OPEN_DETAILS'
-}
-const update = ({ navigation }: Props) => ({
-  [MSG.OPEN_DETAILS]: () => {
-    navigation.navigate('GoalDetails')
-    alert('You are awesome')
-  }
-})
-
-const GoalListView = ({ update, goalList }: Props) => (
+const GoalListView = ({ OPEN_DETAILS, goalList }: Props) => (
   <Wrapper>
-    <GoalList list={goalList} onPress={update(MSG.OPEN_DETAILS)} />
+    <GoalList list={goalList} onPress={OPEN_DETAILS} />
   </Wrapper>
 )
 
-export { update }
 export default GoalListView
