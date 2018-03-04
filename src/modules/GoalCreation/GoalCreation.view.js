@@ -2,29 +2,19 @@
 import React from 'react'
 import { Text } from 'react-native'
 
-import { MSG } from '../../constants'
 import { Wrapper } from '../../components/Styled'
 
 import GoalCreationForm from './GoalCreation.form'
 
 type Props = {
-  update: Props => Object
+  ADD_NEW_GOAL: Function
 }
 
-const { ADD_NEW_GOAL } = MSG
-const update = ({ addNewGoal }: Props) => ({
-  [ADD_NEW_GOAL]: values => {
-    alert(JSON.stringify(values))
-    // addNewGoal({ ...goal, id: 3 })
-  }
-})
-
-const GoalCreationView = ({ update }: Props) => (
+const GoalCreationView = ({ ADD_NEW_GOAL }: Props) => (
   <Wrapper>
     <Text>Goal Creation Screen</Text>
-    <GoalCreationForm onSubmit={update(ADD_NEW_GOAL)} />
+    <GoalCreationForm onSubmit={ADD_NEW_GOAL} />
   </Wrapper>
 )
 
-export { update }
 export default GoalCreationView

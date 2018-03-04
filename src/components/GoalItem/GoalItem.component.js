@@ -4,19 +4,16 @@ import { ListItem } from 'react-native-elements'
 
 import { COLORS } from '../../theme'
 
-type Props = {
-  title: string,
-  start: number,
-  current: number,
-  end: number,
-  onPress: any => void
+type Props = GoalProp & {
+  onPress: Function
 }
 
 const leftIcon = {
   name: 'target',
   type: 'foundation'
 }
-const GoalItem = ({ title, start, current, end, onPress }: Props) => {
+
+const GoalItem = ({ id, title, start, current, end, onPress }: Props) => {
   const progress = current * 100 / (end - start)
   return (
     <ListItem
@@ -25,7 +22,7 @@ const GoalItem = ({ title, start, current, end, onPress }: Props) => {
       subtitle={`${progress} %`}
       subtitleStyle={styles.subtitle}
       underlayColor={'blue'}
-      onPress={onPress}
+      onPress={onPress(id)}
       leftIcon={leftIcon}
     />
   )

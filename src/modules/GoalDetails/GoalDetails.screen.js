@@ -1,11 +1,12 @@
 // @flow
 import React from 'react'
-import { View, Text } from 'react-native'
+
+import { Wrapper, Text } from '../../components/Styled'
 
 const GoalDetailsScreen = () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+  <Wrapper>
     <Text>Details Screen</Text>
-  </View>
+  </Wrapper>
 )
 
 export default GoalDetailsScreen
