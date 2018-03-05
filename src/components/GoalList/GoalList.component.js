@@ -13,7 +13,9 @@ type Props = {
 
 const GoalList = ({ list, onPress }: Props) => (
   <List containerStyle={styles.base}>
-    {list.map(item => <GoalItem key={item.id} {...item} onPress={onPress} />)}
+    {list.map(item => (
+      <GoalItem key={item.id} {...item} onPress={onPress} />
+    ))}
   </List>
 )
 

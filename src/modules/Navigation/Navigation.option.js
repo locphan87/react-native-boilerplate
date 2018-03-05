@@ -16,7 +16,9 @@ const stackOptions = {
   }
 }
 const tabOptions = {
-  navigationOptions: ({ navigation }: NavigationScreenConfigProps) => ({
+  navigationOptions: ({
+    navigation
+  }: NavigationScreenConfigProps) => ({
     tabBarIcon: ({ focused, tintColor }: Object) => {
       const { routeName } = navigation.state
       const outline = focused ? '' : '-outline'
@@ -26,7 +28,11 @@ const tabOptions = {
       }
 
       return (
-        <Ionicons name={iconNames[routeName]} size={25} color={tintColor} />
+        <Ionicons
+          name={iconNames[routeName]}
+          size={25}
+          color={tintColor}
+        />
       )
     }
   }),

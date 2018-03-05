@@ -13,7 +13,14 @@ const leftIcon = {
   type: 'foundation'
 }
 
-const GoalItem = ({ id, title, start, current, end, onPress }: Props) => {
+const GoalItem = ({
+  id,
+  title,
+  start,
+  current,
+  end,
+  onPress
+}: Props) => {
   const progress = current * 100 / (end - start)
   return (
     <ListItem

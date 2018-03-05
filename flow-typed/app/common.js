@@ -5,3 +5,5 @@ declare type GoalProp = {
   current: number,
   end: number
 }
+
+declare type Payload = Object

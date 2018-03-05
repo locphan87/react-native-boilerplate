@@ -10,12 +10,11 @@ const mapStateToProps = (state): Object => ({
 const mapDispatchToProps = {
   getGoalList: actions.getGoalList
 }
-const handlers = {
-  OPEN_DETAILS: ({ navigation }) => id => () => {
-    navigation.navigate('GoalDetails')
-    alert(`Navigate to the goal id ${id}`)
+const handlers = props => ({
+  OPEN_DETAILS: id => () => {
+    props.navigation.navigate('GoalDetails', { id })
   }
-}
+})
 
 export default withApp({
   connect: { mapStateToProps, mapDispatchToProps },
@@ -24,5 +23,5 @@ export default withApp({
       this.props.getGoalList()
     }
   },
-  withHandlers: handlers
+  withProps: handlers
 })(GoalListView)

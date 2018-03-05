@@ -1,9 +1,13 @@
 // @flow
-import { createStore, applyMiddleware, compose } from 'redux'
+import {
+  createStore,
+  applyMiddleware,
+  compose
+} from 'redux'
 import thunk from 'redux-thunk'
 import promiseMiddleware from 'redux-promise-middleware'
 
-import { isDEV } from '../utils/platform.utils'
+import { isDEV } from '../utils/platform.util'
 
 import reducer from './reducer'
 
@@ -25,5 +29,9 @@ export default (initialValue: Object = {}) => {
   }
   const composer = getComposer()
 
-  return createStore(reducer, initialValue, composer(...enhancers))
+  return createStore(
+    reducer,
+    initialValue,
+    composer(...enhancers)
+  )
 }
