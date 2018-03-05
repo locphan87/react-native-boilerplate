@@ -2,7 +2,7 @@
 import React from 'react'
 import { ListItem } from 'react-native-elements'
 
-import { COLORS } from '../../theme'
+import { COLORS } from '../../themes'
 
 type Props = GoalProp & {
   onPress: Function

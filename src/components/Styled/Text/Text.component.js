@@ -1,11 +1,10 @@
 // @flow
-import styled from 'styled-components'
+import { Text } from 'react-native'
+import glamorous from 'glamorous-native'
 
-import { COLORS } from '../../../theme'
+const styles = (props, { colors }) => ({
+  color: colors.white,
+  fontSize: 14
+})
 
-const Text = styled.Text`
-  color: ${COLORS.white};
-  font-size: 14;
-`
-
-export default Text
+export default glamorous(Text)(styles)

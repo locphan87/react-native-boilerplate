@@ -4,7 +4,7 @@ import { TabBarBottom } from 'react-navigation'
 import type { NavigationScreenConfigProps } from 'react-navigation'
 import { Ionicons } from '@expo/vector-icons'
 
-import { COLORS } from '../../theme'
+import { COLORS } from '../../themes'
 
 const stackOptions = {
   headerStyle: {

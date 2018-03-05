@@ -1,4 +1,4 @@
-import { COLORS } from '../../theme'
+import { COLORS } from '../../themes'
 
 export default {
   base: {
