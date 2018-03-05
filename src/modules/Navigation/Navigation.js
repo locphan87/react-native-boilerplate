@@ -1,10 +1,21 @@
 // @flow
-import { StackNavigator, TabNavigator } from 'react-navigation'
+import {
+  StackNavigator,
+  TabNavigator
+} from 'react-navigation'
 
 import Screens from './Navigation.screen'
-import { stackOptions, tabOptions } from './Navigation.option'
+import {
+  stackOptions,
+  tabOptions
+} from './Navigation.option'
 
-const { Home, GoalDetails, GoalCreation, GoalList } = Screens
+const {
+  Home,
+  GoalDetails,
+  GoalCreation,
+  GoalList
+} = Screens
 const HomeStack = StackNavigator(
   {
     Home,

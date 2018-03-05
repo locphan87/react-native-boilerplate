@@ -2,8 +2,9 @@
 import api from '../../utils/api.util'
 
 const getGoalList = () => api.get('goals')
-const addGoal = (payload: Object) => api.post('goals', payload)
-const removeGoal = (payload: Object) => api.delete('goals', payload)
+const addGoal = (payload: Payload) =>
+  api.post('goals', payload)
+const removeGoal = (id: number) => api.delete(`goals/${id}`)
 
 export default {
   getGoalList,

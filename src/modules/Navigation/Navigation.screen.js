@@ -13,7 +13,12 @@ const Screens = {
     screen: Home,
     navigationOptions: {
       title: 'Home',
-      headerRight: <Button title="Done" onPress={() => alert('Done?')} />
+      headerRight: (
+        <Button
+          title="Done"
+          onPress={() => alert('Done?')}
+        />
+      )
     }
   },
   GoalCreation: {
@@ -30,7 +35,9 @@ const Screens = {
   },
   GoalList: {
     screen: GoalList,
-    navigationOptions: ({ navigation }: NavigationScreenConfigProps) => ({
+    navigationOptions: ({
+      navigation
+    }: NavigationScreenConfigProps) => ({
       title: 'Goal List',
       headerRight: (
         <Button

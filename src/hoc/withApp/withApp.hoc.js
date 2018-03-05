@@ -1,20 +1,32 @@
 // @flow
 import * as Recompose from 'recompose'
+import type { ComponentType } from 'react'
 import { connect } from 'react-redux'
 import { isEmpty, keys } from 'ramda'
 
+import { insertIf } from '../../utils/common.util'
+
+type Props = any
+type State = any
+type Connect = {
+  mapStateToProps?: State => Object,
+  mapDispatchToProps?: Object
+}
 type Options = {
-  connect: Object
+  connect?: Connect
 }
 
 const { compose } = Recompose
-const insertIf = (condition, ...elements) => (condition ? elements : [])
 
-const withApp = ({ connect: connectOpts = {}, ...rest }: Options) => (
-  WrappedComponent: any
-) => {
+const withApp = ({
+  connect: connectOpts = {},
+  ...rest
+}: Options) => (WrappedComponent: ComponentType<Props>) => {
   const getConnectEnhancer = () => {
-    const { mapStateToProps = null, mapDispatchToProps = null } = connectOpts
+    const {
+      mapStateToProps = null,
+      mapDispatchToProps = null
+    } = connectOpts
     return connect(mapStateToProps, mapDispatchToProps)
   }
   const getRecomposeEnhancers = () =>
@@ -24,8 +36,14 @@ const withApp = ({ connect: connectOpts = {}, ...rest }: Options) => (
       return acc.concat(enhancer)
     }, [])
   const enhancers = [
-    ...insertIf(!isEmpty(connectOpts), getConnectEnhancer()),
-    ...insertIf(keys(rest), ...getRecomposeEnhancers())
+    ...insertIf(
+      !isEmpty(connectOpts),
+      getConnectEnhancer()
+    ),
+    ...insertIf(
+      !isEmpty(keys(rest)),
+      ...getRecomposeEnhancers()
+    )
   ]
 
   return compose(...enhancers)(WrappedComponent)

@@ -18,7 +18,26 @@ const InnerForm = ({
       onChangeText={text => setFieldValue('title', text)}
       value={values.title}
     />
-    <Button onPress={handleSubmit} disabled={isSubmitting} title="Submit" />
+    <TextInput
+      style={styles.button}
+      onChangeText={text => setFieldValue('start', text)}
+      value={values.start}
+    />
+    <TextInput
+      style={styles.button}
+      onChangeText={text => setFieldValue('current', text)}
+      value={values.current}
+    />
+    <TextInput
+      style={styles.button}
+      onChangeText={text => setFieldValue('end', text)}
+      value={values.end}
+    />
+    <Button
+      onPress={handleSubmit}
+      disabled={isSubmitting}
+      title="Submit"
+    />
   </View>
 )
 
