@@ -1,13 +1,12 @@
 // @flow
-import styled from 'styled-components'
+import glamorous from 'glamorous-native'
+import { View } from 'react-native'
 
-import { COLORS } from '../../../theme'
+const styles = (props, { colors }) => ({
+  flex: 1,
+  backgroundColor: props.bgColor || colors.base,
+  alignItems: 'center',
+  justifyContent: 'center'
+})
 
-const Wrapper = styled.View`
-  flex: 1;
-  background-color: ${COLORS.base};
-  align-items: center;
-  justify-content: center;
-`
-
-export default Wrapper
+export default glamorous(View)(styles)

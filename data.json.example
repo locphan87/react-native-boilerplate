@@ -13,6 +13,13 @@
       "start": 0,
       "current": 82,
       "end": "100"
+    },
+    {
+      "id": 1520268644136,
+      "title": "Goal 3",
+      "start": "1",
+      "current": "2",
+      "end": "4"
     }
   ]
 }

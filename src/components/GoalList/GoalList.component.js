@@ -1,6 +1,8 @@
 // @flow
 import React from 'react'
+import { FlatList } from 'react-native'
 import { List } from 'react-native-elements'
+import { prop } from 'ramda'
 
 import GoalItem from '../GoalItem/GoalItem.component'
 
@@ -13,9 +15,13 @@ type Props = {
 
 const GoalList = ({ list, onPress }: Props) => (
   <List containerStyle={styles.base}>
-    {list.map(item => (
-      <GoalItem key={item.id} {...item} onPress={onPress} />
-    ))}
+    <FlatList
+      data={list}
+      keyExtractor={prop('id')}
+      renderItem={({ item }) => (
+        <GoalItem {...item} onPress={onPress} />
+      )}
+    />
   </List>
 )
 
