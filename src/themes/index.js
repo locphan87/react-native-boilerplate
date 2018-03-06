@@ -1,8 +1,1 @@
-import COLORS from './colors'
-
-const mainTheme = {
-  colors: COLORS
-}
-
-export { COLORS }
-export default mainTheme
+export { default as COLORS } from './colors'

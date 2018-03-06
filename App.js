@@ -5,7 +5,7 @@ import { ThemeProvider } from 'glamorous-native'
 
 import Navigator from './src/modules/Navigation/Navigation'
 import createStore from './src/redux/createStore'
-import theme from './src/themes'
+import theme from './src/themes/theme'
 
 const store = createStore()
 

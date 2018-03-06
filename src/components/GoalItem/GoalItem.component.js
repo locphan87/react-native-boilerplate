@@ -2,7 +2,7 @@
 import React from 'react'
 import { ListItem } from 'react-native-elements'
 
-import { COLORS } from '../../themes'
+import styles from './GoalItem.component.style'
 
 type Props = GoalProp & {
   onPress: Function
@@ -33,16 +33,6 @@ const GoalItem = ({
       leftIcon={leftIcon}
     />
   )
-}
-
-const styles = {
-  title: {
-    color: COLORS.white,
-    marginLeft: 5
-  },
-  subtitle: {
-    marginLeft: 5
-  }
 }
 
 export default GoalItem

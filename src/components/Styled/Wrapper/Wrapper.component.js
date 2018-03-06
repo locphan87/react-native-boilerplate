@@ -4,7 +4,7 @@ import { View } from 'react-native'
 
 const styles = (props, { colors }) => ({
   flex: 1,
-  backgroundColor: colors.base,
+  backgroundColor: props.bgColor || colors.base,
   alignItems: 'center',
   justifyContent: 'center'
 })
