@@ -17,8 +17,12 @@ const handlers = ({ navigation, addNewGoal }) => ({
     navigation.goBack()
   }
 })
+const navigationOptions = {
+  title: 'Goal Creation'
+}
 
 export default withApp({
   connect: { mapDispatchToProps },
+  setStatic: ['navigationOptions', navigationOptions],
   withProps: handlers
 })(GoalCreationView)
