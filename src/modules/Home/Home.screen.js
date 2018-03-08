@@ -1,14 +1,18 @@
 // @flow
 import React from 'react'
+import { Button } from 'react-native'
 
-import { Wrapper, Text } from '../../components/Styled'
-import I18n from '../../i18n'
+import withApp from '../../hoc/withApp/withApp.hoc'
 
-const HomeScreen = () => (
-  <Wrapper>
-    <Text>Welcome to Progress App</Text>
-    <Text>{I18n.t('hello')}</Text>
-  </Wrapper>
-)
+import HomeView from './Home.view'
 
-export default HomeScreen
+const navigationOptions = {
+  title: 'Home',
+  headerRight: (
+    <Button title="Done" onPress={() => alert('Done?')} />
+  )
+}
+
+export default withApp({
+  setStatic: ['navigationOptions', navigationOptions]
+})(HomeView)

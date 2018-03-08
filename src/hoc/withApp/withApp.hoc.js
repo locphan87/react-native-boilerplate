@@ -6,10 +6,13 @@ import { isEmpty, keys } from 'ramda'
 
 import { insertIf } from '../../utils/common.util'
 
-type Props = any
-type State = any
+type Props = Object
+type State = Object
 type Connect = {
-  mapStateToProps?: State => Object,
+  mapStateToProps?: (
+    state: State,
+    ownProps: Props
+  ) => Object,
   mapDispatchToProps?: Object
 }
 type Options = {
@@ -32,7 +35,10 @@ const withApp = ({
   const getRecomposeEnhancers = () =>
     keys(rest).reduce((acc, key) => {
       if (!Recompose[key]) return acc
-      const enhancer = Recompose[key](rest[key])
+      const hoc = Recompose[key]
+      const enhancer = Array.isArray(rest[key])
+        ? hoc(...rest[key])
+        : hoc(rest[key])
       return acc.concat(enhancer)
     }, [])
   const enhancers = [

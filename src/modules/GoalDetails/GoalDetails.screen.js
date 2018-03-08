@@ -1,12 +1,23 @@
 // @flow
-import React from 'react'
-import { Button } from 'react-native'
-
-import { Wrapper, Text } from '../../components/Styled'
 import { actions } from '../GoalList/GoalList.reducer'
 import { getNavState } from '../Navigation/Navigation.util'
 import withApp from '../../hoc/withApp/withApp.hoc'
+import selector from '../GoalList/GoalList.selector'
 
+import GoalDetailsView from './GoalDetails.view'
+
+const mapStateToProps = (state, { navigation }) => {
+  const id = getNavState('id', navigation)
+  const goalItem = selector.getGoalById(state)(id)
+
+  if (!goalItem) {
+    throw new Error(`Cannot find goal id ${id}`)
+  }
+
+  return {
+    goalItem
+  }
+}
 const mapDispatchToProps = {
   removeGoal: actions.removeGoal
 }
@@ -17,15 +28,12 @@ const handlers = ({ removeGoal, navigation }) => ({
     navigation.goBack()
   }
 })
-
-const GoalDetailsScreen = ({ REMOVE_GOAL }) => (
-  <Wrapper>
-    <Text>Details Screen</Text>
-    <Button title={'Delete'} onPress={REMOVE_GOAL} />
-  </Wrapper>
-)
+const navigationOptions = {
+  title: 'Goal Details'
+}
 
 export default withApp({
-  connect: { mapDispatchToProps },
+  connect: { mapStateToProps, mapDispatchToProps },
+  setStatic: ['navigationOptions', navigationOptions],
   withProps: handlers
-})(GoalDetailsScreen)
+})(GoalDetailsView)

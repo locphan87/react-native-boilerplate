@@ -16,18 +16,16 @@ const InnerForm = ({
   isSubmitting
 }) => (
   <View style={styles.container}>
-    <View style={{ color: 'white ' }}>
-      {fields.map(fieldName => (
-        <Input
-          key={fieldName}
-          placeholder={fieldName.toUpperCase()}
-          onChangeText={text =>
-            setFieldValue(fieldName, text)
-          }
-          value={values[fieldName]}
-        />
-      ))}
-    </View>
+    {fields.map(fieldName => (
+      <Input
+        key={fieldName}
+        placeholder={fieldName.toUpperCase()}
+        onChangeText={text =>
+          setFieldValue(fieldName, text)
+        }
+        value={values[fieldName]}
+      />
+    ))}
     <Button
       containerStyle={stylesObj.button}
       onPress={handleSubmit}
