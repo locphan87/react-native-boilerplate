@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Functional React Native Boilerplate",
-    "description": "Functional React Native Boilerplate",
-    "slug": "functional-react-native-boilerplate",
+    "name": "React Native Boilerplate",
+    "description": "React Native Boilerplate",
+    "slug": "react-native-boilerplate",
     "sdkVersion": "25.0.0",
     "orientation": "portrait"
   }

@@ -1,6 +1,6 @@
 # TODO
 
-## Genral
+## General
 
 - [ ] Make the boilerplate less opinionated, give it more freedom to make changes
 - [ ] [docs] code structure
@@ -9,7 +9,6 @@
 ## Set up
 
 - [ ] react native storage, redux-persist?
-- dotenv
 
 ## Advanced
 
@@ -23,3 +22,4 @@
 - [ ] tcomb
 - [ ] immutable data structures
 - [ ] redux-loop
+- [ ] redux-saga
