@@ -2,6 +2,8 @@
 import React from 'react'
 import { ListItem } from 'react-native-elements'
 
+import Progress from '../Progress/Progress.component'
+
 import styles from './GoalItem.component.style'
 
 type Props = GoalProp & {
@@ -13,20 +15,13 @@ const leftIcon = {
   type: 'foundation'
 }
 
-const GoalItem = ({
-  id,
-  title,
-  start,
-  current,
-  end,
-  onPress
-}: Props) => {
-  const progress = current * 100 / (end - start)
+const GoalItem = (props: Props) => {
+  const { id, title, onPress } = props
   return (
     <ListItem
       title={title}
       titleStyle={styles.title}
-      subtitle={`${progress} %`}
+      subtitle={<Progress {...props} />}
       subtitleStyle={styles.subtitle}
       underlayColor={'blue'}
       onPress={onPress(id)}

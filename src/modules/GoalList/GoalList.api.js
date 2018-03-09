@@ -1,10 +1,10 @@
 // @flow
-import api from '../../utils/api.util'
+import API from '../../services/API'
 
-const getGoalList = () => api.get('goals')
+const getGoalList = () => API.get('goals')
 const addGoal = (payload: Payload) =>
-  api.post('goals', payload)
-const removeGoal = (id: number) => api.delete(`goals/${id}`)
+  API.post('goals', payload)
+const removeGoal = (id: number) => API.delete(`goals/${id}`)
 
 export default {
   getGoalList,
