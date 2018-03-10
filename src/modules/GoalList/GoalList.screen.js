@@ -8,6 +8,7 @@ import GoalListView from './GoalList.view'
 import { actions } from './GoalList.reducer'
 
 const mapStateToProps = (state): Object => ({
+  loading: state.goal.loading,
   goalList: state.goal.list
 })
 const mapDispatchToProps = {

@@ -26,15 +26,25 @@ const actions = {
 }
 
 const initialState = {
-  list: []
+  list: [],
+  loading: false
 }
 
 const reducer = typeToReducer(
   {
     [GET_GOAL_LIST]: {
+      LOADING: (state, action) => ({
+        ...state,
+        loading: true
+      }),
       SUCCESS: (state, action) => ({
         ...state,
+        loading: false,
         list: action.payload.data
+      }),
+      ERROR: (state, action) => ({
+        ...state,
+        loading: false
       })
     },
     [ADD_NEW_GOAL]: {
