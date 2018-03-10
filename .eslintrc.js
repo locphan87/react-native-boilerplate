@@ -3,13 +3,13 @@ module.exports = {
   rules: {
     // complexity
     complexity: ['error', 5],
-    'max-statements': ['error', 10],
+    'max-statements': ['error', 15],
     'max-depth': ['error', 2],
     'max-params': ['error', 2],
     'max-lines': [
       'error',
       {
-        max: 150,
+        max: 200,
         skipBlankLines: true,
         skipComments: true
       }
@@ -21,7 +21,10 @@ module.exports = {
     'react/prefer-stateless-function': ['warn'],
 
     // import
-    'import/order': ['error', { 'newlines-between': 'always' }],
+    'import/order': [
+      'error',
+      { 'newlines-between': 'always' }
+    ],
     'import/newline-after-import': 2,
 
     // others

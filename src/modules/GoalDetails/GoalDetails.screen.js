@@ -1,4 +1,6 @@
 // @flow
+import { renderNothing } from 'recompose'
+
 import { actions } from '../GoalList/GoalList.reducer'
 import { getNavState } from '../Navigation/Navigation.util'
 import withApp from '../../hoc/withApp/withApp.hoc'
@@ -9,10 +11,6 @@ import GoalDetailsView from './GoalDetails.view'
 const mapStateToProps = (state, { navigation }) => {
   const id = getNavState('id', navigation)
   const goalItem = selector.getGoalById(state)(id)
-
-  if (!goalItem) {
-    throw new Error(`Cannot find goal id ${id}`)
-  }
 
   return {
     goalItem
@@ -35,5 +33,6 @@ const navigationOptions = {
 export default withApp({
   connect: { mapStateToProps, mapDispatchToProps },
   setStatic: ['navigationOptions', navigationOptions],
+  branch: [props => !props.goalItem, renderNothing],
   withProps: handlers
 })(GoalDetailsView)

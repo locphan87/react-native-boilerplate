@@ -27,13 +27,14 @@ const actions = {
 
 const initialState = {
   list: [],
-  loading: false
+  loading: false,
+  updating: false
 }
 
 const reducer = typeToReducer(
   {
     [GET_GOAL_LIST]: {
-      LOADING: (state, action) => ({
+      LOADING: state => ({
         ...state,
         loading: true
       }),
@@ -42,23 +43,41 @@ const reducer = typeToReducer(
         loading: false,
         list: action.payload.data
       }),
-      ERROR: (state, action) => ({
+      ERROR: state => ({
         ...state,
         loading: false
       })
     },
     [ADD_NEW_GOAL]: {
+      LOADING: state => ({
+        ...state,
+        updating: true
+      }),
+      ERROR: state => ({
+        ...state,
+        updating: false
+      }),
       SUCCESS: (state, { payload }) => ({
         ...state,
+        updating: false,
         list: [payload.data, ...state.list]
       })
     },
     [REMOVE_GOAL]: {
+      LOADING: state => ({
+        ...state,
+        updating: true
+      }),
+      ERROR: state => ({
+        ...state,
+        updating: false
+      }),
       SUCCESS: (state, { meta }) => {
         const keepItem = item => item.id !== meta.id
         const newGoalList = state.list.filter(keepItem)
         return {
           ...state,
+          updating: false,
           list: newGoalList
         }
       }

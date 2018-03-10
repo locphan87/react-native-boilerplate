@@ -4,6 +4,9 @@ import withApp from '../../hoc/withApp/withApp.hoc'
 
 import GoalCreationView from './GoalCreation.view'
 
+const mapStateToProps = state => ({
+  updating: state.goal.updating
+})
 const mapDispatchToProps = {
   addNewGoal: actions.addNewGoal
 }
@@ -22,7 +25,7 @@ const navigationOptions = {
 }
 
 export default withApp({
-  connect: { mapDispatchToProps },
+  connect: { mapStateToProps, mapDispatchToProps },
   setStatic: ['navigationOptions', navigationOptions],
   withProps: handlers
 })(GoalCreationView)
