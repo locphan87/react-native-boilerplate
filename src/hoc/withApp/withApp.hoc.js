@@ -6,6 +6,7 @@ import { isEmpty, keys } from 'ramda'
 
 import { insertIf } from '../../utils/common.util'
 import withLoading from '../withLoading/withLoading.hoc'
+import withUpdating from '../withUpdating/withUpdating.hoc'
 
 type Props = Object
 type State = Object
@@ -18,14 +19,16 @@ type Connect = {
 }
 type Options = {
   connect?: Connect,
-  loading?: boolean
+  loading?: boolean,
+  updating?: boolean
 }
 
 const { compose } = Recompose
 
 const withApp = ({
   connect: connectOpts = {},
-  loading: loadingOpts = true,
+  loading: loadingOpts = false,
+  updating: updatingOpts = false,
   ...rest
 }: Options) => (WrappedComponent: ComponentType<Props>) => {
   const getConnectEnhancer = () => {
@@ -53,7 +56,8 @@ const withApp = ({
       !isEmpty(keys(rest)),
       ...getRecomposeEnhancers()
     ),
-    ...insertIf(loadingOpts, withLoading)
+    ...insertIf(loadingOpts, withLoading),
+    ...insertIf(updatingOpts, withUpdating)
   ]
 
   return compose(...enhancers)(WrappedComponent)

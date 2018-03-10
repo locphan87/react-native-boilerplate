@@ -27,5 +27,6 @@ const navigationOptions = {
 export default withApp({
   connect: { mapStateToProps, mapDispatchToProps },
   setStatic: ['navigationOptions', navigationOptions],
+  updating: true,
   withProps: handlers
 })(GoalCreationView)

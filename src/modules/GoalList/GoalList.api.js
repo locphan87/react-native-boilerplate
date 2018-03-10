@@ -1,10 +1,7 @@
 // @flow
 import API from '../../services/API'
+import { delay } from '../../utils/common.util'
 
-const delay = (ms = 1500) =>
-  new Promise(resolve => {
-    setTimeout(resolve, ms)
-  })
 const getGoalList = async () => {
   await delay()
   return API.get('goals')

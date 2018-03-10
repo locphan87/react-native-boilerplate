@@ -13,6 +13,7 @@ const mapStateToProps = (state, { navigation }) => {
   const goalItem = selector.getGoalById(state)(id)
 
   return {
+    updating: state.goal.updating,
     goalItem
   }
 }
@@ -32,6 +33,7 @@ const navigationOptions = {
 
 export default withApp({
   connect: { mapStateToProps, mapDispatchToProps },
+  updating: true,
   setStatic: ['navigationOptions', navigationOptions],
   branch: [props => !props.goalItem, renderNothing],
   withProps: handlers
