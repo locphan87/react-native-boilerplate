@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { isEmpty, keys } from 'ramda'
 
 import { insertIf } from '../../utils/common.util'
+import withLoading from '../withLoading/withLoading.hoc'
 
 type Props = Object
 type State = Object
@@ -16,13 +17,15 @@ type Connect = {
   mapDispatchToProps?: Object
 }
 type Options = {
-  connect?: Connect
+  connect?: Connect,
+  loading?: boolean
 }
 
 const { compose } = Recompose
 
 const withApp = ({
   connect: connectOpts = {},
+  loading: loadingOpts = true,
   ...rest
 }: Options) => (WrappedComponent: ComponentType<Props>) => {
   const getConnectEnhancer = () => {
@@ -49,7 +52,8 @@ const withApp = ({
     ...insertIf(
       !isEmpty(keys(rest)),
       ...getRecomposeEnhancers()
-    )
+    ),
+    ...insertIf(loadingOpts, withLoading)
   ]
 
   return compose(...enhancers)(WrappedComponent)
