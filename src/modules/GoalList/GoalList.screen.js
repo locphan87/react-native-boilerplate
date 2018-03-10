@@ -33,6 +33,7 @@ const navigationOptions = ({ navigation }) => ({
 
 export default withApp({
   connect: { mapStateToProps, mapDispatchToProps },
+  loading: true,
   setStatic: ['navigationOptions', navigationOptions],
   lifecycle: {
     componentDidMount() {
