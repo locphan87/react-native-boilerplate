@@ -4,24 +4,22 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import fakeProps from 'react-fake-props'
 
+import { snapTest } from '../../utils/test.util'
+
 import GoalItem from './GoalItem.component'
 
-const _props = fakeProps(
+const props = fakeProps(
   path.join(__dirname, './GoalItem.component.js')
 )
+const wrapper = shallow(<GoalItem {...props} />)
 
-jest.mock('react-native-elements', () => {
-  const actual = require.requireActual(
-    'react-native-elements'
-  )
-  return {
-    ...actual,
-    ListItem: 'ListItem'
-  }
-})
-
-let wrapper = shallow(<GoalItem {..._props} />)
-
-test('basic render', () => {
-  expect(wrapper).toMatchSnapshot()
+describe('GoalItem', () => {
+  describe('snapshot', () => {
+    snapTest(wrapper, [
+      {
+        props,
+        description: 'basic render'
+      }
+    ])
+  })
 })

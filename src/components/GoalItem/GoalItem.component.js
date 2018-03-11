@@ -34,5 +34,6 @@ const GoalItem = (props: Props) => {
     />
   )
 }
+GoalItem.displayName = 'GoalItem'
 
 export default GoalItem

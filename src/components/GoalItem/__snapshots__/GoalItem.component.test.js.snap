@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`basic render 1`] = `
+exports[`GoalItem snapshot basic render 1`] = `
 <ListItem
   leftIcon={
     Object {
