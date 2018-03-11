@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`basic render 1`] = `
+<ListItem
+  leftIcon={
+    Object {
+      "name": "target",
+      "type": "foundation",
+    }
+  }
+  subtitle={
+    <Progress
+      current={1}
+      end={1}
+      start={1}
+    />
+  }
+  subtitleStyle={
+    Object {
+      "marginLeft": 5,
+    }
+  }
+  title="title"
+  titleStyle={
+    Object {
+      "color": "white",
+      "marginLeft": 5,
+    }
+  }
+  underlayColor="blue"
+/>
+`;

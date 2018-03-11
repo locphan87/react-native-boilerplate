@@ -7,10 +7,18 @@ module.exports = {
     '<rootDir>/flow-typed/'
   ],
   moduleFileExtensions: ['js'],
+  testMatch: [
+    '**/__tests__/**/*.js',
+    '**/?(*.)(spec|test).js'
+  ],
+  setupFiles: ['<rootDir>/tests/setup.js'],
   coveragePathIgnorePatterns: [
-    '(styles|story).js',
+    '(style|story).js',
+    './tests/setup.js',
+    './src/themes/',
     'index.js'
   ],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
   clearMocks: true,
   timers: 'fake',
   coverageThreshold: {
