@@ -1,5 +1,10 @@
 module.exports = {
   extends: ['universe/native'],
+  env: {
+    browser: true,
+    node: true,
+    jest: true
+  },
   rules: {
     // complexity
     complexity: ['error', 5],

@@ -6,7 +6,12 @@ import Progress from '../Progress/Progress.component'
 
 import styles from './GoalItem.component.style'
 
-type Props = GoalProp & {
+type Props = {
+  id: number,
+  title: string,
+  start: number,
+  current: number,
+  end: number,
   onPress: Function
 }
 
@@ -16,12 +21,12 @@ const leftIcon = {
 }
 
 const GoalItem = (props: Props) => {
-  const { id, title, onPress } = props
+  const { id, title, onPress, ...rest } = props
   return (
     <ListItem
       title={title}
       titleStyle={styles.title}
-      subtitle={<Progress {...props} />}
+      subtitle={<Progress {...rest} />}
       subtitleStyle={styles.subtitle}
       underlayColor={'blue'}
       onPress={onPress(id)}
@@ -29,5 +34,6 @@ const GoalItem = (props: Props) => {
     />
   )
 }
+GoalItem.displayName = 'GoalItem'
 
 export default GoalItem
