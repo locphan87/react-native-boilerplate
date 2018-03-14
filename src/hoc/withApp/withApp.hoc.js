@@ -1,63 +1,32 @@
 // @flow
-import * as Recompose from 'recompose'
-import type { ComponentType } from 'react'
-import { connect } from 'react-redux'
-import { isEmpty, keys } from 'ramda'
+import { compose } from 'recompose'
+import { isNonEmptyArray } from 'ramda-adjunct'
 
 import { insertIf } from '../../utils/common.util'
 import withLoading from '../withLoading/withLoading.hoc'
 import withUpdating from '../withUpdating/withUpdating.hoc'
+import nonOptimalStates, {
+  type NonOptimalState
+} from '../nonOptimalStates/nonOptimalStates.hoc'
 
-type Props = Object
-type State = Object
-type Connect = {
-  mapStateToProps?: (
-    state: State,
-    ownProps: Props
-  ) => Object,
-  mapDispatchToProps?: Object
-}
 type Options = {
-  connect?: Connect,
   loading?: boolean,
-  updating?: boolean
+  updating?: boolean,
+  renderWhen?: NonOptimalState[]
 }
-
-const { compose } = Recompose
 
 const withApp = ({
-  connect: connectOpts = {},
-  loading: loadingOpts = false,
-  updating: updatingOpts = false,
-  ...rest
-}: Options) => (WrappedComponent: ComponentType<Props>) => {
-  const getConnectEnhancer = () => {
-    const {
-      mapStateToProps = null,
-      mapDispatchToProps = null
-    } = connectOpts
-    return connect(mapStateToProps, mapDispatchToProps)
-  }
-  const getRecomposeEnhancers = () =>
-    keys(rest).reduce((acc, key) => {
-      if (!Recompose[key]) return acc
-      const hoc = Recompose[key]
-      const enhancer = Array.isArray(rest[key])
-        ? hoc(...rest[key])
-        : hoc(rest[key])
-      return acc.concat(enhancer)
-    }, [])
+  loading = false,
+  updating = false,
+  renderWhen = []
+}: Options) => (WrappedComponent: GenericComponent) => {
+  const optinalRenders = isNonEmptyArray(renderWhen)
+    ? nonOptimalStates(renderWhen)
+    : []
   const enhancers = [
-    ...insertIf(
-      !isEmpty(connectOpts),
-      getConnectEnhancer()
-    ),
-    ...insertIf(
-      !isEmpty(keys(rest)),
-      ...getRecomposeEnhancers()
-    ),
-    ...insertIf(loadingOpts, withLoading),
-    ...insertIf(updatingOpts, withUpdating)
+    ...insertIf(loading, withLoading),
+    ...insertIf(updating, withUpdating),
+    ...optinalRenders
   ]
 
   return compose(...enhancers)(WrappedComponent)

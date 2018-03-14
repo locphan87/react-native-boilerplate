@@ -1,8 +1,7 @@
 // @flow
 import React from 'react'
 import { Button } from 'react-native'
-
-import withApp from '../../hoc/withApp/withApp.hoc'
+import { compose, setStatic } from 'recompose'
 
 import HomeView from './Home.view'
 
@@ -13,6 +12,6 @@ const navigationOptions = {
   )
 }
 
-export default withApp({
-  setStatic: ['navigationOptions', navigationOptions]
-})(HomeView)
+export default compose(
+  setStatic('navigationOptions', navigationOptions)
+)(HomeView)
