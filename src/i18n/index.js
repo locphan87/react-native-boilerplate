@@ -1,3 +1,4 @@
+// @flow
 import I18n from 'react-native-i18n'
 
 import en from './locales/en'
@@ -9,4 +10,10 @@ I18n.translations = {
   vi
 }
 
+const translateWithNamespace = (namespace: string) => (
+  term: string,
+  ...rest: any[]
+) => I18n.t(`${namespace}.${term}`, ...rest)
+
+export { translateWithNamespace }
 export default I18n

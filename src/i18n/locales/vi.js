@@ -1,3 +1,5 @@
 export default {
-  hello: 'Xin chào'
+  home: {
+    welcome: 'Welcome to React Native Boilerplate'
+  }
 }

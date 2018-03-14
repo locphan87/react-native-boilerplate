@@ -4,10 +4,15 @@ import { Input, Button } from 'react-native-elements'
 import { withFormik } from 'formik'
 import { View } from 'react-native'
 
+import { translateWithNamespace } from '../../i18n'
+
 import styles, {
   stylesObj
 } from './GoalCreation.form.style'
 
+const translate = translateWithNamespace(
+  'goalCreation.form'
+)
 const fields = ['title', 'start', 'current', 'end']
 const InnerForm = ({
   values,
@@ -19,7 +24,7 @@ const InnerForm = ({
     {fields.map(fieldName => (
       <Input
         key={fieldName}
-        placeholder={fieldName.toUpperCase()}
+        placeholder={translate(fieldName).toUpperCase()}
         onChangeText={text =>
           setFieldValue(fieldName, text)
         }

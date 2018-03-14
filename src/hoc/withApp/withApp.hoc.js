@@ -1,6 +1,7 @@
 // @flow
 import { compose } from 'recompose'
 import { isNonEmptyArray } from 'ramda-adjunct'
+import Immutable from 'seamless-immutable'
 
 import { insertIf } from '../../utils/common.util'
 import withLoading from '../withLoading/withLoading.hoc'
@@ -20,14 +21,14 @@ const withApp = ({
   updating = false,
   renderWhen = []
 }: Options) => (WrappedComponent: GenericComponent) => {
-  const optinalRenders = isNonEmptyArray(renderWhen)
-    ? nonOptimalStates(renderWhen)
-    : []
-  const enhancers = [
+  const enhancers = Immutable([
     ...insertIf(loading, withLoading),
     ...insertIf(updating, withUpdating),
-    ...optinalRenders
-  ]
+    ...insertIf(
+      isNonEmptyArray(renderWhen),
+      ...nonOptimalStates(renderWhen)
+    )
+  ])
 
   return compose(...enhancers)(WrappedComponent)
 }
