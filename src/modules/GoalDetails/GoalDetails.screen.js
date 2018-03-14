@@ -1,10 +1,12 @@
 // @flow
 import { compose, setStatic, withProps } from 'recompose'
 import { connect } from 'react-redux'
+import { isNil, prop } from 'ramda'
 
 import { actions } from '../GoalList/GoalList.reducer'
 import { getNavState } from '../Navigation/Navigation.util'
 import { withApp } from '../../hoc'
+import Constants from '../../constants'
 import selector from '../GoalList/GoalList.selector'
 
 import GoalDetailsView from './GoalDetails.view'
@@ -31,19 +33,20 @@ const handlers = ({ removeGoal, navigation }) => ({
 const navigationOptions = {
   title: 'Goal Details'
 }
-const isMissingItem = ({ goalItem }) => !goalItem
+const isMissingItem = compose(isNil, prop('goalItem'))
+const renderWhen = [
+  {
+    when: isMissingItem,
+    render: Constants.NOTHING
+  }
+]
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   setStatic('navigationOptions', navigationOptions),
   withApp({
     updating: true,
-    renderWhen: [
-      {
-        when: isMissingItem,
-        render: 'Nothing'
-      }
-    ]
+    renderWhen
   }),
   withProps(handlers)
 )(GoalDetailsView)

@@ -1,4 +1,6 @@
 // @flow
+import { StyleSheet } from 'react-native'
+
 import { COLORS } from '../../themes'
 
 const styles = {
@@ -11,4 +13,4 @@ const styles = {
   }
 }
 
-export default styles
+export default StyleSheet.create(styles)

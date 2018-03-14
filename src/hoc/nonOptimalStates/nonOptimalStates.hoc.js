@@ -5,7 +5,9 @@ import {
   renderNothing
 } from 'recompose'
 
-type Nothing = 'Nothing'
+import Constants from '../../constants'
+
+type Nothing = Constants.NOTHING
 export type NonOptimalState = {
   when: RenderPredicate,
   render: Nothing | GenericComponent
@@ -14,7 +16,7 @@ export type NonOptimalState = {
 const nonOptimalStates = (states: NonOptimalState[]) =>
   states.map(({ when, render }) => {
     const component =
-      render === 'Nothing'
+      render === Constants.NOTHING
         ? renderNothing
         : renderComponent(render)
     return branch(when, component)

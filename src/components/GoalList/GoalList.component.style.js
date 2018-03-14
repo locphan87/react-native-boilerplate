@@ -1,6 +1,8 @@
+import { StyleSheet } from 'react-native'
+
 import { COLORS } from '../../themes'
 
-export default {
+export default StyleSheet.create({
   base: {
     flex: 1,
     width: '100%',
@@ -8,4 +10,4 @@ export default {
     borderTopWidth: 0,
     backgroundColor: COLORS.base
   }
-}
+})

@@ -3,9 +3,7 @@ import React from 'react'
 
 import { Wrapper, Text } from '../Styled'
 
-type Props = Object
-
-const LoadingMask = (prop: Props) => (
+const LoadingMask = (prop: GenericProps) => (
   <Wrapper>
     <Text>Loading...</Text>
   </Wrapper>

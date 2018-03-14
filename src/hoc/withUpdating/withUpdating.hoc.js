@@ -1,22 +1,26 @@
 // @flow
-import React, { type ComponentType } from 'react'
-import { View } from 'react-native'
+import React from 'react'
+import { View, StyleSheet } from 'react-native'
+import { equals } from 'ramda'
 
 import { Text } from '../../components/Styled'
 
-type Props = Object
-
 const Updating = () => <Text>Updating...</Text>
 const withUpdating = (
-  WrappedComponent: ComponentType<Props>
-) => (props: Props) => {
-  const isUpdating = props.updating
+  WrappedComponent: GenericComponent
+) => ({ updating, ...rest }: GenericProps) => {
+  const isUpdating = equals(true, updating)
   return (
-    <View style={{ flex: 1 }}>
-      <WrappedComponent {...props} />
+    <View style={styles.container}>
+      <WrappedComponent {...rest} />
       {isUpdating && <Updating />}
     </View>
   )
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+})
 
 export default withUpdating

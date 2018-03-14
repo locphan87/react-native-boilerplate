@@ -6,8 +6,7 @@ import I18n from '../../i18n'
 
 const HomeView = () => (
   <Wrapper>
-    <Text>Welcome to Progress App</Text>
-    <Text>{I18n.t('hello')}</Text>
+    <Text>{I18n.t('home.welcome')}</Text>
   </Wrapper>
 )
 
