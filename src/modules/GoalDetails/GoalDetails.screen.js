@@ -1,9 +1,10 @@
 // @flow
-import { renderNothing } from 'recompose'
+import { compose, setStatic, withProps } from 'recompose'
+import { connect } from 'react-redux'
 
 import { actions } from '../GoalList/GoalList.reducer'
 import { getNavState } from '../Navigation/Navigation.util'
-import withApp from '../../hoc/withApp/withApp.hoc'
+import { withApp } from '../../hoc'
 import selector from '../GoalList/GoalList.selector'
 
 import GoalDetailsView from './GoalDetails.view'
@@ -30,11 +31,19 @@ const handlers = ({ removeGoal, navigation }) => ({
 const navigationOptions = {
   title: 'Goal Details'
 }
+const isMissingItem = ({ goalItem }) => !goalItem
 
-export default withApp({
-  connect: { mapStateToProps, mapDispatchToProps },
-  updating: true,
-  setStatic: ['navigationOptions', navigationOptions],
-  branch: [props => !props.goalItem, renderNothing],
-  withProps: handlers
-})(GoalDetailsView)
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  setStatic('navigationOptions', navigationOptions),
+  withApp({
+    updating: true,
+    renderWhen: [
+      {
+        when: isMissingItem,
+        render: 'Nothing'
+      }
+    ]
+  }),
+  withProps(handlers)
+)(GoalDetailsView)

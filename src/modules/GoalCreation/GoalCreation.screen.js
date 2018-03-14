@@ -1,6 +1,9 @@
 // @flow
+import { connect } from 'react-redux'
+import { compose, withProps, setStatic } from 'recompose'
+
 import { actions } from '../GoalList/GoalList.reducer'
-import withApp from '../../hoc/withApp/withApp.hoc'
+import { withApp } from '../../hoc'
 
 import GoalCreationView from './GoalCreation.view'
 
@@ -24,9 +27,9 @@ const navigationOptions = {
   title: 'Goal Creation'
 }
 
-export default withApp({
-  connect: { mapStateToProps, mapDispatchToProps },
-  setStatic: ['navigationOptions', navigationOptions],
-  updating: true,
-  withProps: handlers
-})(GoalCreationView)
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  setStatic('navigationOptions', navigationOptions),
+  withApp({ updating: true }),
+  withProps(handlers)
+)(GoalCreationView)

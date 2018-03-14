@@ -1,8 +1,15 @@
 // @flow
 import React from 'react'
 import { Button } from 'react-native'
+import {
+  compose,
+  setStatic,
+  lifecycle,
+  withProps
+} from 'recompose'
+import { connect } from 'react-redux'
 
-import withApp from '../../hoc/withApp/withApp.hoc'
+import { withApp } from '../../hoc'
 
 import GoalListView from './GoalList.view'
 import { actions } from './GoalList.reducer'
@@ -31,14 +38,14 @@ const navigationOptions = ({ navigation }) => ({
   )
 })
 
-export default withApp({
-  connect: { mapStateToProps, mapDispatchToProps },
-  loading: true,
-  setStatic: ['navigationOptions', navigationOptions],
-  lifecycle: {
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  setStatic('navigationOptions', navigationOptions),
+  lifecycle({
     componentDidMount() {
       this.props.getGoalList()
     }
-  },
-  withProps: handlers
-})(GoalListView)
+  }),
+  withApp({ loading: true }),
+  withProps(handlers)
+)(GoalListView)
