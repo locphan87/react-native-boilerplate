@@ -12,7 +12,7 @@ const navigationOptions = {
   title: 'Home',
   headerRight: (
     <Button
-      title={I18n.t('home.buttons.done')}
+      title={I18n.t('home.screen.done')}
       onPress={Constants.NOOP}
     />
   )

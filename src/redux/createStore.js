@@ -6,6 +6,7 @@ import {
 } from 'redux'
 import thunk from 'redux-thunk'
 import promiseMiddleware from 'redux-promise-middleware'
+import { is } from 'ramda'
 
 import { isDEV } from '../utils/platform.util'
 
@@ -18,20 +19,15 @@ const middleware = [
   })
 ]
 const enhancers = [applyMiddleware(...middleware)]
-
-export default (initialValue: Object = {}) => {
-  const getComposer = () => {
-    if (!isDEV()) return compose
-    return typeof window === 'object' &&
-      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-      : compose
-  }
-  const composer = getComposer()
-
-  return createStore(
-    reducer,
-    initialValue,
-    composer(...enhancers)
-  )
+const getComposer = () => {
+  if (!isDEV()) return compose
+  if (!is(Object, window)) return compose
+  const {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: reduxDevToolsCompose
+  } = window
+  return reduxDevToolsCompose || compose
 }
+const composer = getComposer()
+
+export default (initialValue: Object = {}) =>
+  createStore(reducer, initialValue, composer(...enhancers))

@@ -4,6 +4,7 @@ import { compose, withProps, setStatic } from 'recompose'
 
 import { actions } from '../GoalList/GoalList.reducer'
 import { withApp } from '../../hoc'
+import I18n from '../../i18n'
 
 import GoalCreationView from './GoalCreation.view'
 
@@ -24,7 +25,7 @@ const handlers = ({ navigation, addNewGoal }) => ({
   }
 })
 const navigationOptions = {
-  title: 'Goal Creation'
+  title: I18n.t('goalCreation.screen.title')
 }
 
 export default compose(

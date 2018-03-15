@@ -6,7 +6,7 @@ import I18n from '../../i18n'
 
 const HomeView = () => (
   <Wrapper>
-    <Text>{I18n.t('home.welcome')}</Text>
+    <Text>{I18n.t('home.view.welcome')}</Text>
   </Wrapper>
 )
 
