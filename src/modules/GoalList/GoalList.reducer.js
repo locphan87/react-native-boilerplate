@@ -4,6 +4,12 @@ import typeToReducer from 'type-to-reducer'
 
 import API from './GoalList.api'
 
+type State = {
+  list: GoalProp[],
+  loading: boolean,
+  updating: boolean
+}
+
 // action types
 const ADD_NEW_GOAL = 'GOAL/ADD_NEW_GOAL'
 const REMOVE_GOAL = 'GOAL/REMOVE_GOAL'
@@ -25,7 +31,7 @@ const actions = {
   removeGoal
 }
 
-const initialState = {
+const initialState: State = {
   list: [],
   loading: false,
   updating: false
@@ -38,7 +44,7 @@ const reducer = typeToReducer(
         ...state,
         loading: true
       }),
-      SUCCESS: (state, action) => ({
+      SUCCESS: (state: State, action): State => ({
         ...state,
         loading: false,
         list: action.payload.data
@@ -57,7 +63,7 @@ const reducer = typeToReducer(
         ...state,
         updating: false
       }),
-      SUCCESS: (state, { payload }) => ({
+      SUCCESS: (state: State, { payload }): State => ({
         ...state,
         updating: false,
         list: [payload.data, ...state.list]
@@ -72,7 +78,7 @@ const reducer = typeToReducer(
         ...state,
         updating: false
       }),
-      SUCCESS: (state, { meta }) => {
+      SUCCESS: (state: State, { meta }): State => {
         const keepItem = item => item.id !== meta.id
         const newGoalList = state.list.filter(keepItem)
         return {

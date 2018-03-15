@@ -10,6 +10,7 @@ import {
 import { connect } from 'react-redux'
 
 import { withApp } from '../../hoc'
+import I18n from '../../i18n'
 
 import GoalListView from './GoalList.view'
 import { actions } from './GoalList.reducer'
@@ -21,16 +22,16 @@ const mapStateToProps = (state): Object => ({
 const mapDispatchToProps = {
   getGoalList: actions.getGoalList
 }
-const handlers = props => ({
+const handlers = ({ navigation }) => ({
   OPEN_DETAILS: id => () => {
-    props.navigation.navigate('GoalDetails', { id })
+    navigation.navigate('GoalDetails', { id })
   }
 })
 const navigationOptions = ({ navigation }) => ({
-  title: 'Goal List',
+  title: I18n.t('goalList.screen.title'),
   headerRight: (
     <Button
-      title={'New goal'}
+      title={I18n.t('goalList.screen.newGoal')}
       onPress={() => {
         navigation.navigate('GoalCreation')
       }}

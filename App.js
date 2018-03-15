@@ -3,7 +3,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'glamorous-native'
 
-import Navigator from './src/modules/Navigation/Navigation'
+import Navigator from './src/modules/Navigation'
 import createStore from './src/redux/createStore'
 import theme from './src/themes/theme'
 
