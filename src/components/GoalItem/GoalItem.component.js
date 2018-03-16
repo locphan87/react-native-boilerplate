@@ -26,7 +26,7 @@ const GoalItem = (props: Props) => {
     <ListItem
       title={title}
       titleStyle={styles.title}
-      subtitle={<Progress {...rest} />}
+      subtitle={<Progress {...rest} type={'simple'} />}
       subtitleStyle={styles.subtitle}
       underlayColor={'blue'}
       onPress={onPress(id)}
