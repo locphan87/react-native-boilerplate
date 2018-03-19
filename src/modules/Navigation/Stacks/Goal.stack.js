@@ -3,16 +3,18 @@ import { StackNavigator } from 'react-navigation'
 
 import Screens from '../Navigation.screen'
 import { stackOptions } from '../Navigation.option'
+import { Routes } from '../Navigation.constant'
 
+const { Goal } = Routes
 const { GoalList, GoalCreation, GoalDetails } = Screens
 const GoalStack = StackNavigator(
   {
-    GoalList,
-    GoalCreation,
-    GoalDetails
+    [Goal.GoalList]: GoalList,
+    [Goal.GoalCreation]: GoalCreation,
+    [Goal.GoalDetails]: GoalDetails
   },
   {
-    initialRouteName: 'GoalList',
+    initialRouteName: Goal.GoalList,
     navigationOptions: stackOptions
   }
 )
