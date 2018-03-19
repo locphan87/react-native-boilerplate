@@ -1,6 +1,6 @@
 // @flow
 import { connect } from 'react-redux'
-import { compose, withProps, setStatic } from 'recompose'
+import { compose, setStatic, withHandlers } from 'recompose'
 
 import { actions } from '../GoalList/GoalList.reducer'
 import { withApp } from '../../hoc'
@@ -14,8 +14,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   addNewGoal: actions.addNewGoal
 }
-const handlers = ({ navigation, addNewGoal }) => ({
-  ADD_NEW_GOAL: async values => {
+const handlers = {
+  ADD_NEW_GOAL: props => async values => {
+    const { navigation, addNewGoal } = props
     const newGoal = {
       id: Date.now(),
       ...values
@@ -23,7 +24,7 @@ const handlers = ({ navigation, addNewGoal }) => ({
     await addNewGoal(newGoal)
     navigation.goBack()
   }
-})
+}
 const navigationOptions = {
   title: I18n.t('goalCreation.screen.title')
 }
@@ -32,5 +33,5 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   setStatic('navigationOptions', navigationOptions),
   withApp({ updating: true }),
-  withProps(handlers)
+  withHandlers(handlers)
 )(GoalCreationView)

@@ -1,5 +1,5 @@
 // @flow
-import { compose, setStatic, withProps } from 'recompose'
+import { compose, setStatic, withHandlers } from 'recompose'
 import { connect } from 'react-redux'
 import { isNil, prop } from 'ramda'
 
@@ -24,13 +24,14 @@ const mapStateToProps = (state, { navigation }) => {
 const mapDispatchToProps = {
   removeGoal: actions.removeGoal
 }
-const handlers = ({ removeGoal, navigation }) => ({
-  REMOVE_GOAL: async () => {
+const handlers = {
+  REMOVE_GOAL: props => async () => {
+    const { removeGoal, navigation } = props
     const id = getNavState('id', navigation)
     await removeGoal(id)
     navigation.goBack()
   }
-})
+}
 const navigationOptions = {
   title: I18n.t('goalDetails.screen.title')
 }
@@ -49,5 +50,5 @@ export default compose(
     updating: true,
     renderWhen
   }),
-  withProps(handlers)
+  withHandlers(handlers)
 )(GoalDetailsView)

@@ -1,8 +1,7 @@
 export default {
   home: {
     screen: {
-      title: 'Home',
-      done: 'Done'
+      title: 'Home'
     },
     view: {
       welcome: 'Welcome to React Native Boilerplate'

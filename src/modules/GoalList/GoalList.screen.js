@@ -5,7 +5,7 @@ import {
   compose,
   setStatic,
   lifecycle,
-  withProps
+  withHandlers
 } from 'recompose'
 import { connect } from 'react-redux'
 
@@ -22,11 +22,12 @@ const mapStateToProps = (state): Object => ({
 const mapDispatchToProps = {
   getGoalList: actions.getGoalList
 }
-const handlers = ({ navigation }) => ({
-  OPEN_DETAILS: id => () => {
-    navigation.navigate('GoalDetails', { id })
+const handlers = {
+  OPEN_DETAILS: props => id => () => {
+    const { navigation: { navigate } } = props
+    navigate('GoalDetails', { id })
   }
-})
+}
 const navigationOptions = ({ navigation }) => ({
   title: I18n.t('goalList.screen.title'),
   headerRight: (
@@ -48,5 +49,5 @@ export default compose(
     }
   }),
   withApp({ loading: true }),
-  withProps(handlers)
+  withHandlers(handlers)
 )(GoalListView)
