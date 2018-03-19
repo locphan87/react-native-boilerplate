@@ -1,11 +1,12 @@
 // @flow
 import React from 'react'
+import { ActivityIndicator } from 'react-native'
 
-import { Wrapper, Text } from '../Styled'
+import { Wrapper } from '../Styled'
 
 const LoadingMask = (prop: GenericProps) => (
   <Wrapper>
-    <Text>Loading...</Text>
+    <ActivityIndicator />
   </Wrapper>
 )
 

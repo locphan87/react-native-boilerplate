@@ -1,17 +1,19 @@
 // @flow
 import { StackNavigator } from 'react-navigation'
 
+import { Routes } from '../Navigation.constant'
 import Screens from '../Navigation.screen'
 import { stackOptions } from '../Navigation.option'
 
+const { Home: HomeRoutes } = Routes
 const { Home, GoalDetails } = Screens
 const HomeStack = StackNavigator(
   {
-    Home,
-    GoalDetails
+    [HomeRoutes.Home]: Home,
+    [HomeRoutes.GoalDetails]: GoalDetails
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: HomeRoutes.Home,
     navigationOptions: stackOptions
   }
 )
