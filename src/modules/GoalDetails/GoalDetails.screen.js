@@ -11,26 +11,18 @@ import I18n from '../../i18n'
 import selector from '../GoalList/GoalList.selector'
 
 import GoalDetailsView from './GoalDetails.view'
+import handlers from './GoalDetails.handler'
 
 const mapStateToProps = (state, { navigation }) => {
   const id = getNavState('id', navigation)
   const goalItem = selector.getGoalById(state)(id)
 
   return {
-    updating: state.goal.updating,
     goalItem
   }
 }
 const mapDispatchToProps = {
   removeGoal: actions.removeGoal
-}
-const handlers = {
-  REMOVE_GOAL: props => async () => {
-    const { removeGoal, navigation } = props
-    const id = getNavState('id', navigation)
-    await removeGoal(id)
-    navigation.goBack()
-  }
 }
 const navigationOptions = ({ navigation }) => ({
   headerTitle: I18n.t('goalDetails.screen.title')
@@ -47,7 +39,7 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   setStatic('navigationOptions', navigationOptions),
   withApp({
-    updating: true,
+    updates: ['removeGoal'],
     renderWhen
   }),
   withHandlers(handlers)

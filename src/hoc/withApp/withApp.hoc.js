@@ -14,7 +14,7 @@ import nonOptimalStates, {
 
 type Options = {
   loading?: boolean,
-  updating?: boolean,
+  updates?: string[],
   renderWhen?: NonOptimalState[]
 }
 
@@ -24,17 +24,20 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   setLanguage: actions.setLanguage
 }
-const withApp = ({
+
+type WithApp = Options => GenericHOC
+const withApp: WithApp = ({
   loading = false,
-  updating = false,
+  updates = [],
   renderWhen = []
-}: Options = {}) => (
-  WrappedComponent: GenericComponent
-) => {
+} = {}) => WrappedComponent => {
   const enhancers = Immutable([
     connect(mapStateToProps, mapDispatchToProps),
     ...insertIf(loading, withLoading),
-    ...insertIf(updating, withUpdating),
+    ...insertIf(
+      isNonEmptyArray(updates),
+      withUpdating(updates)
+    ),
     ...insertIf(
       isNonEmptyArray(renderWhen),
       nonOptimalStates(renderWhen)
