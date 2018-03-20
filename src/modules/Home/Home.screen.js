@@ -39,7 +39,9 @@ export default compose(
   lifecycle({
     componentWillMount() {
       const { language } = this.props
-      this.props.TOGGLE_LANGUAGE(language)()
+      // reset language state from storage
+      I18n.defaultLocale = language
+      I18n.locale = language
     }
   })
 )(HomeView)

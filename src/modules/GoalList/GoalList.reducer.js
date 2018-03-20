@@ -6,8 +6,7 @@ import API from './GoalList.api'
 
 type State = {
   list: GoalProp[],
-  loading: boolean,
-  updating: boolean
+  loading: boolean
 }
 
 // action types
@@ -33,8 +32,7 @@ const actions = {
 
 const initialState: State = {
   list: [],
-  loading: false,
-  updating: false
+  loading: false
 }
 
 const reducer = typeToReducer(
@@ -55,35 +53,17 @@ const reducer = typeToReducer(
       })
     },
     [ADD_NEW_GOAL]: {
-      LOADING: state => ({
-        ...state,
-        updating: true
-      }),
-      ERROR: state => ({
-        ...state,
-        updating: false
-      }),
       SUCCESS: (state: State, { payload }): State => ({
         ...state,
-        updating: false,
         list: [payload.data, ...state.list]
       })
     },
     [REMOVE_GOAL]: {
-      LOADING: state => ({
-        ...state,
-        updating: true
-      }),
-      ERROR: state => ({
-        ...state,
-        updating: false
-      }),
       SUCCESS: (state: State, { meta }): State => {
         const keepItem = item => item.id !== meta.id
         const newGoalList = state.list.filter(keepItem)
         return {
           ...state,
-          updating: false,
           list: newGoalList
         }
       }
