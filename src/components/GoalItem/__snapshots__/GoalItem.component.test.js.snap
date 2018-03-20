@@ -9,10 +9,11 @@ exports[`GoalItem snapshot basic render 1`] = `
     }
   }
   subtitle={
-    <Progress
+    <Connect(branch(Progress))
       current={1}
       end={1}
       start={1}
+      type="simple"
     />
   }
   subtitleStyle={
