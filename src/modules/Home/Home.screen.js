@@ -1,5 +1,10 @@
 // @flow
-import { compose, setStatic, withHandlers } from 'recompose'
+import {
+  compose,
+  setStatic,
+  withHandlers,
+  lifecycle
+} from 'recompose'
 
 import I18n from '../../i18n'
 import { withApp } from '../../hoc'
@@ -13,11 +18,14 @@ const navigationOptions = ({ navigation }) => ({
     I18n.t('home.screen.title')
 })
 const handlers = {
-  TOGGLE_LANGUAGE: props => lang => () => {
+  TOGGLE_LANGUAGE: ({
+    setLanguage,
+    navigation
+  }) => lang => () => {
     I18n.defaultLocale = lang
     I18n.locale = lang
-    props.setLanguage(lang)
-    props.navigation.setParams({
+    setLanguage(lang)
+    navigation.setParams({
       title: I18n.t('home.screen.title')
     })
   }
@@ -26,5 +34,11 @@ const handlers = {
 export default compose(
   setStatic('navigationOptions', navigationOptions),
   withApp(),
-  withHandlers(handlers)
+  withHandlers(handlers),
+  lifecycle({
+    componentWillMount() {
+      const { language } = this.props
+      this.props.TOGGLE_LANGUAGE(language)()
+    }
+  })
 )(HomeView)
