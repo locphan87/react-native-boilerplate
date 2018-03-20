@@ -6,6 +6,9 @@ import { Ionicons } from '@expo/vector-icons'
 
 import { COLORS } from '../../themes'
 
+import { Routes } from './Navigation.constant'
+
+const { Root } = Routes
 const stackOptions = {
   headerStyle: {
     backgroundColor: '#292D36'
@@ -23,8 +26,8 @@ const tabOptions = {
       const { routeName } = navigation.state
       const outline = focused ? '' : '-outline'
       const iconNames = {
-        Home: `ios-home${outline}`,
-        Goal: `ios-list-box${outline}`
+        [Root.Home]: `ios-home${outline}`,
+        [Root.Goal]: `ios-list-box${outline}`
       }
 
       return (
