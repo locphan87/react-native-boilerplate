@@ -35,10 +35,9 @@ const withApp = ({
     connect(mapStateToProps, mapDispatchToProps),
     ...insertIf(loading, withLoading),
     ...insertIf(updating, withUpdating),
-    // withState('language', 'changeLanguage', I18n.locale),
     ...insertIf(
       isNonEmptyArray(renderWhen),
-      ...nonOptimalStates(renderWhen)
+      nonOptimalStates(renderWhen)
     )
   ])
 

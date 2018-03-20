@@ -1,5 +1,6 @@
 // @flow
 import {
+  compose,
   branch,
   renderComponent,
   renderNothing
@@ -14,12 +15,14 @@ export type NonOptimalState = {
 }
 
 const nonOptimalStates = (states: NonOptimalState[]) =>
-  states.map(({ when, render }) => {
-    const component =
-      render === Constants.NOTHING
-        ? renderNothing
-        : renderComponent(render)
-    return branch(when, component)
-  })
+  compose(
+    ...states.map(({ when, render }) => {
+      const component =
+        render === Constants.NOTHING
+          ? renderNothing
+          : renderComponent(render)
+      return branch(when, component)
+    })
+  )
 
 export default nonOptimalStates

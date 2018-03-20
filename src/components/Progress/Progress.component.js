@@ -5,7 +5,7 @@ import { Slider } from 'react-native-elements'
 import { propEq, map } from 'ramda'
 
 import { Text } from '../../components/Styled'
-import { withApp } from '../../hoc'
+import { renderWhen } from '../../hoc'
 import { COLORS } from '../../themes'
 
 type PercentProps = {
@@ -51,11 +51,11 @@ const Progress = ({
   )
 }
 
-export default withApp({
-  renderWhen: [
-    {
-      when: isSimple,
-      render: Percent
-    }
-  ]
-})(Progress)
+const enhance = renderWhen([
+  {
+    when: isSimple,
+    render: Percent
+  }
+])
+
+export default enhance(Progress)
