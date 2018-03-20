@@ -25,9 +25,9 @@ const handlers = {
     navigation.goBack()
   }
 }
-const navigationOptions = {
-  title: I18n.t('goalCreation.screen.title')
-}
+const navigationOptions = ({ navigation }) => ({
+  headerTitle: I18n.t('goalCreation.screen.title')
+})
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),

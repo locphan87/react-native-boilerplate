@@ -35,7 +35,7 @@ const InnerForm = ({
       containerStyle={stylesObj.button}
       onPress={handleSubmit}
       loading={isSubmitting}
-      text="Submit"
+      text={translate('submit')}
     />
   </View>
 )

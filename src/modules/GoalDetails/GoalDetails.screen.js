@@ -32,9 +32,9 @@ const handlers = {
     navigation.goBack()
   }
 }
-const navigationOptions = {
-  title: I18n.t('goalDetails.screen.title')
-}
+const navigationOptions = ({ navigation }) => ({
+  headerTitle: I18n.t('goalDetails.screen.title')
+})
 const isMissingItem = compose(isNil, prop('goalItem'))
 const renderWhen = [
   {

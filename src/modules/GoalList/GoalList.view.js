@@ -11,7 +11,8 @@ type Props = {
 
 const GoalListView = ({
   OPEN_DETAILS,
-  goalList
+  goalList,
+  language
 }: Props) => (
   <Wrapper>
     <GoalList list={goalList} onPress={OPEN_DETAILS} />
