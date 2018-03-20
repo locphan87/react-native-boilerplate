@@ -21,8 +21,7 @@ const navigationOptions = ({ navigation }) => ({
 const handlers = {
   TOGGLE_LANGUAGE: ({
     setLanguage,
-    navigation,
-    language
+    navigation
   }) => lang => () => {
     I18n.defaultLocale = lang
     I18n.locale = lang
