@@ -11,10 +11,7 @@ const actions = { setLanguage }
 const initialState: string = I18n.currentLocale()
 const reducer = typeToReducer(
   {
-    [SET_LANGUAGE]: (state, action) => {
-      console.log(action)
-      return action.payload
-    }
+    [SET_LANGUAGE]: (state, action) => action.payload
   },
   initialState
 )

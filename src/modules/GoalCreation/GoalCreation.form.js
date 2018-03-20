@@ -34,7 +34,7 @@ const InnerForm = ({
     <Button
       containerStyle={stylesObj.button}
       onPress={handleSubmit}
-      loading={isSubmitting}
+      disabled={isSubmitting}
       text={translate('submit')}
     />
   </View>
