@@ -1,4 +1,3 @@
-// @flow
 import {
   createStore,
   applyMiddleware,
@@ -6,12 +5,18 @@ import {
 } from 'redux'
 import thunk from 'redux-thunk'
 import promiseMiddleware from 'redux-promise-middleware'
+import { persistStore, persistReducer } from 'redux-persist'
 import { is } from 'ramda'
 
 import { isDEV } from '../utils/platform.util'
+import { persistConfig } from '../configs'
 
-import reducer from './reducer'
+import rootReducer from './reducer'
 
+const persistedReducer = persistReducer(
+  persistConfig,
+  rootReducer
+)
 const middleware = [
   thunk,
   promiseMiddleware({
@@ -29,5 +34,12 @@ const getComposer = () => {
 }
 const composer = getComposer()
 
-export default (initialValue: Object = {}) =>
-  createStore(reducer, initialValue, composer(...enhancers))
+export default (initialValue = {}) => {
+  const store = createStore(
+    persistedReducer,
+    initialValue,
+    composer(...enhancers)
+  )
+  const persistor = persistStore(store)
+  return { store, persistor }
+}

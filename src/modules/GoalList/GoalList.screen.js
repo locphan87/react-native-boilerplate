@@ -30,7 +30,7 @@ const handlers = {
   }
 }
 const navigationOptions = ({ navigation }) => ({
-  title: I18n.t('goalList.screen.title'),
+  headerTitle: I18n.t('goalList.screen.title'),
   headerRight: (
     <Button
       title={I18n.t('goalList.screen.newGoal')}

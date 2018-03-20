@@ -12,8 +12,8 @@ I18n.translations = {
 
 const translateWithNamespace = (namespace: string) => (
   term: string,
-  ...rest: any[]
-) => I18n.t(`${namespace}.${term}`, ...rest)
+  param?: Object
+) => I18n.t(`${namespace}.${term}`, param)
 
 export { translateWithNamespace }
 export default I18n

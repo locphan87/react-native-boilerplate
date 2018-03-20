@@ -19,7 +19,7 @@ module.exports = {
         skipComments: true
       }
     ],
-    'import/max-dependencies': ['error', { max: 10 }],
+    'import/max-dependencies': ['error', { max: 15 }],
 
     // react
     'react/jsx-no-bind': ['error'],

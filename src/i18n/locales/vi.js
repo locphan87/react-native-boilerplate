@@ -1,38 +1,38 @@
 export default {
   home: {
     screen: {
-      title: 'Home'
+      title: '[vi] Home'
     },
     view: {
-      welcome: 'Welcome to React Native Boilerplate'
+      welcome: '[vi] Welcome to React Native Boilerplate'
     }
   },
   goalList: {
     screen: {
-      title: 'Goal List',
-      newGoal: 'New Goal'
+      title: '[vi] Goal List',
+      newGoal: '[vi] New Goal'
     }
   },
   goalDetails: {
     screen: {
-      title: 'Goal Details'
+      title: '[vi] Goal Details'
     },
     view: {
       buttons: {
-        delete: 'Delete'
+        delete: '[vi] Delete'
       }
     }
   },
   goalCreation: {
     screen: {
-      title: 'Goal Creation'
+      title: '[vi] Goal Creation'
     },
     form: {
-      title: 'Title',
-      start: 'Start',
-      current: 'Current',
-      end: 'End',
-      submit: 'Submit'
+      title: '[vi] Title',
+      start: '[vi] Start',
+      current: '[vi] Current',
+      end: '[vi] End',
+      submit: '[vi] Submit'
     }
   }
 }
