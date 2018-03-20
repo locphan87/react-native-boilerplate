@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/phanhoangloc/react-native-boilerplate/tree/master.svg?style=svg)](https://circleci.com/gh/phanhoangloc/react-native-boilerplate/tree/master)
+
 # React Native Boilerplate
 > A react native boilerplate, bootstrapped by [CRNA](https://github.com/react-community/create-react-native-app)
 
