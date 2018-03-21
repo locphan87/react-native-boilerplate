@@ -45,21 +45,21 @@ Interactive UI component dev & test
 
 ## Dev tools
 
-- eslint
-- json-server
-- husky
-- prettier
+- eslint |
+- json-server |
+- husky |
+- prettier |
 
 ---
 
 ## Flow
 
-Static type checking
+Static type checking |
 
-- Code faster
-- Code smarter
-- Code confidently
-- Code bigger
+- Code faster |
+- Code smarter |
+- Code confidently |
+- Code bigger |
 
 ---
 
@@ -77,16 +77,13 @@ Promise based HTTP client for the browser and node.js
 
 ## Ramda
 
-A practical functional library for JavaScript programmers.
+A practical functional library for JavaScript programmers
 
 ---
 
-## recompose
+## Recompose
 
 A React utility belt for function components and higher-order components.
-
-<br>
-
 Think of it like lodash for React.
 
 - lift state into functional wrappers |
