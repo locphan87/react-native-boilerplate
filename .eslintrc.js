@@ -1,7 +1,3 @@
-const experimentRules = {
-  'react/jsx-key': 2
-  // 'react/destructuring-assignment': [2, 'always']
-}
 const flowRules = {
   'flowtype/no-weak-types': [
     2,
@@ -32,6 +28,7 @@ const complexityRules = {
   'import/max-dependencies': [2, { max: 15 }]
 }
 const reactRules = {
+  'react/jsx-key': 2,
   'react/jsx-no-bind': 2,
   'react/prefer-stateless-function': ['warn']
 }
@@ -68,7 +65,6 @@ module.exports = {
     ...fpRules,
     ...importRules,
     ...flowRules,
-    ...experimentRules,
     ...otherRules
   }
 }
