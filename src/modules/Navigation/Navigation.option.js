@@ -5,6 +5,7 @@ import type { NavigationScreenConfigProps } from 'react-navigation'
 import { Ionicons } from '@expo/vector-icons'
 
 import { COLORS } from '../../themes'
+import { match } from '../../utils/common.util'
 
 import { Routes } from './Navigation.constant'
 
@@ -19,24 +20,16 @@ const stackOptions = {
   }
 }
 const tabOptions = {
-  navigationOptions: ({
-    navigation
-  }: NavigationScreenConfigProps) => ({
+  navigationOptions: ({ navigation }: NavigationScreenConfigProps) => ({
     tabBarIcon: ({ focused, tintColor }: Object) => {
       const { routeName } = navigation.state
       const outline = focused ? '' : '-outline'
-      const iconNames = {
+      const iconName = match(routeName)({
         [Root.Home]: `ios-home${outline}`,
         [Root.Goal]: `ios-list-box${outline}`
-      }
+      })
 
-      return (
-        <Ionicons
-          name={iconNames[routeName]}
-          size={25}
-          color={tintColor}
-        />
-      )
+      return <Ionicons name={iconName} size={25} color={tintColor} />
     }
   }),
   tabBarOptions: {

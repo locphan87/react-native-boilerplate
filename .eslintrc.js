@@ -1,13 +1,3 @@
-const flowRules = {
-  'flowtype/no-weak-types': [
-    2,
-    {
-      any: false,
-      Object: false,
-      Function: false
-    }
-  ]
-}
 const importRules = {
   'import/order': [2, { 'newlines-between': 'always' }],
   'import/newline-after-import': 2
@@ -64,7 +54,6 @@ module.exports = {
     ...reactRules,
     ...fpRules,
     ...importRules,
-    ...flowRules,
     ...otherRules
   }
 }

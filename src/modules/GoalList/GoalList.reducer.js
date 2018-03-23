@@ -1,5 +1,5 @@
 // @flow
-import { createAction } from 'redux-actions'
+import { createActions } from 'redux-actions'
 import typeToReducer from 'type-to-reducer'
 
 import API from './GoalList.api'
@@ -9,26 +9,11 @@ type State = {
   loading: boolean
 }
 
-// action types
-const ADD_NEW_GOAL = 'GOAL/ADD_NEW_GOAL'
-const REMOVE_GOAL = 'GOAL/REMOVE_GOAL'
-const GET_GOAL_LIST = 'GOAL/GET_GOAL_LIST'
-
-const getGoalList = createAction(
-  GET_GOAL_LIST,
-  API.getGoalList
-)
-const addNewGoal = createAction(ADD_NEW_GOAL, API.addGoal)
-const removeGoal = createAction(
-  REMOVE_GOAL,
-  API.removeGoal,
-  id => ({ id })
-)
-const actions = {
-  getGoalList,
-  addNewGoal,
-  removeGoal
-}
+const actions = createActions({
+  ADD_NEW_GOAL: API.addGoal,
+  GET_GOAL_LIST: API.getGoalList,
+  REMOVE_GOAL: [API.removeGoal, id => ({ id })]
+})
 
 const initialState: State = {
   list: [],
@@ -37,7 +22,7 @@ const initialState: State = {
 
 const reducer = typeToReducer(
   {
-    [GET_GOAL_LIST]: {
+    [actions.getGoalList]: {
       LOADING: state => ({
         ...state,
         loading: true
@@ -52,13 +37,13 @@ const reducer = typeToReducer(
         loading: false
       })
     },
-    [ADD_NEW_GOAL]: {
+    [actions.addNewGoal]: {
       SUCCESS: (state: State, { payload }): State => ({
         ...state,
         list: [payload.data, ...state.list]
       })
     },
-    [REMOVE_GOAL]: {
+    [actions.removeGoal]: {
       SUCCESS: (state: State, { meta }): State => {
         const keepItem = item => item.id !== meta.id
         const newGoalList = state.list.filter(keepItem)

@@ -1,12 +1,7 @@
 // @flow
 import React from 'react'
 import { Button } from 'react-native'
-import {
-  compose,
-  setStatic,
-  lifecycle,
-  withHandlers
-} from 'recompose'
+import { compose, setStatic, lifecycle, withHandlers } from 'recompose'
 import { connect } from 'react-redux'
 
 import { withApp } from '../../hoc'

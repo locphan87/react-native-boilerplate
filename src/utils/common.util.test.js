@@ -8,10 +8,7 @@ describe('common.util', () => {
       expect(actual).toEqual(expected)
     })
     test('should not add elements', () => {
-      const actual = [
-        ...insertIf(true, 0),
-        ...insertIf(false, 1, 2)
-      ]
+      const actual = [...insertIf(true, 0), ...insertIf(false, 1, 2)]
       const expected = [0]
       expect(actual).toEqual(expected)
     })

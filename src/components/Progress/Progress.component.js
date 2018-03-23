@@ -24,12 +24,7 @@ const Percent = ({ start, current, end }: PercentProps) => {
 
   return <Text color={COLORS.yellow}>{content}</Text>
 }
-const Progress = ({
-  start,
-  end,
-  current,
-  ...rest
-}: Props) => {
+const Progress = ({ start, end, current, ...rest }: Props) => {
   const percentProps: PercentProps = map(Number, {
     start,
     current,

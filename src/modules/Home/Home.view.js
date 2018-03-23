@@ -15,11 +15,9 @@ const languages = ['en', 'vi']
 
 const HomeView = (props: Props) => {
   const { language } = props
-  const newLanguage: string = compose(
-    defaultTo(''),
-    head,
-    without([language])
-  )(languages)
+  const newLanguage: string = compose(defaultTo(''), head, without([language]))(
+    languages
+  )
   const changeLanguageTitle = newLanguage.toUpperCase()
 
   return (

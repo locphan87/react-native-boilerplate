@@ -6,28 +6,17 @@ import { View } from 'react-native'
 
 import { translateWithNamespace } from '../../i18n'
 
-import styles, {
-  stylesObj
-} from './GoalCreation.form.style'
+import styles, { stylesObj } from './GoalCreation.form.style'
 
-const translate = translateWithNamespace(
-  'goalCreation.form'
-)
+const translate = translateWithNamespace('goalCreation.form')
 const fields = ['title', 'start', 'current', 'end']
-const InnerForm = ({
-  values,
-  setFieldValue,
-  handleSubmit,
-  isSubmitting
-}) => (
+const InnerForm = ({ values, setFieldValue, handleSubmit, isSubmitting }) => (
   <View style={styles.container}>
     {fields.map(fieldName => (
       <Input
         key={fieldName}
         placeholder={translate(fieldName).toUpperCase()}
-        onChangeText={text =>
-          setFieldValue(fieldName, text)
-        }
+        onChangeText={text => setFieldValue(fieldName, text)}
         value={values[fieldName]}
       />
     ))}

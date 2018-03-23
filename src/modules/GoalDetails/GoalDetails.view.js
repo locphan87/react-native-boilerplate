@@ -11,10 +11,7 @@ type Props = {
   REMOVE_GOAL: Function
 }
 
-const GoalDetailsView = ({
-  REMOVE_GOAL,
-  goalItem
-}: Props) => (
+const GoalDetailsView = ({ REMOVE_GOAL, goalItem }: Props) => (
   <Wrapper>
     <Text h1>{goalItem.title}</Text>
     <View style={{ width: 200 }}>

@@ -34,14 +34,8 @@ const withApp: WithApp = ({
   const enhancers = Immutable([
     connect(mapStateToProps, mapDispatchToProps),
     ...insertIf(loading, withLoading),
-    ...insertIf(
-      isNonEmptyArray(updates),
-      withUpdating(updates)
-    ),
-    ...insertIf(
-      isNonEmptyArray(renderWhen),
-      nonOptimalStates(renderWhen)
-    )
+    ...insertIf(isNonEmptyArray(updates), withUpdating(updates)),
+    ...insertIf(isNonEmptyArray(renderWhen), nonOptimalStates(renderWhen))
   ])
 
   return compose(...enhancers)(WrappedComponent)

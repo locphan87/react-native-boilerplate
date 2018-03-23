@@ -3,6 +3,7 @@
     "babel-preset-expo",
     "react-native-dotenv"
   ],
+  "plugins": ["js-pattern-matching"],
   "env": {
     "development": {
       "plugins": ["transform-react-jsx-source"]
