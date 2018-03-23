@@ -1,8 +1,5 @@
 // @flow
-import type {
-  NavigationState,
-  NavigationScreenProp
-} from 'react-navigation'
+import type { NavigationState, NavigationScreenProp } from 'react-navigation'
 import { path } from 'ramda'
 
 const getNavState = (

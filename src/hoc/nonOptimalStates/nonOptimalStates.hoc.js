@@ -1,10 +1,5 @@
 // @flow
-import {
-  compose,
-  branch,
-  renderComponent,
-  renderNothing
-} from 'recompose'
+import { compose, branch, renderComponent, renderNothing } from 'recompose'
 
 import Constants from '../../constants'
 
@@ -14,15 +9,11 @@ export type NonOptimalState = {
   render: Nothing | GenericComponent
 }
 
-const nonOptimalStates = (
-  states: NonOptimalState[]
-): GenericHOC =>
+const nonOptimalStates = (states: NonOptimalState[]): GenericHOC =>
   compose(
     ...states.map(({ when, render }) => {
       const component =
-        render === Constants.NOTHING
-          ? renderNothing
-          : renderComponent(render)
+        render === Constants.NOTHING ? renderNothing : renderComponent(render)
       return branch(when, component)
     })
   )

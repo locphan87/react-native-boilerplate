@@ -18,9 +18,7 @@ const GoalList = ({ list, onPress }: Props) => (
     <FlatList
       data={list}
       keyExtractor={prop('id')}
-      renderItem={({ item }) => (
-        <GoalItem {...item} onPress={onPress} />
-      )}
+      renderItem={({ item }) => <GoalItem {...item} onPress={onPress} />}
     />
   </List>
 )

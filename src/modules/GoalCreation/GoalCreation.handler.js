@@ -6,9 +6,7 @@ type Props = {
 }
 
 const handlers = {
-  ADD_NEW_GOAL: (props: Props) => async (
-    values: Object
-  ) => {
+  ADD_NEW_GOAL: (props: Props) => async (values: Object) => {
     const { navigation, addNewGoal } = props
     const newGoal = {
       id: Date.now(),

@@ -8,9 +8,7 @@ import { snapTest } from '../../utils/test.util'
 
 import GoalItem from './GoalItem.component'
 
-const props = fakeProps(
-  path.join(__dirname, './GoalItem.component.js')
-)
+const props = fakeProps(path.join(__dirname, './GoalItem.component.js'))
 const wrapper = shallow(<GoalItem {...props} />)
 
 describe('GoalItem', () => {

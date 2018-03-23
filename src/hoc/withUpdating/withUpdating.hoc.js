@@ -14,9 +14,7 @@ const withUpdating: GenericHOC = WrappedComponent => ({
   return (
     <View style={styles.container}>
       <WrappedComponent {...rest} />
-      {isUpdating && (
-        <LoadingMask style={styles.updating} />
-      )}
+      {isUpdating && <LoadingMask style={styles.updating} />}
     </View>
   )
 }

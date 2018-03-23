@@ -9,10 +9,7 @@ type Props = {
   goalList: GoalProp[]
 }
 
-const GoalListView = ({
-  OPEN_DETAILS,
-  goalList
-}: Props) => (
+const GoalListView = ({ OPEN_DETAILS, goalList }: Props) => (
   <Wrapper>
     <GoalList list={goalList} onPress={OPEN_DETAILS} />
   </Wrapper>

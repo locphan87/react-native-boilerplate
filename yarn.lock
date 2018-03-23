@@ -757,6 +757,10 @@ babel-plugin-jest-hoist@^22.1.0:
   version "22.1.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-22.1.0.tgz#c1281dd7887d77a1711dc760468c3b8285dde9ee"
 
+babel-plugin-js-pattern-matching@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-js-pattern-matching/-/babel-plugin-js-pattern-matching-0.1.1.tgz#b51bb4b7ac7f5b4420c22d7632db33a96c42dacd"
+
 babel-plugin-module-resolver@^2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-module-resolver/-/babel-plugin-module-resolver-2.7.1.tgz#18be3c42ddf59f7a456c9e0512cd91394f6e4be1"
@@ -4680,6 +4684,10 @@ joi@^6.10.1:
 join-component@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/join-component/-/join-component-1.1.0.tgz#b8417b750661a392bee2c2537c68b2a9d4977cd5"
+
+js-pattern-matching@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/js-pattern-matching/-/js-pattern-matching-0.2.0.tgz#473fe933179a2b77c92124722310e6fca3672891"
 
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
