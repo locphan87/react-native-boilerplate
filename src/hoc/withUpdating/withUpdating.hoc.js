@@ -27,11 +27,11 @@ const styles = StyleSheet.create({
   }
 })
 
-type SimulatePending = (
+type SimulatePendingFn = (
   asyncFns: string[],
   updateState?: string
 ) => GenericProps => GenericProps
-const simulatePending: SimulatePending = (
+const simulatePending: SimulatePendingFn = (
   asyncFns,
   updateState = 'setUpdating'
 ) => props =>
@@ -48,8 +48,8 @@ const simulatePending: SimulatePending = (
     return acc
   }, {})
 
-type WithUpdatingConfig = (string[]) => GenericHOC
-const withUpdatingConfig: WithUpdatingConfig = updates =>
+type WithUpdatingConfigFn = (string[]) => GenericHOC
+const withUpdatingConfig: WithUpdatingConfigFn = updates =>
   compose(
     withState('updating', 'setUpdating', false),
     withProps(simulatePending(updates)),

@@ -9,7 +9,8 @@ export type NonOptimalState = {
   render: Nothing | GenericComponent
 }
 
-const nonOptimalStates = (states: NonOptimalState[]): GenericHOC =>
+type NonOptimalStatesFn = (NonOptimalState[]) => GenericHOC
+const nonOptimalStates: NonOptimalStatesFn = states =>
   compose(
     ...states.map(({ when, render }) => {
       const component =

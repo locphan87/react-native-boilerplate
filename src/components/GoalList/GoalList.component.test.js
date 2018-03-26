@@ -3,19 +3,23 @@ import { shallow } from 'enzyme'
 
 import { snapTest } from '../../utils/test.util'
 
-import GoalItem from './GoalItem.component'
+import GoalList from './GoalList.component'
 
 const props = {
-  id: 1,
-  title: 'title',
-  start: 1,
-  current: 1,
-  end: 2,
+  list: [
+    {
+      id: 1,
+      title: 'title',
+      start: 1,
+      current: 1,
+      end: 2
+    }
+  ],
   onPress: id => jest.fn()
 }
-const wrapper = shallow(<GoalItem {...props} />)
+const wrapper = shallow(<GoalList {...props} />)
 
-describe('GoalItem', () => {
+describe('GoalList', () => {
   snapTest(wrapper, [
     {
       props,
