@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Styled Wrapper snapshots basic render 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(31, 32, 39, 1)",
+        "flex": 1,
+        "justifyContent": "center",
+      },
+    ]
+  }
+/>
+`;

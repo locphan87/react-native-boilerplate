@@ -3,15 +3,11 @@ import React from 'react'
 import { ListItem } from 'react-native-elements'
 
 import Progress from '../Progress/Progress.component'
+import type { Goal } from '../../types/goal.type'
 
 import styles from './GoalItem.component.style'
 
-type Props = {
-  id: number,
-  title: string,
-  start: number,
-  current: number,
-  end: number,
+type Props = Goal & {
   onPress: Function
 }
 

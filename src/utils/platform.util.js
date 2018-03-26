@@ -1,4 +1,9 @@
 // @flow
-const isDEV = () => process.env.NODE_ENV === 'development'
+import { Platform } from 'react-native'
+import { equals } from 'ramda'
 
-export { isDEV }
+const isDEV = () => equals(process.env.NODE_ENV, 'development')
+const isIOS = () => equals(Platform.OS, 'ios')
+const isAndroid = () => equals(Platform.OS, 'android')
+
+export { isDEV, isIOS, isAndroid }

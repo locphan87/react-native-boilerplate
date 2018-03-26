@@ -53,4 +53,5 @@ const enhance = renderWhen([
   }
 ])
 
+export { Progress, Percent }
 export default enhance(Progress)

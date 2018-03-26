@@ -4,17 +4,12 @@ import glamorous from 'glamorous-native'
 import { keys, find } from 'ramda'
 
 import { match } from '../../../utils/common.util'
+import { FONTS } from '../../../themes'
 
-const fontSizes = {
-  h1: 20,
-  h2: 18,
-  h3: 16,
-  _: 14
-}
 const styles = (props, { colors }) => {
   const hasStyleInProps = key => props[key]
-  const fontStyle = find(hasStyleInProps, keys(fontSizes))
-  const fontSize = match(fontStyle)(fontSizes)
+  const fontStyle = find(hasStyleInProps, keys(FONTS.SIZE))
+  const fontSize = match(fontStyle)(FONTS.SIZE)
 
   return {
     color: props.color || colors.white,
