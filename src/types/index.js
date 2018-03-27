@@ -1,2 +1,3 @@
-export type * from './common.type'
-export type * from './goal.type'
+// @flow
+export * from './common.type'
+export * from './goal.type'
