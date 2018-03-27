@@ -1,4 +1,6 @@
 // @flow
+import { isNil } from 'ramda'
+
 type Delay = (ms?: number) => Promise<any>
 type Match = any => Object => any
 
@@ -18,8 +20,7 @@ const match: Match = value => cases => {
   const matchingCase = Object.keys(cases).find(hasKey) || '_'
   const result = cases[matchingCase]
 
-  // FIXME should return a match error
-  if (!result) return null
+  if (isNil(result)) throw new Error('Match error')
 
   return result
 }

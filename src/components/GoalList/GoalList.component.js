@@ -5,11 +5,12 @@ import { List } from 'react-native-elements'
 import { prop } from 'ramda'
 
 import GoalItem from '../GoalItem/GoalItem.component'
+import type { Goal } from '../../types'
 
 import styles from './GoalList.component.style'
 
 type Props = {
-  list: GoalProp[],
+  list: Goal[],
   onPress: Function
 }
 

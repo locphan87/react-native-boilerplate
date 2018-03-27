@@ -1,5 +1,6 @@
 // @flow
 import { Routes } from '../Navigation/Navigation.constant'
+import type { ID } from '../../types'
 
 type Props = {
   navigation: Object

@@ -3,6 +3,7 @@ import React from 'react'
 import { ActivityIndicator } from 'react-native'
 
 import { Wrapper } from '../Styled'
+import type { GenericProps } from '../../types'
 
 import styles from './LoadingMask.component.style'
 

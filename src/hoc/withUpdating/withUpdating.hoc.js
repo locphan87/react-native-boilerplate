@@ -5,6 +5,7 @@ import { equals } from 'ramda'
 import { compose, withProps, withState } from 'recompose'
 
 import LoadingMask from '../../components/LoadingMask/LoadingMask.component'
+import type { GenericHOC, GenericProps } from '../../types'
 
 const withUpdating: GenericHOC = WrappedComponent => ({
   updating,

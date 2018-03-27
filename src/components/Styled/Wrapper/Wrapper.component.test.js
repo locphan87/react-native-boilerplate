@@ -16,6 +16,13 @@ describe('Styled Wrapper', () => {
     {
       props,
       description: 'basic render'
+    },
+    {
+      props: {
+        ...props,
+        bgColor: 'red'
+      },
+      description: 'custom bg color'
     }
   ])
 })
