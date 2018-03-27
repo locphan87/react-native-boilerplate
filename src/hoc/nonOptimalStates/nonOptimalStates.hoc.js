@@ -2,6 +2,7 @@
 import { compose, branch, renderComponent, renderNothing } from 'recompose'
 
 import Constants from '../../constants'
+import type { RenderPredicate, GenericComponent, GenericHOC } from '../../types'
 
 type Nothing = Constants.NOTHING
 export type NonOptimalState = {

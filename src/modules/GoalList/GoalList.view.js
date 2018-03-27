@@ -3,10 +3,11 @@ import React from 'react'
 
 import GoalList from '../../components/GoalList/GoalList.component'
 import { Wrapper } from '../../components/Styled'
+import type { Goal } from '../../types'
 
 type Props = {
   OPEN_DETAILS: Function,
-  goalList: GoalProp[]
+  goalList: Goal[]
 }
 
 const GoalListView = ({ OPEN_DETAILS, goalList }: Props) => (

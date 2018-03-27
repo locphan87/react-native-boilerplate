@@ -2,10 +2,12 @@
 import { createActions } from 'redux-actions'
 import typeToReducer from 'type-to-reducer'
 
+import type { Goal } from '../../types'
+
 import API from './GoalList.api'
 
 type State = {
-  list: GoalProp[],
+  list: Goal[],
   loading: boolean
 }
 

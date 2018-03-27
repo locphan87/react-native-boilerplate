@@ -11,6 +11,7 @@ import withUpdating from '../withUpdating/withUpdating.hoc'
 import nonOptimalStates, {
   type NonOptimalState
 } from '../nonOptimalStates/nonOptimalStates.hoc'
+import type { GenericHOC } from '../../types'
 
 type Options = {
   loading?: boolean,

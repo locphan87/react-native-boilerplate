@@ -32,7 +32,7 @@ const fpRules = {
   'fp/no-mutating-assign': 2,
   'fp/no-mutating-methods': 2,
   'fp/no-proxy': 2,
-  'fp/no-throw': 2,
+  // 'fp/no-throw': 2,
   'fp/no-valueof-field': 2,
   'no-var': 2,
   'prefer-spread': 2

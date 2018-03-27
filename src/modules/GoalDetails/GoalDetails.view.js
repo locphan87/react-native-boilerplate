@@ -5,9 +5,10 @@ import { Button, View } from 'react-native'
 import Progress from '../../components/Progress/Progress.component'
 import { Wrapper, Text } from '../../components/Styled'
 import I18n from '../../i18n'
+import type { Goal } from '../../types'
 
 type Props = {
-  goalItem: GoalProp,
+  goalItem: Goal,
   REMOVE_GOAL: Function
 }
 
