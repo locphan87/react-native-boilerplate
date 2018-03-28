@@ -67,7 +67,7 @@ Once you have the code downloaded, follow the **[Setup guide](docs/SETUP.md)** t
 
 After you have set up the project using above instructions, you can use your favorite IDE or text editor to write code, and run the application from the command line. Turn on React Native hot module reloading in the app developer menu to update your application as you code.
 
-To learn how to structure your application and use the Redux application architecture, read the **[Architecture guide](docs/ARCHITECTURE.md)** for more details.
+To learn how to structure your application and use the Redux application architecture, read the **[Architecture guide](docs/ARCHITECTURE.md)** and **[Code structure principles](docs/STRUCTURE.md)** for more details.
 
 ##### Start the application in iOS simulator
 ```
@@ -97,6 +97,8 @@ $ yarn test:coverage
 
 Read the **[Testing guide](docs/TESTING.md)** for more information about writing tests.
 
+Read the **[Coding convention](docs/CONVENTION.md)** for more details about code style.
+
 ## Debugging
 
 For standard debugging select *Debug JS Remotely* from the React Native Development context menu (To open the context menu, press *CMD+D* in iOS or *D+D* in Android). This will open a new Chrome tab under [http://localhost:8081/debugger-ui](http://localhost:8081/debugger-ui) and prints all actions to the console.
@@ -113,12 +115,6 @@ $ brew update && brew cask install react-native-debugger
 ## Deployment
 
 Read the **[Deployment guide](docs/DEPLOYMENT.md)** to learn how to deploy the application to test devices, app stores, and how to use Code Push to push updates to your users immediately.
-
-## Contributing
-
-If you find any problems, please [open an issue](https://github.com/phanhoangloc/react-native-boilerplate/issues/new) or submit a fix as a pull request.
-
-We welcome new features, but for large changes let's discuss first to make sure the changes can be accepted and integrated smoothly.
 
 ## Licensing
 
