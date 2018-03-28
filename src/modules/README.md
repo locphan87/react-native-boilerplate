@@ -1,0 +1,35 @@
+# Modules
+
+Main application features
+
+Traditionally, developers structured their React applications by type. This means they had folders like `actions/`, `components/`, `containers/`, etc.
+
+While this works fine for examples, once you have hundreds or potentially thousands of components, development becomes very hard. To add a feature, you would have to search for the correct file in half a dozen different folders with thousands of files. This would quickly become tedious, and confidence in the code base would wane.
+
+Instead of grouping the files of your application by type, group them by feature! That is, put all files related to one feature in the same folder.
+
+Let’s look at what the folder structure would look like for our `GoalList` example:
+
+## Code structure
+
+```
+./src/modules/GoalList/
+├── GoalList.form.js       // form component
+├── GoalList.form.style.js // form styles
+├── GoalList.api.js        // API calls
+├── GoalList.handler.js    // main event handlers
+├── GoalList.reducer.js    // module reducer
+├── GoalList.screen.js     // screen configs: navigation, state, events,...
+├── GoalList.selector.js   // state selector (redux)
+├── GoalList.view.js       // UI component to render layout on the screen
+├── GoalList.view.style.js // UI styles
+└── __test__               // test files
+```
+
+Developers working on this application would need to go into only a single folder to work on something. And they would need to create only a single folder to add a new feature. Renaming is easy with find and replace, and hundreds of developers could work on the same application at once without causing any conflicts!
+
+Note: We have many files in this directory so it's reasonable to have a separate test folder.
+
+References:
+* [How to scale react applications](https://www.smashingmagazine.com/2016/09/how-to-scale-react-applications/)
+* [Feature oriented architecture](https://medium.com/@nate_wang/feature-oriented-architecture-for-web-applications-2b48e358afb0)

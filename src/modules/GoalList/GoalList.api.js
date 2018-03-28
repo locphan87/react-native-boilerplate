@@ -1,5 +1,5 @@
 // @flow
-import API from '../../services/API'
+import API from '../../services/API.service'
 import type { Payload } from '../../types'
 
 const getGoalList = () => API.get('goals')

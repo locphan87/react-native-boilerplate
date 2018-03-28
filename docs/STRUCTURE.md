@@ -1,30 +1,22 @@
-# Code Structure
+# Code Structure Principles
 
-## Principles
+## Directory structure
 
-* No duplicate file name in the whole application. Every file has a suffix to explain its type
-* Only use `index.js` for indexing (no logic) and easier import
-
-## Source `src`
+* No duplicate file name in the whole application. Every file need to have a suffix to explain its type
+> Why? It's easier to search for a file and reduce confusing of same file names
 
 ```
-./src
-├── components // reusable components
-├── configs    // config files
-├── constants  // app constants
-├── hoc        // higher order components
-├── i18n       // translations for multi languages
-├── modules    // main app features
-├── redux      // store setup and root reducer
-├── services   // external services
-├── themes     // themes, colors, fonts,...
-├── types      // reusable type definitions
-└── utils      // common utils
+./src/modules/GoalList/
+├── GoalList.api.js
+├── GoalList.handler.js
+├── GoalList.reducer.js
+├── GoalList.screen.js
+├── GoalList.selector.js
+├── GoalList.view.js
 ```
 
-### Components
-
-* List: Every component has its own directory
+* Separate directory for each component, module, higher order component,...
+> Why? It's easier to extend and organize files. Make a change on a component won't affect to the structure of its parent directory
 
 ```
 ./src/components/
@@ -34,36 +26,22 @@
 ├── Progress
 └── Styled
 ```
+* Only use `index.js` for indexing (no logic)
+> Why? Using `index.js` make it more comfortable to import files in a deep structure. However, putting logic code in it is an anti-pattern
+* Every main directory has a README file
+> Why? Have no clue about how a directory is organized? What's the naming convention? How do things work together? Add a README to explain them
 
-* Detail
+Check out `README.md` file in every main directory for more information about its structure
 
+## File structure
+
+* Put all `export` at the end
+> Why? Randomly export variables, types, classes,...is hard to keep track of what have been exported, especially in a large file
+
+```js
+// thousands lines of code
+
+export { myVar, myClass }
+export type { myModel, myType }
+export default myModule
 ```
-./src/components/LoadingMask/
-├── LoadingMask.component.js       // component code
-├── LoadingMask.component.style.js // styles
-├── LoadingMask.component.test.js  // test (snapshots + behaviors)
-└── __snapshots__
-    └── LoadingMask.component.test.js.snap
-```
-
-In theory, there is no too much files in this directory. So it's much nicer to co-locate tests with sources
-
-### Modules
-
-* A basic module
-
-```
-./src/modules/GoalList/
-├── GoalList.form.js       // form component
-├── GoalList.form.style.js // form styles
-├── GoalList.api.js        // API calls
-├── GoalList.handler.js    // main event handlers
-├── GoalList.reducer.js    // module reducer
-├── GoalList.screen.js     // screen configs: navigation, state, events,...
-├── GoalList.selector.js   // state selector (redux)
-├── GoalList.view.js       // UI component to render layout on the screen
-├── GoalList.view.style.js // UI styles
-└── __test__               // test files
-```
-
-We have more files in this directory so it's reasonable to have a separate test folder
