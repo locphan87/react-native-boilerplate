@@ -3995,6 +3995,10 @@ is-extglob@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/is-extglob/-/is-extglob-2.1.1.tgz#a88c02535791f02ed37c76a1b9ea9773c833f8c2"
 
+is-file@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-file/-/is-file-1.0.0.tgz#28a44cfbd9d3db193045f22b65fce8edf9620596"
+
 is-finite@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-finite/-/is-finite-1.0.2.tgz#cc6677695602be550ef11e8b4aa6305342b6d0aa"
@@ -8403,6 +8407,14 @@ uuid@^2.0.1:
 uuid@^3.1.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.2.1.tgz#12c528bb9d58d0b9265d9a2f6f0fe8be17ff1f14"
+
+validate-commit@3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/validate-commit/-/validate-commit-3.4.0.tgz#bc843c0b563e2e3bac806e7466f7502abc17dc38"
+  dependencies:
+    chalk "^2.0.0"
+    is-file "^1.0.0"
+    yargs "^10.0.3"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.1"
