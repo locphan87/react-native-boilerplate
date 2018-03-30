@@ -59,4 +59,4 @@ git branch -d <branchname>
 
 * Separate the subject from the body with a newline between the two.
 * Use the body to explain **what** and **why** as opposed to **how**.
-* COMING SOON: We will use `commitizen` to standardize commit messages
+* We use [validate-commit](https://github.com/willsoto/validate-commit) to validate commit messages
