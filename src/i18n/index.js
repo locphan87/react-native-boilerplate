@@ -4,7 +4,7 @@ import I18n from 'react-native-i18n'
 import en from './locales/en'
 import vi from './locales/vi'
 
-export * from './i18n.utils'
+export * from './i18n.util'
 
 I18n.fallbacks = true
 I18n.translations = {
