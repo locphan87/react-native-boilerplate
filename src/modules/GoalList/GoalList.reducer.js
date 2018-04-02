@@ -59,5 +59,5 @@ const reducer = typeToReducer(
   initialState
 )
 
-export { actions }
+export { actions, initialState }
 export default reducer
