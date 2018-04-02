@@ -1,8 +1,7 @@
 // FIXME flow issues
 import axios from 'axios'
 import Immutable from 'seamless-immutable'
-
-const { HOST = '' } = require('react-native-dotenv')
+import { HOST } from 'env-config'
 
 const supportActions = Immutable(['get', 'post', 'patch', 'delete'])
 // overwrite axios functions

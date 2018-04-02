@@ -32,7 +32,16 @@ export default {
       start: 'Start',
       current: 'Current',
       end: 'End',
-      submit: 'Submit'
+      submit: 'Submit',
+      errors: {
+        title: {
+          required: 'Title is required',
+          minLength: 'Title should have at least {{minLength}} characters'
+        },
+        start: {
+          required: 'Start is required'
+        }
+      }
     }
   }
 }
