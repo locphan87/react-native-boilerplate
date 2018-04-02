@@ -11,6 +11,9 @@ const styles = {
   },
   button: {
     marginTop: 10
+  },
+  disabled: {
+    opacity: 0.7
   }
 }
 

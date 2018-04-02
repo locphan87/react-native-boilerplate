@@ -1,29 +1,53 @@
 // @flow
 import React from 'react'
+import { View, Text } from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import { withFormik } from 'formik'
-import { View } from 'react-native'
 
-import { translateWithNamespace } from '../../i18n'
+import { translateWithNamespace, keyWithNameSpace } from '../../i18n'
+import { RULES, validator } from '../Form'
 
 import styles, { stylesObj } from './GoalCreation.form.style'
 
 const translate = translateWithNamespace('goalCreation.form')
+const keys = keyWithNameSpace('goalCreation.form')
 const fields = ['title', 'start', 'current', 'end']
-const InnerForm = ({ values, setFieldValue, handleSubmit, isSubmitting }) => (
+const errorMessages = {
+  title: {
+    required: keys('errors.title.required'),
+    minLength: keys('errors.title.minLength')
+  },
+  start: {
+    required: keys('errors.start.required')
+  }
+}
+const InnerForm = ({
+  values,
+  errors,
+  setFieldValue,
+  handleSubmit,
+  touched,
+  isValid,
+  setFieldTouched,
+  isSubmitting
+}) => (
   <View style={styles.container}>
     {fields.map(fieldName => (
-      <Input
-        key={fieldName}
-        placeholder={translate(fieldName).toUpperCase()}
-        onChangeText={text => setFieldValue(fieldName, text)}
-        value={values[fieldName]}
-      />
+      <View key={fieldName}>
+        <Input
+          placeholder={translate(fieldName).toUpperCase()}
+          onChangeText={text => setFieldValue(fieldName, text)}
+          value={values[fieldName]}
+          onBlur={() => setFieldTouched(fieldName)}
+        />
+        {touched[fieldName] &&
+          errors[fieldName] && <Text>{errors[fieldName]}</Text>}
+      </View>
     ))}
     <Button
-      containerStyle={stylesObj.button}
+      containerStyle={[stylesObj.button, !isValid && stylesObj.disabled]}
       onPress={handleSubmit}
-      disabled={isSubmitting}
+      disabled={!isValid || isSubmitting}
       text={translate('submit')}
     />
   </View>
@@ -32,7 +56,14 @@ const InnerForm = ({ values, setFieldValue, handleSubmit, isSubmitting }) => (
 const CreateGoalForm = withFormik({
   handleSubmit: (values, { props }) => {
     props.onSubmit(values)
-  }
+  },
+  validate: validator({
+    title: [
+      RULES.required(errorMessages.title.required),
+      RULES.minLength(errorMessages.title.minLength, 6)
+    ],
+    start: [RULES.required(errorMessages.start.required)]
+  })
 })(InnerForm)
 
 export default CreateGoalForm
