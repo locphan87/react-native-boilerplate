@@ -1,17 +1,18 @@
 // @flow
 import React from 'react'
-import { View, Text } from 'react-native'
-import { Input, Button } from 'react-native-elements'
+import { View } from 'react-native'
+import { Button } from 'react-native-elements'
 import { withFormik } from 'formik'
 
 import { translateWithNamespace, keyWithNameSpace } from '../../i18n'
-import { RULES, validator } from '../Form'
+import { FormUtils, RULES, validator, TextInput } from '../Form'
 
 import styles, { stylesObj } from './GoalCreation.form.style'
 
 const translate = translateWithNamespace('goalCreation.form')
 const keys = keyWithNameSpace('goalCreation.form')
 const fields = ['title', 'start', 'current', 'end']
+const { required, minLength } = RULES
 const errorMessages = {
   title: {
     required: keys('errors.title.required'),
@@ -21,37 +22,28 @@ const errorMessages = {
     required: keys('errors.start.required')
   }
 }
-const InnerForm = ({
-  values,
-  errors,
-  setFieldValue,
-  handleSubmit,
-  touched,
-  isValid,
-  setFieldTouched,
-  isSubmitting
-}) => (
-  <View style={styles.container}>
-    {fields.map(fieldName => (
-      <View key={fieldName}>
-        <Input
+const InnerForm = props => {
+  const { handleSubmit, isValid, isSubmitting } = props
+  const fieldProps = FormUtils.getFieldProps(props)
+  return (
+    <View style={styles.container}>
+      {fields.map(fieldName => (
+        <TextInput
+          key={fieldName}
+          name={fieldName}
           placeholder={translate(fieldName).toUpperCase()}
-          onChangeText={text => setFieldValue(fieldName, text)}
-          value={values[fieldName]}
-          onBlur={() => setFieldTouched(fieldName)}
+          fieldProps={fieldProps}
         />
-        {touched[fieldName] &&
-          errors[fieldName] && <Text>{errors[fieldName]}</Text>}
-      </View>
-    ))}
-    <Button
-      containerStyle={[stylesObj.button, !isValid && stylesObj.disabled]}
-      onPress={handleSubmit}
-      disabled={!isValid || isSubmitting}
-      text={translate('submit')}
-    />
-  </View>
-)
+      ))}
+      <Button
+        containerStyle={[stylesObj.button, !isValid && stylesObj.disabled]}
+        onPress={handleSubmit}
+        disabled={!isValid || isSubmitting}
+        text={translate('submit')}
+      />
+    </View>
+  )
+}
 
 const CreateGoalForm = withFormik({
   handleSubmit: (values, { props }) => {
@@ -59,10 +51,10 @@ const CreateGoalForm = withFormik({
   },
   validate: validator({
     title: [
-      RULES.required(errorMessages.title.required),
-      RULES.minLength(errorMessages.title.minLength, 6)
+      required(errorMessages.title.required),
+      minLength(errorMessages.title.minLength, 6)
     ],
-    start: [RULES.required(errorMessages.start.required)]
+    start: [required(errorMessages.start.required)]
   })
 })(InnerForm)
 
