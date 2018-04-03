@@ -3,9 +3,9 @@ import { isNil } from 'ramda'
 
 import I18n from '../../../i18n'
 
-import type { DetailedRuleFn } from './Rules.type'
+import type { RuleFn } from './Rules.type'
 
-type MinLength = (errorKey: string, _minLength: number) => DetailedRuleFn
+type MinLength = (errorKey: string, _minLength: number) => RuleFn
 const minLength: MinLength = (errorKey, _minLength) => ({
   value,
   values,
