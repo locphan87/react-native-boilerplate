@@ -1,5 +1,4 @@
 // @flow
-import { compose, setDisplayName } from 'recompose'
 import glamorous from 'glamorous-native'
 import { View } from 'react-native'
 
@@ -10,4 +9,7 @@ const styles = (props, { colors }) => ({
   justifyContent: 'center'
 })
 
-export default compose(setDisplayName('StyledWrapper'), glamorous(View))(styles)
+const Wrapper = glamorous(View)(styles)
+Wrapper.displayName = 'StyledWrapper'
+
+export default Wrapper
