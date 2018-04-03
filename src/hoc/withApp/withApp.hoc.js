@@ -8,6 +8,7 @@ import { insertIf } from '../../utils/common.util'
 import { actions } from '../../modules/Language/Language.reducer'
 import withLoading from '../withLoading/withLoading.hoc'
 import withUpdating from '../withUpdating/withUpdating.hoc'
+import withErrorBoundary from '../withErrorBoundary/withErrorBoundary.hoc'
 import nonOptimalStates, {
   type NonOptimalState
 } from '../nonOptimalStates/nonOptimalStates.hoc'
@@ -16,7 +17,8 @@ import type { GenericHOC } from '../../types'
 type Options = {
   loading?: boolean,
   updates?: string[],
-  renderWhen?: NonOptimalState[]
+  renderWhen?: NonOptimalState[],
+  errorHandling?: boolean
 }
 
 const mapStateToProps = state => ({
@@ -30,13 +32,15 @@ type WithApp = Options => GenericHOC
 const withApp: WithApp = ({
   loading = false,
   updates = [],
-  renderWhen = []
+  renderWhen = [],
+  errorHandling = false
 } = {}) => WrappedComponent => {
   const enhancers = Immutable([
     connect(mapStateToProps, mapDispatchToProps),
     ...insertIf(loading, withLoading),
     ...insertIf(isNonEmptyArray(updates), withUpdating(updates)),
-    ...insertIf(isNonEmptyArray(renderWhen), nonOptimalStates(renderWhen))
+    ...insertIf(isNonEmptyArray(renderWhen), nonOptimalStates(renderWhen)),
+    ...insertIf(errorHandling, withErrorBoundary)
   ])
 
   return compose(...enhancers)(WrappedComponent)

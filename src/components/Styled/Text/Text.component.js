@@ -17,4 +17,7 @@ const styles = (props, { colors }) => {
   }
 }
 
-export default glamorous(Text)(styles)
+const StyledText = glamorous(Text)(styles)
+StyledText.displayName = 'StyledText'
+
+export default StyledText

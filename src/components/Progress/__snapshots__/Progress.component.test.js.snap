@@ -37,9 +37,9 @@ exports[`Progress snapshots normal progress 1`] = `
 `;
 
 exports[`Progress snapshots simple percent 1`] = `
-<glamorous(Text)
+<StyledText
   color="yellow"
 >
   11.11%
-</glamorous(Text)>
+</StyledText>
 `;
