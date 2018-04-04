@@ -1,45 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <Input
-    onBlur={[Function]}
-    onChangeText={[Function]}
-    placeholder="Enter your title"
-  />
-</View>
-`;
-
-exports[` 2`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <Input
-    onBlur={[Function]}
-    onChangeText={[Function]}
-    placeholder="Enter your title"
-    value=""
-  />
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
-    Title is required
-  </Text>
-</View>
-`;
-
 exports[`Form Inputs - TextInput snapshots basic render 1`] = `
 <View
   style={

@@ -1,5 +1,4 @@
 const singleSnapTest = (wrapper, description) => {
-  expect(wrapper).toMatchSnapshot()
   test(description, () => {
     expect(wrapper).toMatchSnapshot()
   })
