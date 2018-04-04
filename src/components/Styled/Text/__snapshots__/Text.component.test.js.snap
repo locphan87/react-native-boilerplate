@@ -1,5 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[` 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  h1={true}
+  style={
+    Array [
+      Object {
+        "color": "white",
+        "fontSize": 20,
+      },
+    ]
+  }
+/>
+`;
+
 exports[`Styled Text snapshots basic render 1`] = `
 <Text
   accessible={true}

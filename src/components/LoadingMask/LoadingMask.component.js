@@ -12,5 +12,6 @@ const LoadingMask = (props: GenericProps) => (
     <ActivityIndicator />
   </Wrapper>
 )
+LoadingMask.displayName = 'LoadingMask'
 
 export default LoadingMask

@@ -3,6 +3,7 @@ import React from 'react'
 import { View } from 'react-native'
 import { Slider } from 'react-native-elements'
 import { propEq, map } from 'ramda'
+import { compose, setDisplayName } from 'recompose'
 
 import { Text } from '../../components/Styled'
 import { renderWhen } from '../../hoc'
@@ -46,12 +47,15 @@ const Progress = ({ start, end, current, ...rest }: Props) => {
   )
 }
 
-const enhance = renderWhen([
-  {
-    when: isSimple,
-    render: Percent
-  }
-])
+const enhance = compose(
+  setDisplayName('Progress'),
+  renderWhen([
+    {
+      when: isSimple,
+      render: Percent
+    }
+  ])
+)
 
 export { Progress, Percent }
 export default enhance(Progress)

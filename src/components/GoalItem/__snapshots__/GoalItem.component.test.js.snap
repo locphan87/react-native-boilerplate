@@ -1,5 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[` 1`] = `
+<ListItem
+  leftIcon={
+    Object {
+      "name": "target",
+      "type": "foundation",
+    }
+  }
+  onPress={[MockFunction]}
+  subtitle={
+    <Progress
+      current={1}
+      end={2}
+      start={1}
+      type="simple"
+    />
+  }
+  subtitleStyle={
+    Object {
+      "marginLeft": 5,
+    }
+  }
+  title="title"
+  titleStyle={
+    Object {
+      "color": "white",
+      "marginLeft": 5,
+    }
+  }
+  underlayColor="blue"
+/>
+`;
+
 exports[`GoalItem snapshots basic render 1`] = `
 <ListItem
   leftIcon={
@@ -10,7 +43,7 @@ exports[`GoalItem snapshots basic render 1`] = `
   }
   onPress={[MockFunction]}
   subtitle={
-    <branch(Progress)
+    <Progress
       current={1}
       end={2}
       start={1}

@@ -14,5 +14,6 @@ const GoalCreationView = ({ ADD_NEW_GOAL }: Props) => (
     <GoalCreationForm onSubmit={ADD_NEW_GOAL} />
   </Wrapper>
 )
+GoalCreationView.displayName = 'GoalCreationView'
 
 export default GoalCreationView

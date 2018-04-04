@@ -1,5 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[` 1`] = `
+<List
+  containerStyle={
+    Object {
+      "backgroundColor": "rgba(31, 32, 39, 1)",
+      "borderTopWidth": 0,
+      "flex": 1,
+      "marginTop": 0,
+      "width": "100%",
+    }
+  }
+>
+  <FlatList
+    data={
+      Array [
+        Object {
+          "current": 1,
+          "end": 2,
+          "id": 1,
+          "start": 1,
+          "title": "title",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onEndReachedThreshold={2}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  />
+</List>
+`;
+
+exports[` 2`] = `
+<GoalItem
+  current={1}
+  end={2}
+  id={1}
+  onPress={[Function]}
+  start={1}
+  title="title"
+/>
+`;
+
 exports[`GoalList snapshots basic render 1`] = `
 <List
   containerStyle={
@@ -37,4 +87,15 @@ exports[`GoalList snapshots basic render 1`] = `
     windowSize={21}
   />
 </List>
+`;
+
+exports[`GoalList sub render render goal item correctly 1`] = `
+<GoalItem
+  current={1}
+  end={2}
+  id={1}
+  onPress={[Function]}
+  start={1}
+  title="title"
+/>
 `;

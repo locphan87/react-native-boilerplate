@@ -1,5 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[` 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View />
+  <LoadingMask
+    style={
+      Object {
+        "opacity": 0.8,
+      }
+    }
+  />
+</View>
+`;
+
+exports[` 2`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View />
+</View>
+`;
+
 exports[`withUpdating snapshots normal state 1`] = `
 <View
   style={
@@ -21,12 +52,5 @@ exports[`withUpdating snapshots updating state 1`] = `
   }
 >
   <View />
-  <LoadingMask
-    style={
-      Object {
-        "opacity": 0.8,
-      }
-    }
-  />
 </View>
 `;
