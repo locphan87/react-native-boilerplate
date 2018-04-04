@@ -30,5 +30,6 @@ const HomeView = (props: Props) => {
     </Wrapper>
   )
 }
+HomeView.displayName = 'HomeView'
 
 export default HomeView

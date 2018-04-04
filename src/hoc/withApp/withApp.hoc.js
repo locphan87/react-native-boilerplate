@@ -21,7 +21,7 @@ type Options = {
   errorHandling?: boolean
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: Object) => ({
   language: state.language
 })
 const mapDispatchToProps = {
@@ -46,4 +46,5 @@ const withApp: WithApp = ({
   return compose(...enhancers)(WrappedComponent)
 }
 
+export { mapStateToProps }
 export default withApp

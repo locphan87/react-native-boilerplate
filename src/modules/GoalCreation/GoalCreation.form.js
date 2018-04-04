@@ -57,5 +57,6 @@ const CreateGoalForm = withFormik({
     start: [required(errorMessages.start.required)]
   })
 })(InnerForm)
+CreateGoalForm.displayName = 'CreateGoalForm'
 
 export default CreateGoalForm

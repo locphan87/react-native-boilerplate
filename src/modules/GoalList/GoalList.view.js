@@ -15,5 +15,6 @@ const GoalListView = ({ OPEN_DETAILS, goalList }: Props) => (
     <GoalList list={goalList} onPress={OPEN_DETAILS} />
   </Wrapper>
 )
+GoalListView.displayName = 'GoalListView'
 
 export default GoalListView

@@ -38,3 +38,14 @@ exports[`GoalList snapshots basic render 1`] = `
   />
 </List>
 `;
+
+exports[`GoalList sub render render goal item correctly 1`] = `
+<GoalItem
+  current={1}
+  end={2}
+  id={1}
+  onPress={[Function]}
+  start={1}
+  title="title"
+/>
+`;

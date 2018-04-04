@@ -10,7 +10,7 @@ exports[`GoalItem snapshots basic render 1`] = `
   }
   onPress={[MockFunction]}
   subtitle={
-    <branch(Progress)
+    <Progress
       current={1}
       end={2}
       start={1}

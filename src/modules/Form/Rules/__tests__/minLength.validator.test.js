@@ -2,6 +2,12 @@ import minLength from '../minLength.validator'
 
 describe('Form Rules minLength', () => {
   const rule = minLength('at least 3 characters', 3)
+  test('should skip null values', () => {
+    const values = [null, undefined]
+    values.forEach(value => {
+      expect(rule({ value })).toEqual(undefined)
+    })
+  })
   test('should fail with invalid rules', () => {
     const values = ['1', '12']
     values.forEach(value => {

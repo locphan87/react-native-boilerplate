@@ -23,5 +23,6 @@ const GoalList = ({ list, onPress }: Props) => (
     />
   </List>
 )
+GoalList.displayName = 'GoalList'
 
 export default GoalList

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     position: 'absolute',
     top: 0,
@@ -8,6 +8,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0
   }
-})
+}
 
 export default StyleSheet.create(styles)

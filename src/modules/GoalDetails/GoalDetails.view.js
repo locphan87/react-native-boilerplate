@@ -24,5 +24,6 @@ const GoalDetailsView = ({ REMOVE_GOAL, goalItem }: Props) => (
     />
   </Wrapper>
 )
+GoalDetailsView.displayName = 'GoalDetailsView'
 
 export default GoalDetailsView
