@@ -3,7 +3,7 @@
     "name": "React Native Boilerplate",
     "description": "React Native Boilerplate",
     "slug": "react-native-boilerplate",
-    "sdkVersion": "25.0.0",
+    "sdkVersion": "26.0.0",
     "orientation": "portrait"
   }
 }
