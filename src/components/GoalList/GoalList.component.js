@@ -1,8 +1,7 @@
 // @flow
 import React from 'react'
-import { FlatList } from 'react-native'
-import { List } from 'react-native-elements'
-import { prop } from 'ramda'
+import { View, FlatList } from 'react-native'
+import { compose, prop } from 'ramda'
 
 import GoalItem from '../GoalItem/GoalItem.component'
 import type { Goal } from '../../types'
@@ -14,14 +13,16 @@ type Props = {
   onPress: Function
 }
 
+const keyExtractor = compose(String, prop('id'))
+
 const GoalList = ({ list, onPress }: Props) => (
-  <List containerStyle={styles.base}>
+  <View style={styles.container}>
     <FlatList
       data={list}
-      keyExtractor={prop('id')}
+      keyExtractor={keyExtractor}
       renderItem={({ item }) => <GoalItem {...item} onPress={onPress} />}
     />
-  </List>
+  </View>
 )
 GoalList.displayName = 'GoalList'
 
