@@ -2,8 +2,17 @@
 
 exports[`GoalItem snapshots basic render 1`] = `
 <ListItem
+  bottomDivider={true}
+  chevron={true}
+  containerStyle={
+    Object {
+      "backgroundColor": "transparent",
+      "flex": 1,
+    }
+  }
   leftIcon={
     Object {
+      "color": "white",
       "name": "target",
       "type": "foundation",
     }
@@ -26,7 +35,6 @@ exports[`GoalItem snapshots basic render 1`] = `
   titleStyle={
     Object {
       "color": "white",
-      "marginLeft": 5,
     }
   }
   underlayColor="blue"

@@ -13,7 +13,8 @@ type Props = Goal & {
 
 const leftIcon = {
   name: 'target',
-  type: 'foundation'
+  type: 'foundation',
+  color: 'white'
 }
 
 const GoalItem = (props: Props) => {
@@ -21,12 +22,15 @@ const GoalItem = (props: Props) => {
   return (
     <ListItem
       title={title}
+      containerStyle={styles.container}
       titleStyle={styles.title}
       subtitle={<Progress {...rest} type={'simple'} />}
       subtitleStyle={styles.subtitle}
       underlayColor={'blue'}
       onPress={onPress(id)}
       leftIcon={leftIcon}
+      chevron
+      bottomDivider
     />
   )
 }
