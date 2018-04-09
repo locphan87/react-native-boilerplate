@@ -30,14 +30,11 @@ const reducer = typeToReducer(
         ...state,
         loading: true
       }),
-      SUCCESS: (state: State, action): State => {
-        console.log('payload', action.payload)
-        return {
-          ...state,
-          loading: false,
-          list: action.payload.data
-        }
-      },
+      SUCCESS: (state: State, action): State => ({
+        ...state,
+        loading: false,
+        list: action.payload.data
+      }),
       ERROR: state => ({
         ...state,
         loading: false

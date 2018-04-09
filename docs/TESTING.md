@@ -1,5 +1,7 @@
 # Testing
 
+## Guidelines
+
 * Place your test files next to the tested modules using `*.test.js` naming convention, like `componentName.component.test.js`.
 
 > Why: You don't want to dig through a folder structure to find a unit test.
@@ -18,7 +20,7 @@
 
 > Why: You don't want to be the one who caused production-ready branch build to fail. Run your tests after your rebase and before pushing your feature-branch to a remote repository.
 
-## Test utility functions
+## Recipes
 
 ### Render multiple snapshots on a React component
 
@@ -32,7 +34,6 @@ import TextInput from './TextInput.component'
 
 const props = {}
 const wrapper = shallow(<TextInput {...props} />)
-
 
 describe('Form Inputs - TextInput', () => {
   snapTest(wrapper, [

@@ -1,6 +1,16 @@
-import { insertIf, match } from '../common.util'
+import { isPromise } from 'ramda-adjunct'
+
+import { insertIf, match, delay } from '../common.util'
 
 describe('common.util', () => {
+  describe('delay', async () => {
+    const fn = jest.fn()
+    const actual = await delay()
+    fn()
+    expect(isPromise(actual)).toBeTruthy()
+    expect(fn).toBeCalled()
+  })
+
   describe('insertIf', () => {
     test('should add elements', () => {
       const actual = insertIf(true, 1, 2)

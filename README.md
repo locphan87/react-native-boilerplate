@@ -33,7 +33,7 @@ Not all of the below is yet fully implemented
 * Painless React forms with [formik](https://github.com/jaredpalmer/formik)
 * [React Navigation](https://reactnavigation.org/) for awesome navigation with 60fps transitions
 * [Flow](http://flow.org/) for static type checking
-* [Ramda](https://github.com/ramda/ramda) for functional Javascript
+* [Ramda](https://github.com/ramda/ramda) and [Ramda Adjunct](https://github.com/char0n/ramda-adjunct) for functional Javascript
 * [Recompose](https://github.com/acdlite/recompose) for building higher order components
 * [React Native Elements](https://react-native-training.github.io/react-native-elements/) for cross platform UI toolkit
 * [Glamorous Native](https://github.com/robinpowered/glamorous-native) for styling React Native components

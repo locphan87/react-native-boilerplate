@@ -1,6 +1,51 @@
-import reducer, { initialState } from '../GoalList.reducer'
+import reducer, { initialState, actions } from '../GoalList.reducer'
+
+jest.mock('../GoalList.api', () => ({
+  getGoalList: () => [],
+  addGoal: payload => payload,
+  removeGoal: id => id
+}))
 
 describe('GoalList Reducer', () => {
+  describe('actions', () => {
+    describe('get goal list', () => {
+      test('should return a correct action', () => {
+        const actual = actions.getGoalList()
+        const expected = {
+          type: 'GET_GOAL_LIST',
+          payload: []
+        }
+        expect(actual).toEqual(expected)
+      })
+    })
+    describe('add a new goal', () => {
+      test('should return a correct action', () => {
+        const payload = {
+          title: 'new goal',
+          start: 0,
+          end: 10,
+          current: 5
+        }
+        const actual = actions.addNewGoal(payload)
+        const expected = {
+          type: 'ADD_NEW_GOAL',
+          payload
+        }
+        expect(actual).toEqual(expected)
+      })
+    })
+    describe('remove a goal', () => {
+      test('should return a correct action', () => {
+        const actual = actions.removeGoal('123')
+        const expected = {
+          type: 'REMOVE_GOAL',
+          payload: '123',
+          meta: { id: '123' }
+        }
+        expect(actual).toEqual(expected)
+      })
+    })
+  })
   describe('reducer', () => {
     describe('getGoalList', () => {
       test('on loading', () => {

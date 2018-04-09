@@ -23,9 +23,18 @@ const errorMessages = {
     required: keys('errors.start.required')
   }
 }
+const validate = validator({
+  title: [
+    required(errorMessages.title.required),
+    minLength(errorMessages.title.minLength, 6)
+  ],
+  start: [required(errorMessages.start.required)]
+})
+
 const InnerForm = (props: FormProps) => {
   const { handleSubmit, isValid, isSubmitting } = props
   const fieldProps = FormUtils.getFieldProps(props)
+  const disabled = !isValid || isSubmitting
   return (
     <View style={styles.container}>
       {fields.map(fieldName => (
@@ -37,27 +46,28 @@ const InnerForm = (props: FormProps) => {
         />
       ))}
       <Button
-        containerStyle={[stylesObj.button, !isValid && stylesObj.disabled]}
+        containerStyle={[stylesObj.button, disabled && stylesObj.disabled]}
         onPress={handleSubmit}
-        disabled={!isValid || isSubmitting}
-        text={translate('submit')}
+        disabled={disabled}
+        title={translate('submit')}
       />
     </View>
   )
 }
 
+type HandleSubmitFn = (values: Object, bag: Object) => any
+const handleSubmit: HandleSubmitFn = async (
+  values,
+  { props, setSubmitting }
+) => {
+  await props.onSubmit(values)
+  setSubmitting(false)
+}
 const CreateGoalForm = withFormik({
-  handleSubmit: (values, { props }) => {
-    props.onSubmit(values)
-  },
-  validate: validator({
-    title: [
-      required(errorMessages.title.required),
-      minLength(errorMessages.title.minLength, 6)
-    ],
-    start: [required(errorMessages.start.required)]
-  })
+  displayName: 'CreateGoalForm',
+  handleSubmit,
+  validate
 })(InnerForm)
-CreateGoalForm.displayName = 'CreateGoalForm'
 
+export { InnerForm, handleSubmit }
 export default CreateGoalForm

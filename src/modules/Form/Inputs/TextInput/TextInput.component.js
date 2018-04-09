@@ -25,6 +25,7 @@ const TextInput = ({
       onChangeText={text => setFieldValue(name, text)}
       value={values[name]}
       onBlur={() => setFieldTouched(name)}
+      containerStyle={styles.inputContainer}
       {...rest}
     />
     {touched[name] && errors[name] && <Text>{errors[name]}</Text>}
