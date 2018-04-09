@@ -1,5 +1,7 @@
 # Testing
 
+## Guidelines
+
 * Place your test files next to the tested modules using `*.test.js` naming convention, like `componentName.component.test.js`.
 
 > Why: You don't want to dig through a folder structure to find a unit test.
@@ -17,3 +19,52 @@
 * Run tests locally before making any pull requests to develop.
 
 > Why: You don't want to be the one who caused production-ready branch build to fail. Run your tests after your rebase and before pushing your feature-branch to a remote repository.
+
+## Recipes
+
+### Render multiple snapshots on a React component
+
+```js
+import React from 'react'
+import { shallow } from 'enzyme'
+
+import { snapTest } from '../../../../utils/test.util'
+
+import TextInput from './TextInput.component'
+
+const props = {}
+const wrapper = shallow(<TextInput {...props} />)
+
+describe('Form Inputs - TextInput', () => {
+  snapTest(wrapper, [
+    {
+      props,
+      description: 'basic render'
+    },
+    {
+      props: {
+        ...props,
+        fieldProps: {
+          ...props.fieldProps,
+          values: { title: '' },
+          touched: { title: true },
+          errors: { title: 'Title is required' }
+        }
+      },
+      description: 'should render an error'
+    }
+  ])
+})
+```
+
+### Render a single snapshot on a React element
+
+```js
+import { singleSnapTest } from '../../../../utils/test.util'
+
+describe('sub render', () => {
+  const List = wrapper.find('FlatList')
+  const Item = List.props().renderItem({ item })
+  singleSnapTest(Item, 'render goal item correctly')
+})
+```

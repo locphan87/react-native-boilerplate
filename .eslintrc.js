@@ -6,7 +6,7 @@ const complexityRules = {
   complexity: [2, 10],
   'max-statements': [2, 20],
   'max-depth': [2, 3],
-  'max-params': [2, 2],
+  'max-params': [2, 3],
   'max-lines': [
     2,
     {

@@ -55,7 +55,7 @@ refer to [flow-guide](https://github.com/ryyppy/flow-guide/blob/master/styleguid
 
 > Why: It's hard to find type definitions that are randomly defined in the module
 
-* Complex function definition on top of the function
+* Complex function definition above the function
 
 > Why: **Inline** function definitions are hard to read and maintenance
 
@@ -68,4 +68,26 @@ const simulatePending: SimulatePendingFn = (
   asyncFns,
   updateState = 'setUpdating'
 ) => props => {}
+```
+
+* Avoid primitive types when possible
+> Why: There is no much knowledge we can get from primitive types. Instead, using type aliases is a good way to document code and increase code readability
+
+```
+type I18nKey = string
+type I18nParams = Object
+type Namespace = string
+
+type TranslateWithNamespace = Namespace => (
+  term: I18nKey,
+  param?: I18nParams
+) => any
+const translateWithNamespace: TranslateWithNamespace = namespace => (
+  term,
+  param
+) => I18n.t(`${namespace}.${term}`, param)
+
+type KeyWithNameSpace = Namespace => I18nKey => I18nKey
+const keyWithNameSpace: KeyWithNameSpace = namespace => term =>
+  `${namespace}.${term}`
 ```

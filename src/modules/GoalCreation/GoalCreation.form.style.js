@@ -5,6 +5,7 @@ import { COLORS } from '../../themes'
 const styles = {
   container: {
     flex: 1,
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: COLORS.white

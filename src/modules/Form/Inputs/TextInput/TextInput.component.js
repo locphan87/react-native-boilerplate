@@ -3,19 +3,14 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import { Input } from 'react-native-elements'
 
+import type { FieldProps } from '../../../../types'
+
 import styles from './TextInput.component.style'
 
-type Field = {
-  values: Object,
-  touched: Object,
-  errors: Object,
-  setFieldValue: Function,
-  setFieldTouched: Function
-}
 type Props = {
   name: string,
   placeholder: string,
-  fieldProps: Field
+  fieldProps: FieldProps
 }
 
 const TextInput = ({
@@ -30,6 +25,7 @@ const TextInput = ({
       onChangeText={text => setFieldValue(name, text)}
       value={values[name]}
       onBlur={() => setFieldTouched(name)}
+      containerStyle={styles.inputContainer}
       {...rest}
     />
     {touched[name] && errors[name] && <Text>{errors[name]}</Text>}

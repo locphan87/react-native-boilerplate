@@ -27,6 +27,12 @@ Create a blank configuration file
 $ cp env.example.js env.js
 ```
 
+Create a configuration file for **local** development
+
+```
+$ cp env.example.js env.local.js
+```
+
 Create a sample data
 
 ```
@@ -115,3 +121,12 @@ $ yarn android
 We should have XDE installed on our development machine and the Expo client on an iOS or Android physical device or emulator.
 
 Refer to [Working with Expo](https://docs.expo.io/versions/latest/workflow/) for more information
+
+## Running the application in different environments
+
+Specify the environment variable `ENV` (default to `local`) when starting the app
+
+```
+$ ENV=dev yarn ios
+$ ENV=storybook yarn ios
+```

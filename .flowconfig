@@ -3,6 +3,9 @@
 
 [ignore]
 <PROJECT_ROOT>/node_modules/metro/.*
+<PROJECT_ROOT>/node_modules/exp/.*
+<PROJECT_ROOT>/node_modules/@expo/traveling-fastlane-darwin/.*
+<PROJECT_ROOT>/node_modules/@expo/traveling-fastlane-linux/.*
 <PROJECT_ROOT>/node_modules/react-native/.*
 .*/node_modules/recompose/.*
 .*/node_modules/styled-components/.*
