@@ -95,6 +95,13 @@ $ yarn test:watch
 $ yarn test:coverage
 ```
 
+##### Run tests every time code changes and generate code coverage report
+```
+$ yarn test:wc
+```
+
+It's quite slow to watch file changes and then generate code coverage report. Despite that, it's very useful to run it on isolated/small test cases
+
 Read the **[Testing guide](docs/TESTING.md)** for more information about writing tests.
 
 Read the **[Coding convention](docs/CONVENTION.md)** for more details about code style.
@@ -110,6 +117,12 @@ You can install it via [brew](https://brew.sh/) and run it as a standalone app:
 ```
 $ brew update && brew cask install react-native-debugger
 ```
+
+Open React Native Debugger on a different port (i.e 19001)
+```
+$ open "rndebugger://set-debugger-loc?host=localhost&port=19001"
+```
+
 > Note: Make sure you close all active chrome debugger tabs and then restart the debugger from the React Native Development context menu.
 
 ## Deployment

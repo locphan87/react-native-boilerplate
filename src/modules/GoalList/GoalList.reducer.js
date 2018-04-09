@@ -1,6 +1,7 @@
 // @flow
 import { createActions } from 'redux-actions'
 import typeToReducer from 'type-to-reducer'
+import Immutable from 'seamless-immutable'
 
 import type { Goal } from '../../types'
 
@@ -17,10 +18,10 @@ const actions = createActions({
   REMOVE_GOAL: [API.removeGoal, id => ({ id })]
 })
 
-const initialState: State = {
+const initialState: State = Immutable({
   list: [],
   loading: false
-}
+})
 
 const reducer = typeToReducer(
   {
@@ -29,11 +30,14 @@ const reducer = typeToReducer(
         ...state,
         loading: true
       }),
-      SUCCESS: (state: State, action): State => ({
-        ...state,
-        loading: false,
-        list: action.payload.data
-      }),
+      SUCCESS: (state: State, action): State => {
+        console.log('payload', action.payload)
+        return {
+          ...state,
+          loading: false,
+          list: action.payload.data
+        }
+      },
       ERROR: state => ({
         ...state,
         loading: false

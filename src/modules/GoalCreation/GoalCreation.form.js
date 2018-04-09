@@ -6,6 +6,7 @@ import { withFormik } from 'formik'
 
 import { translateWithNamespace, keyWithNameSpace } from '../../i18n'
 import { FormUtils, RULES, validator, TextInput } from '../Form'
+import type { FormProps } from '../../types'
 
 import styles, { stylesObj } from './GoalCreation.form.style'
 
@@ -22,7 +23,7 @@ const errorMessages = {
     required: keys('errors.start.required')
   }
 }
-const InnerForm = props => {
+const InnerForm = (props: FormProps) => {
   const { handleSubmit, isValid, isSubmitting } = props
   const fieldProps = FormUtils.getFieldProps(props)
   return (
