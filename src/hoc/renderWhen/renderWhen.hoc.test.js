@@ -4,6 +4,7 @@ import renderWhen from './renderWhen.hoc.js'
 
 jest.mock('recompose', () => {
   const actual = require.requireActual('recompose')
+
   return {
     ...actual,
     renderNothing: 'NOTHING',
@@ -14,6 +15,7 @@ jest.mock('recompose', () => {
         loading: false
       }
       if (predicate(props)) return `render-${component}`
+
       return 'render-origin'
     },
     compose: (...args) => args

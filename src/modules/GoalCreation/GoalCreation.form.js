@@ -35,6 +35,7 @@ const InnerForm = (props: FormProps) => {
   const { handleSubmit, isValid, isSubmitting } = props
   const fieldProps = FormUtils.getFieldProps(props)
   const disabled = !isValid || isSubmitting
+
   return (
     <View style={styles.container}>
       {fields.map(fieldName => (

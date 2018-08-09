@@ -1,9 +1,7 @@
 [![CircleCI](https://circleci.com/gh/phanhoangloc/react-native-boilerplate/tree/master.svg?style=svg)](https://circleci.com/gh/phanhoangloc/react-native-boilerplate/tree/master) [![codecov](https://codecov.io/gh/phanhoangloc/react-native-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/phanhoangloc/react-native-boilerplate) [![Maintainability](https://api.codeclimate.com/v1/badges/0a4de6536aa865df920b/maintainability)](https://codeclimate.com/github/phanhoangloc/react-native-boilerplate/maintainability)
 
- React Native Boilerplate
-> A react native boilerplate, bootstrapped by [CRNA](https://github.com/react-community/create-react-native-app)
-
-A quick way to set up a new React native project
+Functional React Native Boilerplate
+> A feature oriented react native boilerplate, bootstrapped by [CRNA](https://github.com/react-community/create-react-native-app), using functional patterns and tools
 
 - [React Native Boilerplate](#react-native-boilerplate)
   - [tltr;](#tltr)
@@ -21,10 +19,6 @@ A quick way to set up a new React native project
       - [Run unit tests](#run-unit-tests)
       - [Run tests every time code changes](#run-tests-every-time-code-changes)
       - [Generate code coverage report](#generate-code-coverage-report)
-    - [View storybook document](#view-storybook-document)
-      - [Run storybook server](#run-storybook-server)
-      - [Start the storybook in iOS/Android](#start-the-storybook-in-iosandroid)
-    - [Rebuild icons](#rebuild-icons)
   - [Debugging](#debugging)
   - [Deployment](#deployment)
   - [Licensing](#licensing)
@@ -90,31 +84,39 @@ After you have set up the project using above instructions, you can use your fav
 
 To learn how to structure your application, read **[Code structure principles](docs/STRUCTURE.md)** for more details.
 
-##### Start the application in iOS simulator
+### Run application
+#### Start the application (required step)
+```
+$ yarn start
+```
+
+#### Open the application in iOS simulator
 ```
 $ yarn ios
 ```
 
-##### Start the application in Android simulator
+#### Open the application in Android simulator
 (If using the stock emulator, the emulator must be running)
 ```
 $ yarn android
 ```
 
-##### Run unit tests
+### Test application
+#### Run unit tests
 ```
 $ yarn test
 ```
 
-##### Run tests every time code changes
+#### Run tests every time code changes
 ```
 $ yarn test:watch
 ```
 
-##### Generate code coverage report
+#### Generate code coverage report
 ```
 $ yarn test:coverage
 ```
+Check out https://pyco-group.gitlab.io/genvita/ to view the full coverage report on the `master` branch
 
 ##### Run tests every time code changes and generate code coverage report
 ```
@@ -123,9 +125,9 @@ $ yarn test:wc
 
 It's quite slow to watch file changes and then generate code coverage report. Despite that, it's very useful to run it on isolated/small test cases
 
-Read the **[Testing guide](docs/TESTING.md)** for more information about writing tests.
-
-Read the **[Coding convention](docs/CONVENTION.md)** for more details about code style.
+For more information:
+* Read the **[Testing guide](docs/TESTING.md)** to know more about writing tests.
+* Read the **[Coding convention](docs/CONVENTION.md)** for more details about code style.
 
 ## Debugging
 
@@ -135,6 +137,7 @@ For advanced debugging under **macOS** we suggest using the standalone [React Na
 It includes the React Inspector and Redux DevTools so you can inspect React views and get a detailed history of the Redux state.
 
 You can install it via [brew](https://brew.sh/) and run it as a standalone app:
+
 ```
 $ brew update && brew cask install react-native-debugger
 ```

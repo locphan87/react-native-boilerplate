@@ -21,6 +21,7 @@ const getComposer = () => {
   if (!isDEV()) return compose
   if (!is(Object, window)) return compose
   const { __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: reduxDevToolsCompose } = window
+
   return reduxDevToolsCompose || compose
 }
 const composer = getComposer()
@@ -32,5 +33,6 @@ export default (initialValue = {}) => {
     composer(...enhancers)
   )
   const persistor = persistStore(store)
+
   return { store, persistor }
 }

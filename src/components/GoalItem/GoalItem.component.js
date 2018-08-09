@@ -19,6 +19,7 @@ const leftIcon = {
 
 const GoalItem = (props: Props) => {
   const { id, title, onPress, ...rest } = props
+
   return (
     <ListItem
       title={title}

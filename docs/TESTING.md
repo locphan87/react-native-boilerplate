@@ -25,18 +25,14 @@
 ### Render multiple snapshots on a React component
 
 ```js
-import React from 'react'
-import { shallow } from 'enzyme'
-
-import { snapTest } from '../../../../utils/test.util'
+import { testSnapshots } from '../../../../utils/test.util'
 
 import TextInput from './TextInput.component'
 
 const props = {}
-const wrapper = shallow(<TextInput {...props} />)
 
 describe('Form Inputs - TextInput', () => {
-  snapTest(wrapper, [
+  testSnapshots(TextInput, [
     {
       props,
       description: 'basic render'

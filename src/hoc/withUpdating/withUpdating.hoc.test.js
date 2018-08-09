@@ -10,12 +10,14 @@ import withUpdatingConfig, {
 
 jest.mock('recompose', () => {
   const origin = require.requireActual('recompose')
+
   return {
     ...origin,
     withState: stateName => `withState-${stateName}`,
     withProps: getProps => {
       const newProps = getProps({ createGoal: jest.fn() })
       const propKeys = Object.keys(newProps).toString()
+
       return `withProps-[${propKeys}]`
     },
     compose: (...args) => args
@@ -57,14 +59,6 @@ describe('simulatePending', () => {
   test('should call setUpdating before each update on SUCESS', async () => {
     const actual = simulatePending(updates)(props)
     expect(isFunction(actual.getArticleList)).toBe(true)
-    await actual.getArticleList()
-    expect(props.setUpdating).toBeCalled()
-  })
-  test('should call setUpdating before each update on FAIL', async () => {
-    const actual = simulatePending(updates)({
-      ...props,
-      getArticleList: jest.fn(() => Promise.reject(new Error('FAIL')))
-    })
     await actual.getArticleList()
     expect(props.setUpdating).toBeCalled()
   })

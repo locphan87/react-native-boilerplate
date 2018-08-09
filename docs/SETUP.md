@@ -4,7 +4,7 @@
 
 Before you get started, make sure you have the following dependencies installed on your machine:
 
-- [NodeJS](https://nodejs.org) `>=8` with `yarn` or `npm 5`.
+- [NodeJS](https://nodejs.org) `>=8.11` with `yarn` or `npm 5`.
 - Latest React Native CLI
 
 ```
@@ -21,22 +21,10 @@ Install dependencies from NPM
 $ yarn install
 ```
 
-Create a blank configuration file
+Create configuration files
 
 ```
-$ cp env.example.js env.js
-```
-
-Create a configuration file for **local** development
-
-```
-$ cp env.example.js env.local.js
-```
-
-Create a sample data
-
-```
-$ cp data.json.example data.json
+$ yarn setup
 ```
 
 ## Running the local server
@@ -122,11 +110,16 @@ We should have XDE installed on our development machine and the Expo client on a
 
 Refer to [Working with Expo](https://docs.expo.io/versions/latest/workflow/) for more information
 
-## Running the application in different environments
+## Multiple environments
 
-Specify the environment variable `ENV` (default to `local`) when starting the app
+### Environment configs
+
+TBD
+
+### Run the application in different environments
 
 ```
 $ ENV=dev yarn ios
-$ ENV=storybook yarn ios
+$ ENV=uat yarn ios
+$ ENV=prod yarn ios
 ```

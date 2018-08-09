@@ -6,14 +6,6 @@ module.exports = {
   moduleFileExtensions: ['js'],
   testMatch: ['**/__tests__/**/*.js', '**/?(*.)(spec|test).js'],
   setupFiles: ['<rootDir>/tests/setup.js'],
-  coverageThreshold: {
-    global: {
-      branches: 70,
-      functions: 70,
-      lines: 70,
-      statements: -20
-    }
-  },
   coveragePathIgnorePatterns: [
     '(style|story).js',
     './tests/setup.js',

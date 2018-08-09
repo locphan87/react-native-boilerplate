@@ -5,6 +5,7 @@ import withApp, { mapStateToProps } from './withApp.hoc'
 jest
   .mock('recompose', () => {
     const origin = require.requireActual('recompose')
+
     return {
       ...origin,
       compose: (...args) => component => args

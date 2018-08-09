@@ -16,6 +16,7 @@ const renderWhen: renderWhenFn = states =>
     ...states.map(({ when, render }) => {
       const component =
         render === Constants.NOTHING ? renderNothing : renderComponent(render)
+
       return branch(when, component)
     })
   )
