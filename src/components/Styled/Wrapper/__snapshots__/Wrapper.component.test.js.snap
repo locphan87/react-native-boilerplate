@@ -17,7 +17,6 @@ exports[`Styled Wrapper snapshots basic render 1`] = `
 
 exports[`Styled Wrapper snapshots custom bg color 1`] = `
 <View
-  bgColor="red"
   style={
     Array [
       Object {

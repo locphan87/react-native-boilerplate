@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Progress snapshots normal progress 1`] = `
-<Component>
+<View>
   <Slider
     animationType="timing"
     debugTouchArea={false}
@@ -20,7 +20,7 @@ exports[`Progress snapshots normal progress 1`] = `
     }
     value={2}
   />
-  <Component
+  <View
     style={
       Object {
         "alignItems": "center",
@@ -32,8 +32,8 @@ exports[`Progress snapshots normal progress 1`] = `
       end={10}
       start={1}
     />
-  </Component>
-</Component>
+  </View>
+</View>
 `;
 
 exports[`Progress snapshots simple percent 1`] = `

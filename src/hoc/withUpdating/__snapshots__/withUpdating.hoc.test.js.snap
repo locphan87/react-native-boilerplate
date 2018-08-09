@@ -1,26 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`withUpdating snapshots normal state 1`] = `
-<Component
+<View
   style={
     Object {
       "flex": 1,
     }
   }
 >
-  <Component />
-</Component>
+  <View />
+</View>
 `;
 
 exports[`withUpdating snapshots updating state 1`] = `
-<Component
+<View
   style={
     Object {
       "flex": 1,
     }
   }
 >
-  <Component />
+  <View />
   <LoadingMask
     style={
       Object {
@@ -28,5 +28,5 @@ exports[`withUpdating snapshots updating state 1`] = `
       }
     }
   />
-</Component>
+</View>
 `;

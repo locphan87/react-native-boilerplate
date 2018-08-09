@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GoalList snapshots basic render 1`] = `
-<Component
+<View
   style={
     Object {
       "backgroundColor": "rgba(31, 32, 39, 1)",
@@ -36,7 +36,7 @@ exports[`GoalList snapshots basic render 1`] = `
     updateCellsBatchingPeriod={50}
     windowSize={21}
   />
-</Component>
+</View>
 `;
 
 exports[`GoalList sub render render goal item correctly 1`] = `
