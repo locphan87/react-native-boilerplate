@@ -19,7 +19,7 @@ Naming convention:
 * Module's reducer `<MODULE_NAME>.reducer.js`
 * API requests `<MODULE_NAME>.api.js`
 * UI view component `<MODULE_NAME>.view.js`
-* Form component `<MODULE_NAME>.view.js`
+* Form component `<MODULE_NAME>.form.js`
 * Style `<MODULE_NAME>.<UI_TYPE>.style.js`
 * Test `<MODULE_NAME>.<TEST_TYPE>.test.js`
 
@@ -53,7 +53,3 @@ Developers working on this application would need to go into only a single folde
 Note:
 * We have many files in this directory so it's reasonable to have a separate test folder.
 * It's common that a view component define and use smaller components in the same module (organized in separate folders, i.e `MyModuleComponent1` and `MyModuleComponent2`)
-
-References:
-* [How to scale react applications](https://www.smashingmagazine.com/2016/09/how-to-scale-react-applications/)
-* [Feature oriented architecture](https://medium.com/@nate_wang/feature-oriented-architecture-for-web-applications-2b48e358afb0)

@@ -16,45 +16,6 @@ We welcome new features, but for large changes let's discuss first to make sure 
 * Delete local and remote feature branches after merging.
 * Before making a Pull Request, make sure your feature branch builds successfully and passes all tests (including code style checks).
 
-### Git workflow
-
-* Checkout a new feature/bug-fix branch.
-
-```
-git checkout -b <branchname>
-```
-
-* Make Changes.
-
-```
-git add
-git commit
-```
-
-* Sync with remote to get changes you’ve missed.
-
-```
-git checkout master
-git pull
-```
-
-Update your feature branch with latest changes from `master`
-
-```
-git checkout <branchname>
-git pull origin master
-```
-
-* Make a Pull Request.
-
-* Pull request will be accepted, merged and close by a reviewer.
-
-* Remove your local feature branch if you're done.
-
-```
-git branch -d <branchname>
-```
-
 ### Writing good commit messages
 
 * Separate the subject from the body with a newline between the two.
