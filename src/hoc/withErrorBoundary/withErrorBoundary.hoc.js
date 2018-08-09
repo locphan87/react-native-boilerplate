@@ -11,7 +11,10 @@ const ErrorComponent = () => (
     <Text>Something went wrong, you can try to refetch again</Text>
   </Wrapper>
 )
-const hasError = compose(isNonEmptyArray, prop('errors'))
+const hasError = compose(
+  isNonEmptyArray,
+  prop('errors')
+)
 const withErrorBoundary = renderWhen([
   {
     when: hasError,

@@ -20,7 +20,7 @@ type Props = PercentProps & {
 
 const isSimple = propEq('type', 'simple')
 const Percent = ({ start, current, end }: PercentProps) => {
-  const percent = (current - start) * 100 / (end - start)
+  const percent = ((current - start) * 100) / (end - start)
   const content = `${percent.toFixed(2)}%`
 
   return <Text color={COLORS.yellow}>{content}</Text>

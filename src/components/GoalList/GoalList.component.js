@@ -13,7 +13,10 @@ type Props = {
   onPress: Function
 }
 
-const keyExtractor = compose(String, prop('id'))
+const keyExtractor = compose(
+  String,
+  prop('id')
+)
 
 const GoalList = ({ list, onPress }: Props) => (
   <View style={styles.container}>

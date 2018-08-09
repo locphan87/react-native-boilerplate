@@ -29,9 +29,10 @@ describe('GoalList Selector', () => {
       expect(selector.getGoalById(state)(1)).toEqual(items[0])
     })
     test('should not get goal item by an invalid ID', () => {
-      const actual = compose(defaultTo('NOTHING'), selector.getGoalById(state))(
-        9999
-      )
+      const actual = compose(
+        defaultTo('NOTHING'),
+        selector.getGoalById(state)
+      )(9999)
       expect(actual).toEqual('NOTHING')
     })
   })

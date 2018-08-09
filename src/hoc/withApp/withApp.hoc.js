@@ -34,7 +34,10 @@ const withApp: WithApp = ({
   errorHandling = false
 } = {}) => WrappedComponent => {
   const enhancers = Immutable([
-    connect(mapStateToProps, mapDispatchToProps),
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    ),
     ...insertIf(loading, withLoading),
     ...insertIf(isNonEmptyArray(updates), withUpdating(updates)),
     ...insertIf(

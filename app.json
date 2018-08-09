@@ -3,13 +3,7 @@
     "name": "React Native Boilerplate",
     "description": "React Native Boilerplate",
     "slug": "react-native-boilerplate",
-    "sdkVersion": "26.0.0",
-    "orientation": "portrait",
-    "ios": {
-      "bundleIdentifier": "com.locphan.rnb"
-    },
-    "android": {
-      "package": "com.locphan.rnb"
-    }
+    "sdkVersion": "29.0.0",
+    "orientation": "portrait"
   }
 }

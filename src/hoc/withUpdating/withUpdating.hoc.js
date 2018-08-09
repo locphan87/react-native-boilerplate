@@ -30,20 +30,20 @@ const styles = StyleSheet.create({
 
 type SimulatePendingFn = (
   asyncFns: string[],
-  updateState?: string
+  updateStateFn?: string
 ) => GenericProps => GenericProps
 const simulatePending: SimulatePendingFn = (
   asyncFns,
-  updateState = 'setUpdating'
+  updateStateFn = 'setUpdating'
 ) => props =>
   asyncFns.reduce((acc, key) => {
     acc[key] = async (...args) => {
       try {
-        props[updateState](true)
+        props[updateStateFn](true)
         await props[key](...args)
-        props[updateState](false)
+        props[updateStateFn](false)
       } catch (e) {
-        props[updateState](false)
+        props[updateStateFn](false)
       }
     }
     return acc
