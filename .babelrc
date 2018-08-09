@@ -3,7 +3,6 @@
     "babel-preset-expo"
   ],
   "plugins": [
-    "js-pattern-matching",
     ["dotenv-import", {
       "moduleName": "env-config",
       "path": ".env",
