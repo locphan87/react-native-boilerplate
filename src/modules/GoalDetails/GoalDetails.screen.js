@@ -27,7 +27,10 @@ const mapDispatchToProps = {
 const navigationOptions = ({ navigation }) => ({
   headerTitle: I18n.t('goalDetails.screen.title')
 })
-const isMissingItem = compose(isNil, prop('goalItem'))
+const isMissingItem = compose(
+  isNil,
+  prop('goalItem')
+)
 const renderWhen = [
   {
     when: isMissingItem,
@@ -36,7 +39,10 @@ const renderWhen = [
 ]
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
   setStatic('navigationOptions', navigationOptions),
   withApp({
     updates: ['removeGoal'],

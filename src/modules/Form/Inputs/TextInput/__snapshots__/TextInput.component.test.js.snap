@@ -17,15 +17,7 @@ exports[`Form Inputs - TextInput snapshots basic render 1`] = `
     onBlur={[Function]}
     onChangeText={[Function]}
     placeholder="Enter your title"
-    value=""
   />
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
-    Title is required
-  </Text>
 </View>
 `;
 

@@ -1,7 +1,4 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-
-import { snapTest } from '../../utils/test.util'
+import { testSnapshots } from '../../utils/test.util'
 
 import { Percent, Progress } from './Progress.component'
 
@@ -10,17 +7,15 @@ const props = {
   current: 2,
   end: 10
 }
-const percentWrapper = shallow(<Percent {...props} />)
-const progressWrapper = shallow(<Progress {...props} />)
 
 describe('Progress', () => {
-  snapTest(progressWrapper, [
+  testSnapshots(Progress, [
     {
       props,
       description: 'normal progress'
     }
   ])
-  snapTest(percentWrapper, [
+  testSnapshots(Percent, [
     {
       props: {
         ...props,

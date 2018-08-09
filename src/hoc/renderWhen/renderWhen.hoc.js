@@ -5,13 +5,13 @@ import Constants from '../../constants'
 import type { RenderPredicate, GenericComponent, GenericHOC } from '../../types'
 
 type Nothing = Constants.NOTHING
-export type NonOptimalState = {
+type NonOptimalState = {
   when: RenderPredicate,
   render: Nothing | GenericComponent
 }
 
-type NonOptimalStatesFn = (NonOptimalState[]) => GenericHOC
-const nonOptimalStates: NonOptimalStatesFn = states =>
+type renderWhenFn = (NonOptimalState[]) => GenericHOC
+const renderWhen: renderWhenFn = states =>
   compose(
     ...states.map(({ when, render }) => {
       const component =
@@ -20,4 +20,5 @@ const nonOptimalStates: NonOptimalStatesFn = states =>
     })
   )
 
-export default nonOptimalStates
+export type { NonOptimalState }
+export default renderWhen

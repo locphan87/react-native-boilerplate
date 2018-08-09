@@ -1,10 +1,33 @@
 [![CircleCI](https://circleci.com/gh/phanhoangloc/react-native-boilerplate/tree/master.svg?style=svg)](https://circleci.com/gh/phanhoangloc/react-native-boilerplate/tree/master) [![codecov](https://codecov.io/gh/phanhoangloc/react-native-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/phanhoangloc/react-native-boilerplate) [![Maintainability](https://api.codeclimate.com/v1/badges/0a4de6536aa865df920b/maintainability)](https://codeclimate.com/github/phanhoangloc/react-native-boilerplate/maintainability)
 
-
-# React Native Boilerplate
+ React Native Boilerplate
 > A react native boilerplate, bootstrapped by [CRNA](https://github.com/react-community/create-react-native-app)
 
 A quick way to set up a new React native project
+
+- [React Native Boilerplate](#react-native-boilerplate)
+  - [tltr;](#tltr)
+  - [Contents](#contents)
+    - [Application Blueprint](#application-blueprint)
+    - [Testing Setup](#testing-setup)
+    - [Dev tools](#dev-tools)
+    - [Roadmap](#roadmap)
+  - [Getting started](#getting-started)
+  - [Development workflow](#development-workflow)
+    - [Run application](#run-application)
+      - [Start the application in iOS simulator](#start-the-application-in-ios-simulator)
+      - [Start the application in Android simulator](#start-the-application-in-android-simulator)
+    - [Test application](#test-application)
+      - [Run unit tests](#run-unit-tests)
+      - [Run tests every time code changes](#run-tests-every-time-code-changes)
+      - [Generate code coverage report](#generate-code-coverage-report)
+    - [View storybook document](#view-storybook-document)
+      - [Run storybook server](#run-storybook-server)
+      - [Start the storybook in iOS/Android](#start-the-storybook-in-iosandroid)
+    - [Rebuild icons](#rebuild-icons)
+  - [Debugging](#debugging)
+  - [Deployment](#deployment)
+  - [Licensing](#licensing)
 
 ## tltr;
 
@@ -21,15 +44,13 @@ For further setup instructions please see our [Getting Started](#getting-started
 
 ## Contents
 
-Not all of the below is yet fully implemented
-
 ### Application Blueprint
 
 * Always up-to-date [React Native](https://facebook.github.io/react-native/) scaffolding
 * Modular and well-documented structure for application code
 * Easy to build native apps with [Expo](https://expo.io/)
 * [Redux](http://redux.js.org/) for safe and reasonable state management
-* [Redux Saga](https://github.com/redux-saga/redux-saga) for side effects
+* [Redux promise middleware](https://github.com/pburtchaell/redux-promise-middleware) and [Redux thunk](https://github.com/reduxjs/redux-thunk) for side effects
 * Painless React forms with [formik](https://github.com/jaredpalmer/formik)
 * [React Navigation](https://reactnavigation.org/) for awesome navigation with 60fps transitions
 * [Flow](http://flow.org/) for static type checking

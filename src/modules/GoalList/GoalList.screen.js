@@ -38,7 +38,10 @@ const callbacks = {
 }
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
   setStatic('navigationOptions', navigationOptions),
   lifecycle(callbacks),
   withApp({ loading: true }),

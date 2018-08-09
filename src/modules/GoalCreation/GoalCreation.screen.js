@@ -17,7 +17,10 @@ const navigationOptions = ({ navigation }) => ({
 })
 
 export default compose(
-  connect(null, mapDispatchToProps),
+  connect(
+    null,
+    mapDispatchToProps
+  ),
   setStatic('navigationOptions', navigationOptions),
   withApp({ updates: ['addNewGoal'] }),
   withHandlers(handlers)

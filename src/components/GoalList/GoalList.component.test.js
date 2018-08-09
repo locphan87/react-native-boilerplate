@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import { snapTest, singleSnapTest } from '../../utils/test.util'
+import { testSnapshots, singleSnapTest } from '../../utils/test.util'
 
 import GoalList from './GoalList.component'
 
@@ -19,7 +19,7 @@ const props = {
 const wrapper = shallow(<GoalList {...props} />)
 
 describe('GoalList', () => {
-  snapTest(wrapper, [
+  testSnapshots(GoalList, [
     {
       props,
       description: 'basic render'

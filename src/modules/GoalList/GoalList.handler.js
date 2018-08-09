@@ -8,7 +8,9 @@ type Props = {
 
 const handlers = {
   OPEN_DETAILS: (props: Props) => (id: ID) => () => {
-    const { navigation: { navigate } } = props
+    const {
+      navigation: { navigate }
+    } = props
     navigate(Routes.Goal.GoalDetails, { id })
   }
 }

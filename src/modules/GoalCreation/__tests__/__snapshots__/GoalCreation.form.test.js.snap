@@ -49,10 +49,12 @@ exports[`module GoalCreation form snapshots basic render 1`] = `
         Object {
           "marginTop": 10,
         },
-        false,
+        Object {
+          "opacity": 0.7,
+        },
       ]
     }
-    disabled={false}
+    disabled={true}
     iconRight={false}
     loadingProps={
       Object {

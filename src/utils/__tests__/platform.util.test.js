@@ -1,6 +1,6 @@
 import { Platform } from 'react-native'
 
-import { isDEV, isIOS, isAndroid } from '../platform.util'
+import { isDEV, isPROD, isIOS, isAndroid } from '../platform.util'
 
 describe('utils - common', () => {
   describe('isDEV', () => {
@@ -11,6 +11,17 @@ describe('utils - common', () => {
     test('should return FALSE on production mode', () => {
       process.env.NODE_ENV = 'production'
       expect(isDEV()).toBe(false)
+    })
+  })
+
+  describe('isPROD', () => {
+    test('should return TRUE on production mode', () => {
+      process.env.NODE_ENV = 'production'
+      expect(isPROD()).toBe(true)
+    })
+    test('should return FALSE on dev mode', () => {
+      process.env.NODE_ENV = 'development'
+      expect(isPROD()).toBe(false)
     })
   })
 

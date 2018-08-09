@@ -1,6 +1,6 @@
 import Constants from '../../constants'
 
-import nonOptimalStates from './nonOptimalStates.hoc.js'
+import renderWhen from './renderWhen.hoc.js'
 
 jest.mock('recompose', () => {
   const actual = require.requireActual('recompose')
@@ -20,9 +20,9 @@ jest.mock('recompose', () => {
   }
 })
 
-describe('HOC nonOptimalStates', () => {
+describe('HOC renderWhen', () => {
   test('should return a list of branched components', () => {
-    const renderWhen = [
+    const options = [
       {
         render: 'Error',
         when: props => props.errors
@@ -36,7 +36,7 @@ describe('HOC nonOptimalStates', () => {
         when: props => props.loading
       }
     ]
-    const actual = nonOptimalStates(renderWhen)
+    const actual = renderWhen(options)
     expect(actual).toEqual(['render-Error', 'render-NOTHING', 'render-origin'])
   })
 })

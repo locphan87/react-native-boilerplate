@@ -14,6 +14,7 @@ const delay: Delay = (ms = 1000) =>
     setTimeout(resolve, ms)
   })
 
+// pattern matching on a value
 // use _ as a branch for the default case
 const match: Match = value => cases => {
   const hasKey = key => String(value) === key
