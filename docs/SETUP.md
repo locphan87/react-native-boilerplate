@@ -24,7 +24,7 @@ $ yarn install
 Create configuration files
 
 ```
-$ make setup
+$ yarn setup
 ```
 
 ## Running the local server

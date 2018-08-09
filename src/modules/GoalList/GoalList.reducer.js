@@ -50,6 +50,7 @@ const reducer = typeToReducer(
       SUCCESS: (state: State, { meta }): State => {
         const keepItem = item => item.id !== meta.id
         const newGoalList = state.list.filter(keepItem)
+
         return {
           ...state,
           list: newGoalList

@@ -10,12 +10,12 @@ const complexityRules = {
   'max-lines': [
     2,
     {
-      max: 200,
+      max: 500,
       skipBlankLines: true,
       skipComments: true
     }
   ],
-  'import/max-dependencies': [2, { max: 15 }]
+  'import/max-dependencies': [2, { max: 30 }]
 }
 const reactRules = {
   'react/jsx-key': 2,
@@ -32,13 +32,20 @@ const fpRules = {
   'fp/no-mutating-assign': 2,
   'fp/no-mutating-methods': 2,
   'fp/no-proxy': 2,
-  // 'fp/no-throw': 2,
   'fp/no-valueof-field': 2,
   'no-var': 2,
   'prefer-spread': 2
 }
+const codeStyleRules = {
+  'arrow-body-style': [2, 'as-needed'],
+  'padding-line-between-statements': [
+    'error',
+    { blankLine: 'always', prev: '*', next: 'return' }
+  ]
+}
 const otherRules = {
-  'arrow-body-style': [2, 'as-needed']
+  'no-console': ['error'],
+  'no-unused-vars': ['error']
 }
 
 module.exports = {
@@ -54,6 +61,7 @@ module.exports = {
     ...reactRules,
     ...fpRules,
     ...importRules,
+    ...codeStyleRules,
     ...otherRules
   }
 }

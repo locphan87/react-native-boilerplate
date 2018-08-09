@@ -5,6 +5,7 @@ import { delay } from '../../utils/common.util'
 
 const getGoalList = async () => {
   await delay(1500)
+
   return API.get('goals')
 }
 const addGoal = (payload: Payload) => API.post('goals', payload)

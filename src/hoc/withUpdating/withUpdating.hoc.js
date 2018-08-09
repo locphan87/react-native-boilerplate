@@ -12,6 +12,7 @@ const withUpdating: GenericHOC = WrappedComponent => ({
   ...rest
 }) => {
   const isUpdating = equals(true, updating)
+
   return (
     <View style={styles.container}>
       <WrappedComponent {...rest} />
@@ -46,6 +47,7 @@ const simulatePending: SimulatePendingFn = (
         props[updateStateFn](false)
       }
     }
+
     return acc
   }, {})
 

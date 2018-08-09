@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GoalItem snapshots basic render 1`] = `
-<ListItem
+<RNE_ListItem
   bottomDivider={true}
   chevron={true}
   containerStyle={

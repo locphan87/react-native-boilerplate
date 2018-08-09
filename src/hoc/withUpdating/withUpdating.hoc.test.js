@@ -10,12 +10,14 @@ import withUpdatingConfig, {
 
 jest.mock('recompose', () => {
   const origin = require.requireActual('recompose')
+
   return {
     ...origin,
     withState: stateName => `withState-${stateName}`,
     withProps: getProps => {
       const newProps = getProps({ createGoal: jest.fn() })
       const propKeys = Object.keys(newProps).toString()
+
       return `withProps-[${propKeys}]`
     },
     compose: (...args) => args
