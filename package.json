@@ -21,7 +21,7 @@
     "prettier": "1.14.2",
     "react-dom": "16.3.1",
     "react-fake-props": "0.2.1",
-    "react-native-scripts": "1.11.1",
+    "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1",
     "validate-commit": "3.4.0"
   },
