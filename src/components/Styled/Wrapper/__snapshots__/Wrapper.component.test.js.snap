@@ -2,12 +2,11 @@
 
 exports[`Styled Wrapper snapshots basic render 1`] = `
 <View
-  bgColor="red"
   style={
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "red",
+        "backgroundColor": "rgba(31, 32, 39, 1)",
         "flex": 1,
         "justifyContent": "center",
       },

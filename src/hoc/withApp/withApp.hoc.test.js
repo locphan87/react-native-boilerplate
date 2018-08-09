@@ -15,9 +15,7 @@ jest
   }))
   .mock('../withLoading/withLoading.hoc', () => 'withLoading')
   .mock('../withUpdating/withUpdating.hoc', () => updates => 'withUpdating')
-  .mock('../nonOptimalStates/nonOptimalStates.hoc', () => configs =>
-    'nonOptimalStates'
-  )
+  .mock('../renderWhen/renderWhen.hoc', () => configs => 'renderWhen')
   .mock('../withErrorBoundary/withErrorBoundary.hoc', () => 'withErrorBoundary')
 
 describe('HOC withApp', () => {
@@ -37,7 +35,7 @@ describe('HOC withApp', () => {
       updates: ['getGoalList'],
       renderWhen: [{ render: 'NOTHING', when: props => props.errors }]
     })(View)
-    expect(actual).toEqual(['connect', 'withUpdating', 'nonOptimalStates'])
+    expect(actual).toEqual(['connect', 'withUpdating', 'renderWhen'])
   })
   test('should select correct state', () => {
     const actual = mapStateToProps({ language: 'en' })

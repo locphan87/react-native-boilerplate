@@ -1,9 +1,7 @@
-import React from 'react'
 import { View } from 'react-native'
-import { shallow } from 'enzyme'
 import { isFunction } from 'ramda-adjunct'
 
-import { snapTest } from '../../utils/test.util'
+import { testSnapshots } from '../../utils/test.util'
 
 import withUpdatingConfig, {
   simulatePending,
@@ -26,8 +24,7 @@ jest.mock('recompose', () => {
 
 describe('withUpdating', () => {
   const Component = withUpdating(View)
-  const wrapper = shallow(<Component />)
-  snapTest(wrapper, [
+  testSnapshots(Component, [
     {
       props: { updating: true },
       description: 'updating state'

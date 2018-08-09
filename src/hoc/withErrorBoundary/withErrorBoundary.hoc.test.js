@@ -1,7 +1,4 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-
-import { snapTest } from '../../utils/test.util'
+import { testSnapshots } from '../../utils/test.util'
 
 import { ErrorComponent, hasError } from './withErrorBoundary.hoc'
 
@@ -13,10 +10,9 @@ const props = {
     }
   ]
 }
-const wrapper = shallow(<ErrorComponent {...props} />)
 
 describe('HOC withErrorBoundary', () => {
-  snapTest(wrapper, [
+  testSnapshots(ErrorComponent, [
     {
       props,
       description: 'basic render'

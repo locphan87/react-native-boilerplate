@@ -1,16 +1,18 @@
+import React from 'react'
+import { shallow } from 'enzyme'
+
 const singleSnapTest = (wrapper, description) => {
   test(description, () => {
     expect(wrapper).toMatchSnapshot()
   })
 }
-const snapTest = (wrapper, configs) => {
+const testSnapshots = (Component, configs) => {
   describe('snapshots', () => {
     configs.forEach(config => {
       const { props, description } = config
-      wrapper.setProps(props)
+      const wrapper = shallow(<Component {...props} />)
       singleSnapTest(wrapper, description)
     })
   })
 }
-
-export { snapTest, singleSnapTest }
+export { singleSnapTest, testSnapshots }

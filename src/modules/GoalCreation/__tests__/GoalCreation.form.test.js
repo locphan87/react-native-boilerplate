@@ -1,7 +1,4 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-
-import { snapTest } from '../../../utils/test.util'
+import { testSnapshots } from '../../../utils/test.util'
 import { InnerForm, handleSubmit } from '../GoalCreation.form.js'
 
 const props = {
@@ -9,10 +6,9 @@ const props = {
   isSubmitting: false,
   handleSubmit: jest.fn()
 }
-const wrapper = shallow(<InnerForm {...props} />)
 
 describe('module GoalCreation form', () => {
-  snapTest(wrapper, [
+  testSnapshots(InnerForm, [
     {
       props,
       description: 'basic render'
