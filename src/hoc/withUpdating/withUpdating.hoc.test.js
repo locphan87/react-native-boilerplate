@@ -62,12 +62,4 @@ describe('simulatePending', () => {
     await actual.getArticleList()
     expect(props.setUpdating).toBeCalled()
   })
-  test('should call setUpdating before each update on FAIL', async () => {
-    const actual = simulatePending(updates)({
-      ...props,
-      getArticleList: jest.fn(() => Promise.reject(new Error('FAIL')))
-    })
-    await actual.getArticleList()
-    expect(props.setUpdating).toBeCalled()
-  })
 })
