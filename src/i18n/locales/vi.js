@@ -1,47 +1,18 @@
 export default {
-  home: {
-    screen: {
-      title: '[vi] Home'
-    },
-    view: {
-      welcome: '[vi] Welcome to React Native Boilerplate'
-    }
-  },
-  goalList: {
-    screen: {
-      title: '[vi] Goal List',
-      newGoal: '[vi] New Goal'
-    }
-  },
-  goalDetails: {
-    screen: {
-      title: '[vi] Goal Details'
-    },
-    view: {
-      buttons: {
-        delete: '[vi] Delete'
-      }
-    }
-  },
-  goalCreation: {
-    screen: {
-      title: '[vi] Goal Creation'
-    },
-    form: {
-      title: '[vi] Title',
-      start: '[vi] Start',
-      current: '[vi] Current',
-      end: '[vi] End',
-      submit: '[vi] Submit',
-      errors: {
-        title: {
-          required: 'Title is required',
-          minLength: 'Title should have at least {{minLength}} characters'
-        },
-        start: {
-          required: 'Start is required'
-        }
-      }
-    }
-  }
+  'home.screen.title': 'Trang chủ',
+  'home.view.welcome': 'Xin chào',
+  'goalList.screen.title': 'Danh sách mục tiêu',
+  'goalList.screen.newGoal': 'Thêm mới',
+  'goalDetails.screen.title': 'Chi tiết mục tiêu',
+  'goalDetails.view.buttons.delete': 'Xoá mục tiêu',
+  'goalCreation.screen.title': 'Tạo mục tiêu mới',
+  'goalCreation.form.title': 'Tiêu đề',
+  'goalCreation.form.start': 'Điểm bắt đầu',
+  'goalCreation.form.current': 'Điểm hiện tại',
+  'goalCreation.form.end': 'Điểm kết thúc',
+  'goalCreation.form.submit': 'Đồng ý',
+  'goalCreation.form.errors.start.required': 'Điểm bắt đầu là bắt buộc',
+  'goalCreation.form.errors.title.required': 'Tiêu đề là bắt buộc',
+  'goalCreation.form.errors.title.minLength':
+    'Tiêu đề cần ít nhất {{minLength} ký tự'
 }

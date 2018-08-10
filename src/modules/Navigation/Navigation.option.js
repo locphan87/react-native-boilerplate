@@ -30,14 +30,15 @@ const tabOptions = {
     }
   }),
   tabBarOptions: {
-    inactiveTintColor: COLORS.gray,
-    activeBackgroundColor: COLORS.base,
-    inactiveBackgroundColor: COLORS.base,
     labelStyle: {
       fontSize: 14
     },
     style: {
-      backgroundColor: COLORS.base
+      paddingTop: 8,
+      backgroundColor: COLORS.base,
+      borderTopWidth: 1,
+      borderTopColor: COLORS.gray,
+      height: 62
     }
   },
   tabBarPosition: 'bottom',
