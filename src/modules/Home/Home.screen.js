@@ -8,7 +8,6 @@ import { getNavState } from '../Navigation/Navigation.util'
 import HomeView from './Home.view'
 
 const navigationOptions = ({ navigation }) => ({
-  tabBarLabel: I18n.t('home.screen.title'),
   headerTitle: getNavState('title', navigation) || I18n.t('home.screen.title')
 })
 const handlers = {
