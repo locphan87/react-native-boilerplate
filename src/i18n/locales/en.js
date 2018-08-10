@@ -1,47 +1,18 @@
 export default {
-  home: {
-    screen: {
-      title: 'Home'
-    },
-    view: {
-      welcome: 'Welcome to React Native Boilerplate'
-    }
-  },
-  goalList: {
-    screen: {
-      title: 'Goal List',
-      newGoal: 'New Goal'
-    }
-  },
-  goalDetails: {
-    screen: {
-      title: 'Goal Details'
-    },
-    view: {
-      buttons: {
-        delete: 'Delete'
-      }
-    }
-  },
-  goalCreation: {
-    screen: {
-      title: 'Goal Creation'
-    },
-    form: {
-      title: 'Title',
-      start: 'Start',
-      current: 'Current',
-      end: 'End',
-      submit: 'Submit',
-      errors: {
-        title: {
-          required: 'Title is required',
-          minLength: 'Title should have at least {{minLength}} characters'
-        },
-        start: {
-          required: 'Start is required'
-        }
-      }
-    }
-  }
+  'home.screen.title': 'Home',
+  'home.view.welcome': 'Welcome',
+  'goalList.screen.title': 'Goal List',
+  'goalList.screen.newGoal': 'New Goal',
+  'goalDetails.screen.title': 'Goal Details',
+  'goalDetails.view.buttons.delete': 'Delete goal',
+  'goalCreation.screen.title': 'Goal Creation',
+  'goalCreation.form.title': 'Title',
+  'goalCreation.form.start': 'Start',
+  'goalCreation.form.current': 'Current',
+  'goalCreation.form.end': 'End',
+  'goalCreation.form.submit': 'Submit',
+  'goalCreation.form.errors.start.required': 'Start is required',
+  'goalCreation.form.errors.title.required': 'Title is required',
+  'goalCreation.form.errors.title.minLength':
+    'Title should have at least {{minLength}} characters'
 }

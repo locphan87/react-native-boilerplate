@@ -21,7 +21,6 @@ const mapDispatchToProps = {
 }
 const navigationOptions = ({ navigation }) => ({
   headerTitle: I18n.t('goalList.screen.title'),
-  tabBarLabel: I18n.t('goalList.screen.title'),
   headerRight: (
     <Button
       title={I18n.t('goalList.screen.newGoal')}
