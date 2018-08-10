@@ -1,14 +1,10 @@
 // @flow
 import Home from '../Home/Home.screen'
-import GoalCreation from '../GoalCreation/GoalCreation.screen'
-import GoalDetails from '../GoalDetails/GoalDetails.screen'
-import GoalList from '../GoalList/GoalList.screen'
+import AppInfo from '../AppInfo/AppInfo.screen'
 
 const Screens = {
   Home: { screen: Home },
-  GoalCreation: { screen: GoalCreation },
-  GoalDetails: { screen: GoalDetails },
-  GoalList: { screen: GoalList }
+  AppInfo: { screen: AppInfo }
 }
 
 export default Screens

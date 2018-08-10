@@ -3,16 +3,13 @@ import keyMirror from 'key-mirror-nested'
 const Routes = keyMirror({
   Root: {
     Home: null,
-    Goal: null
+    AppInfo: null
   },
   Home: {
-    Home: null,
-    GoalDetails: null
+    Home: null
   },
-  Goal: {
-    GoalList: null,
-    GoalCreation: null,
-    GoalDetails: null
+  AppInfo: {
+    AppInfo: null
   }
 })
 

@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`HOC withErrorBoundary snapshots basic render 1`] = `
-<StyledWrapper>
-  <StyledText>
-    Something went wrong, you can try to refetch again
-  </StyledText>
-</StyledWrapper>
-`;

@@ -153,6 +153,12 @@ $ open "rndebugger://set-debugger-loc?host=localhost&port=19001"
 
 Read the **[Deployment guide](docs/DEPLOYMENT.md)** to learn how to deploy the application to test devices, app stores, and how to use Code Push to push updates to your users immediately.
 
+## Examples
+
+To make it simple, I moved complex parts to another place. So it's easier to getting started. And when you would like to extend your need, please take a look at these examples
+
+* Goal App: [`example/goal-app`](https://github.com/phanhoangloc/react-native-boilerplate/tree/example/goal-app)
+
 ## Licensing
 
 MIT

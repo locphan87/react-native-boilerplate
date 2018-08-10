@@ -9,7 +9,7 @@ import { Routes } from '../Navigation.constant'
 import I18n from '../../../i18n'
 
 import HomeStack from './Home.stack'
-import GoalStack from './Goal.stack'
+import AppInfoStack from './AppInfo.stack.js'
 
 const { Root } = Routes
 const renderTab = i18nKey => (
@@ -25,10 +25,10 @@ const RootStack = createBottomTabNavigator(
         tabBarLabel: () => renderTab('home.screen.title')
       }
     },
-    [Root.Goal]: {
-      screen: GoalStack,
+    [Root.AppInfo]: {
+      screen: AppInfoStack,
       navigationOptions: {
-        tabBarLabel: () => renderTab('goalList.screen.title')
+        tabBarLabel: () => renderTab('appInfo.screen.title')
       }
     }
   },

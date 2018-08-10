@@ -1,15 +1,16 @@
 // @flow
+import React from 'react'
 import { compose, setStatic, withHandlers, lifecycle } from 'recompose'
 
 import I18n from '../../i18n'
 import { withApp } from '../../hoc'
-import { getNavState } from '../Navigation/Navigation.util'
+import HeaderTitle from '../Navigation/HeaderTitle/HeaderTitle.component'
 
 import HomeView from './Home.view'
 
-const navigationOptions = ({ navigation }) => ({
-  headerTitle: getNavState('title', navigation) || I18n.t('home.screen.title')
-})
+const navigationOptions = {
+  headerTitle: <HeaderTitle titleKey="home.screen.title" />
+}
 const handlers = {
   TOGGLE_LANGUAGE: ({ setLanguage, navigation }) => lang => () => {
     I18n.defaultLocale = lang

@@ -12,9 +12,7 @@ const { Root } = Routes
 const stackOptions = {
   headerStyle: {
     backgroundColor: '#292D36'
-  },
-  headerTintColor: COLORS.white,
-  headerTitleStyle: {}
+  }
 }
 const tabOptions = {
   navigationOptions: ({ navigation }: NavigationScreenConfigProps) => ({
@@ -23,7 +21,7 @@ const tabOptions = {
       const outline = focused ? '' : '-outline'
       const iconName = match(routeName)({
         [Root.Home]: `ios-home${outline}`,
-        [Root.Goal]: `ios-list-box${outline}`
+        [Root.AppInfo]: `ios-list-box${outline}`
       })
 
       return <Ionicons name={iconName} size={25} color={tintColor} />
