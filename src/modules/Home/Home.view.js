@@ -2,6 +2,7 @@
 import React from 'react'
 import { Button } from 'react-native'
 import { compose, head, without, defaultTo } from 'ramda'
+import { ENV } from 'env-config'
 
 import { Wrapper, Text } from '../../components/Styled'
 import I18n from '../../i18n'
@@ -25,6 +26,7 @@ const HomeView = (props: Props) => {
   return (
     <Wrapper>
       <Text>{I18n.t('home.view.welcome')}</Text>
+      <Text>{`ENV: ${ENV && ENV.toUpperCase()}`}</Text>
       <Button
         onPress={props.TOGGLE_LANGUAGE(newLanguage)}
         title={changeLanguageTitle}
