@@ -1,6 +1,5 @@
 // @flow
 import React from 'react'
-import { TabBarBottom } from 'react-navigation'
 import type { NavigationScreenConfigProps } from 'react-navigation'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -15,9 +14,7 @@ const stackOptions = {
     backgroundColor: '#292D36'
   },
   headerTintColor: COLORS.white,
-  headerTitleStyle: {
-    // fontWeight: 'bold'
-  }
+  headerTitleStyle: {}
 }
 const tabOptions = {
   navigationOptions: ({ navigation }: NavigationScreenConfigProps) => ({
@@ -33,7 +30,6 @@ const tabOptions = {
     }
   }),
   tabBarOptions: {
-    // activeTintColor: 'yellow',
     inactiveTintColor: COLORS.gray,
     activeBackgroundColor: COLORS.base,
     inactiveBackgroundColor: COLORS.base,
@@ -44,7 +40,6 @@ const tabOptions = {
       backgroundColor: COLORS.base
     }
   },
-  tabBarComponent: TabBarBottom,
   tabBarPosition: 'bottom',
   animationEnabled: false,
   swipeEnabled: false
