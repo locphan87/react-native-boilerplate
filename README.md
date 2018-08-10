@@ -53,7 +53,7 @@ For further setup instructions please see our [Getting Started](#getting-started
 * [React Native Elements](https://react-native-training.github.io/react-native-elements/) for cross platform UI toolkit
 * [Glamorous Native](https://github.com/robinpowered/glamorous-native) for styling React Native components
 * Clean and testable service layer for interacting with RESTful APIs
-* :star: Multi-environment configuration (dev, staging, production) for iOS and Android
+* :star: Multi-environment configuration (local, dev, production,...) for iOS and Android
 * :star: Built-in error handling, loading, updating and customizable screens
 
 ### Testing Setup
