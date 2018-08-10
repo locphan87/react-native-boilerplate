@@ -7,12 +7,9 @@
 /node_modules
 
 # misc
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+/.env
 *.log
+/environments/local/
 
 /coverage
 /data.json

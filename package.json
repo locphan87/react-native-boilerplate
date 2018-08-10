@@ -28,6 +28,7 @@
   "scripts": {
     "commitmsg": "validate-commit-msg",
     "server": "json-server --watch ./data.json",
+    "deploy": "make deploy-expo",
     "flow": "flow",
     "precommit": "flow && lint-staged",
     "prettier": "prettier src/**/*.{js,json}",

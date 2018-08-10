@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "React Native Boilerplate (DEV)",
+    "description": "React Native Boilerplate (DEV)",
+    "slug": "react-native-boilerplate",
+    "sdkVersion": "29.0.0",
+    "orientation": "portrait"
+  }
+}

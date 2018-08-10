@@ -1,7 +1,10 @@
 ENV ?= local
+CHANNEL ?= dev
 
 setup-env:
-	cp .env.$(ENV) .env
+	yarn
+	cp ./environments/$(ENV)/.env .env
+	cp ./environments/$(ENV)/app.json app.json
 
 setup:
 	cp .env.example .env
@@ -9,16 +12,17 @@ setup:
 	cp app.json.example app.json
 
 start:
-	yarn
 	make setup-env
 	exp start -c --lan
 
 run-ios:
-	yarn
 	make setup-env
 	exp start -c --lan --ios
 
 run-android:
-	yarn
 	make setup-env
 	exp start -c --lan --android
+
+deploy-expo:
+	make setup-env
+	exp publish -c --release-channel $(CHANNEL)

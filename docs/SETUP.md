@@ -114,7 +114,21 @@ Refer to [Working with Expo](https://docs.expo.io/versions/latest/workflow/) for
 
 ### Environment configs
 
-TBD
+Related environment configs is grouped in the same directory
+
+```
+environments
+├── dev
+│   ├── .env
+│   ├── app.json
+│   └── google-services.json
+├── enterprise
+├── local
+├── prod
+├── staging
+├── storybook
+└── uat
+```
 
 ### Run the application in different environments
 
