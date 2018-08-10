@@ -52,7 +52,6 @@
     ]
   },
   "dependencies": {
-    "axios": "0.18.0",
     "babel-plugin-dotenv-import": "1.4.0",
     "expo": "^29.0.0",
     "formik": "1.0.2",

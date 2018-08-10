@@ -5,14 +5,13 @@ import { Routes } from '../Navigation.constant'
 import Screens from '../Navigation.screen'
 import { stackOptions } from '../Navigation.option'
 
-const { Home: HomeRoutes } = Routes
-const { Home } = Screens
+const { AppInfo } = Screens
 const HomeStack = createStackNavigator(
   {
-    [HomeRoutes.Home]: Home
+    [Routes.AppInfo.AppInfo]: AppInfo
   },
   {
-    initialRouteName: HomeRoutes.Home,
+    initialRouteName: Routes.AppInfo.AppInfo,
     navigationOptions: stackOptions
   }
 )
