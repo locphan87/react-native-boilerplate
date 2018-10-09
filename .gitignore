@@ -6,11 +6,17 @@
 # dependencies
 /node_modules
 
-# misc
+# config files
 /.env
-*.log
-/environments/local/
-
-/coverage
-/data.json
 /app.json
+/data.json
+/sha.json
+
+# misc
+*.log
+
+# generated files
+/coverage
+
+# Jest
+.jest/

@@ -11,7 +11,6 @@
     "eslint": "5.3.0",
     "eslint-config-universe": "1.0.7",
     "eslint-plugin-fp": "2.3.0",
-    "exp": "56.0.0",
     "flow-bin": "0.78.0",
     "husky": "0.14.3",
     "jest-expo": "^29.0.0",
@@ -47,6 +46,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,json}": [
+      "prettier --write",
       "yarn lint:fix",
       "git add"
     ]

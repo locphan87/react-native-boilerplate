@@ -14,11 +14,3 @@ Redux maintains the state of an entire application in a single immutable state t
 * Developer tools
 * Community and ecosystem
 * Ease of testing
-
-## Code structure
-
-```
-./src/redux/
-├── createStore.js // the store and its configurations
-└── reducer.js     // the root reducer
-```
