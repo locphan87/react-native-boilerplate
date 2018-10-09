@@ -1,6 +1,3 @@
-// flow-typed signature: e0b6c6deace3df87aec05eda5b4c96de
-// flow-typed version: 55566022a3/ramda_v0.x.x/flow_>=v0.62.x
-
 /* eslint-disable no-unused-vars, no-redeclare */
 
 type Transformer<A, B> = {
@@ -10,6 +7,8 @@ type Transformer<A, B> = {
 };
 
 declare type $npm$ramda$Placeholder = { "@@functional/placeholder": true };
+
+declare opaque type $npm$ramda$Reduced<T>;
 
 declare module ramda {
   declare type UnaryFn<A, R> = (a: A) => R;
@@ -319,7 +318,6 @@ declare module ramda {
     de: UnaryFn<D, E>,
     ef: UnaryFn<E, F>,
     fg: UnaryFn<F, G>,
-    ...rest: Array<void>
   ) => UnaryFn<A, G>) &
     (<A, B, C, D, E, F>(
       ab: UnaryFn<A, B>,
@@ -327,27 +325,23 @@ declare module ramda {
       cd: UnaryFn<C, D>,
       de: UnaryFn<D, E>,
       ef: UnaryFn<E, F>,
-      ...rest: Array<void>
     ) => UnaryFn<A, F>) &
     (<A, B, C, D, E>(
       ab: UnaryFn<A, B>,
       bc: UnaryFn<B, C>,
       cd: UnaryFn<C, D>,
       de: UnaryFn<D, E>,
-      ...rest: Array<void>
     ) => UnaryFn<A, E>) &
     (<A, B, C, D>(
       ab: UnaryFn<A, B>,
       bc: UnaryFn<B, C>,
       cd: UnaryFn<C, D>,
-      ...rest: Array<void>
     ) => UnaryFn<A, D>) &
     (<A, B, C>(
       ab: UnaryFn<A, B>,
       bc: UnaryFn<B, C>,
-      ...rest: Array<void>
     ) => UnaryFn<A, C>) &
-    (<A, B>(ab: UnaryFn<A, B>, ...rest: Array<void>) => UnaryFn<A, B>);
+    (<A, B>(ab: UnaryFn<A, B>) => UnaryFn<A, B>);
 
   declare type PipeP = (<A, B, C, D, E, F, G>(
     ab: UnaryPromiseFn<A, B>,
@@ -356,7 +350,6 @@ declare module ramda {
     de: UnaryPromiseFn<D, E>,
     ef: UnaryPromiseFn<E, F>,
     fg: UnaryPromiseFn<F, G>,
-    ...rest: Array<void>
   ) => UnaryPromiseFn<A, G>) &
     (<A, B, C, D, E, F>(
       ab: UnaryPromiseFn<A, B>,
@@ -364,29 +357,24 @@ declare module ramda {
       cd: UnaryPromiseFn<C, D>,
       de: UnaryPromiseFn<D, E>,
       ef: UnaryPromiseFn<E, F>,
-      ...rest: Array<void>
     ) => UnaryPromiseFn<A, F>) &
     (<A, B, C, D, E>(
       ab: UnaryPromiseFn<A, B>,
       bc: UnaryPromiseFn<B, C>,
       cd: UnaryPromiseFn<C, D>,
       de: UnaryPromiseFn<D, E>,
-      ...rest: Array<void>
     ) => UnaryPromiseFn<A, E>) &
     (<A, B, C, D>(
       ab: UnaryPromiseFn<A, B>,
       bc: UnaryPromiseFn<B, C>,
       cd: UnaryPromiseFn<C, D>,
-      ...rest: Array<void>
     ) => UnaryPromiseFn<A, D>) &
     (<A, B, C>(
       ab: UnaryPromiseFn<A, B>,
       bc: UnaryPromiseFn<B, C>,
-      ...rest: Array<void>
     ) => UnaryPromiseFn<A, C>) &
     (<A, B>(
       ab: UnaryPromiseFn<A, B>,
-      ...rest: Array<void>
     ) => UnaryPromiseFn<A, B>);
 
   declare type Compose = (<A, B, C, D, E, F, G>(
@@ -396,7 +384,6 @@ declare module ramda {
     cd: UnaryFn<C, D>,
     bc: UnaryFn<B, C>,
     ab: UnaryFn<A, B>,
-    ...rest: Array<void>
   ) => UnaryFn<A, G>) &
     (<A, B, C, D, E, F>(
       ef: UnaryFn<E, F>,
@@ -404,38 +391,46 @@ declare module ramda {
       cd: UnaryFn<C, D>,
       bc: UnaryFn<B, C>,
       ab: UnaryFn<A, B>,
-      ...rest: Array<void>
     ) => UnaryFn<A, F>) &
     (<A, B, C, D, E>(
       de: UnaryFn<D, E>,
       cd: UnaryFn<C, D>,
       bc: UnaryFn<B, C>,
       ab: UnaryFn<A, B>,
-      ...rest: Array<void>
     ) => UnaryFn<A, E>) &
     (<A, B, C, D>(
       cd: UnaryFn<C, D>,
       bc: UnaryFn<B, C>,
       ab: UnaryFn<A, B>,
-      ...rest: Array<void>
     ) => UnaryFn<A, D>) &
     (<A, B, C>(
       bc: UnaryFn<B, C>,
       ab: UnaryFn<A, B>,
-      ...rest: Array<void>
     ) => UnaryFn<A, C>) &
-    (<A, B>(ab: UnaryFn<A, B>, ...rest: Array<void>) => UnaryFn<A, B>);
+    (<A, B>(ab: UnaryFn<A, B>) => UnaryFn<A, B>);
 
-  declare type Filter = (<K, V, T: Array<V> | { [key: K]: V }>(
-    fn: UnaryPredicateFn<V>,
-    xs: T
-  ) => T) &
-    (<K, V, T: Array<V> | { [key: K]: V }>(
-      fn: UnaryPredicateFn<V>
-    ) => (xs: T) => T);
+  // This kind of filter allows us to do type refinement on the result, but we
+  // still need Filter so that non-refining predicates still pass a type check.
+  declare type RefineFilter =
+    & (<K, V, P: $Pred<1>, T: Array<V> | { [key: K]: V }>(
+      fn: P,
+      xs: T
+    ) => Array<$Refine<V, P, 1>>)
+    & (<K, V, P: $Pred<1>, T: Array<V> | { [key: K]: V }>(
+      fn: P
+    ) => (xs: T) => Array<$Refine<V, P, 1>>)
 
-  declare class Monad<T> {
-    chain: Function;
+  declare type Filter =
+    & (<K, V, T: Array<V> | { [key: K]: V }>(
+      fn: UnaryPredicateFn<V>,
+      xs: T
+    ) => T)
+    & (<K, V, T: Array<V> | { [key: K]: V }>(
+      fn: UnaryPredicateFn<V>,
+    ) => (xs: T) => T)
+
+  declare interface Monad<A> {
+    chain<B>(f: A => Monad<B>): Monad<B>;
   }
 
   declare class Semigroup<T> {}
@@ -467,6 +462,7 @@ declare module ramda {
 
   declare var compose: Compose;
   declare var pipe: Pipe;
+  declare var pipeK: PipeK;
   declare var pipeP: PipeP;
   declare var curry: Curry;
   declare function curryN(
@@ -490,7 +486,15 @@ declare module ramda {
   declare var sum: UnaryFn<Array<number>, number>;
 
   // Filter
-  declare var filter: Filter;
+  // To refine with filter, be sure to import the RefineFilter type, and cast
+  // filter to a RefineFilter.
+  // ex:
+  // import { type RefineFilter, filter } from 'ramda'
+  // const notNull = (x): bool %checks => x != null
+  // const ns: Array<number> = (filter: RefineFilter)(notNull, [1, 2, null])
+  declare var filter: RefineFilter & Filter;
+  // reject doesn't get RefineFilter since it performs the opposite work of
+  // filter, and we don't have a kind of $NotPred type.
   declare var reject: Filter;
 
   // *String
@@ -522,7 +526,7 @@ declare module ramda {
   declare function trim(a: string): string;
 
   // *Type
-  declare function is<T>(t: T, ...rest: Array<void>): (v: any) => boolean;
+  declare function is<T>(t: T): (v: any) => boolean;
   declare function is<T>(t: T, v: any): boolean;
   declare var propIs: CurriedFunction3<any, string, Object, boolean>;
   declare function type(x: ?any): string;
@@ -534,12 +538,10 @@ declare module ramda {
   // *List
   declare function adjust<T>(
     fn: (a: T) => T,
-    ...rest: Array<void>
-  ): (index: number, ...rest: Array<void>) => (src: Array<T>) => Array<T>;
+  ): (index: number) => (src: Array<T>) => Array<T>;
   declare function adjust<T>(
     fn: (a: T) => T,
     index: number,
-    ...rest: Array<void>
   ): (src: Array<T>) => Array<T>;
   declare function adjust<T>(
     fn: (a: T) => T,
@@ -550,32 +552,30 @@ declare module ramda {
   declare function all<T>(fn: UnaryPredicateFn<T>, xs: Array<T>): boolean;
   declare function all<T>(
     fn: UnaryPredicateFn<T>,
-    ...rest: Array<void>
   ): (xs: Array<T>) => boolean;
 
   declare function any<T>(fn: UnaryPredicateFn<T>, xs: Array<T>): boolean;
   declare function any<T>(
     fn: UnaryPredicateFn<T>,
-    ...rest: Array<void>
   ): (xs: Array<T>) => boolean;
 
   declare function aperture<T>(n: number, xs: Array<T>): Array<Array<T>>;
   declare function aperture<T>(
     n: number,
-    ...rest: Array<void>
   ): (xs: Array<T>) => Array<Array<T>>;
 
   declare function append<E>(x: E, xs: Array<E>): Array<E>;
   declare function append<E>(
     x: E,
-    ...rest: Array<void>
   ): (xs: Array<E>) => Array<E>;
 
   declare function prepend<E>(x: E, xs: Array<E>): Array<E>;
   declare function prepend<E>(
     x: E,
-    ...rest: Array<void>
   ): (xs: Array<E>) => Array<E>;
+
+  declare function chain<A, B>(f: (x: A) => B[], xs: A[]): B[]
+  declare function chain<A, B>(f: (x: A) => B[]): (xs: A[]) => B[]
 
   declare function concat<V, T: Array<V> | string>(x: T, y: T): T;
   declare function concat<V, T: Array<V> | string>(x: T): (y: T) => T;
@@ -583,24 +583,20 @@ declare module ramda {
   declare function contains<E, T: Array<E> | string>(x: E, xs: T): boolean;
   declare function contains<E, T: Array<E> | string>(
     x: E,
-    ...rest: Array<void>
   ): (xs: T) => boolean;
 
   declare function drop<V, T: Array<V> | string>(
     n: number,
-    ...rest: Array<void>
   ): (xs: T) => T;
   declare function drop<V, T: Array<V> | string>(n: number, xs: T): T;
 
   declare function dropLast<V, T: Array<V> | string>(
     n: number,
-    ...rest: Array<void>
   ): (xs: T) => T;
   declare function dropLast<V, T: Array<V> | string>(n: number, xs: T): T;
 
   declare function dropLastWhile<V, T: Array<V>>(
     fn: UnaryPredicateFn<V>,
-    ...rest: Array<void>
   ): (xs: T) => T;
   declare function dropLastWhile<V, T: Array<V>>(
     fn: UnaryPredicateFn<V>,
@@ -609,7 +605,6 @@ declare module ramda {
 
   declare function dropWhile<V, T: Array<V>>(
     fn: UnaryPredicateFn<V>,
-    ...rest: Array<void>
   ): (xs: T) => T;
   declare function dropWhile<V, T: Array<V>>(fn: UnaryPredicateFn<V>, xs: T): T;
 
@@ -617,7 +612,6 @@ declare module ramda {
 
   declare function dropRepeatsWith<V, T: Array<V>>(
     fn: BinaryPredicateFn<V>,
-    ...rest: Array<void>
   ): (xs: T) => T;
   declare function dropRepeatsWith<V, T: Array<V>>(
     fn: BinaryPredicateFn<V>,
@@ -630,7 +624,6 @@ declare module ramda {
   ): { [key: string]: Array<T> };
   declare function groupBy<T>(
     fn: (x: T) => string,
-    ...rest: Array<void>
   ): (xs: Array<T>) => { [key: string]: Array<T> };
 
   declare function groupWith<T, V: Array<T> | string>(
@@ -639,7 +632,6 @@ declare module ramda {
   ): Array<V>;
   declare function groupWith<T, V: Array<T> | string>(
     fn: BinaryPredicateFn<T>,
-    ...rest: Array<void>
   ): (xs: V) => Array<V>;
 
   declare function head<T, V: Array<T>>(xs: V): ?T;
@@ -659,12 +651,10 @@ declare module ramda {
   declare function indexOf<E>(x: ?E, xs: Array<E>): number;
   declare function indexOf<E>(
     x: ?E,
-    ...rest: Array<void>
   ): (xs: Array<E>) => number;
 
   declare function indexBy<V, T: { [key: string]: * }>(
     fn: (x: T) => string,
-    ...rest: Array<void>
   ): (xs: Array<T>) => { [key: string]: T };
   declare function indexBy<V, T: { [key: string]: * }>(
     fn: (x: T) => string,
@@ -673,23 +663,19 @@ declare module ramda {
 
   declare function insert<T>(
     index: number,
-    ...rest: Array<void>
   ): (elem: T) => (src: Array<T>) => Array<T>;
   declare function insert<T>(
     index: number,
     elem: T,
-    ...rest: Array<void>
   ): (src: Array<T>) => Array<T>;
   declare function insert<T>(index: number, elem: T, src: Array<T>): Array<T>;
 
   declare function insertAll<T, S>(
     index: number,
-    ...rest: Array<void>
   ): (elem: Array<S>) => (src: Array<T>) => Array<S | T>;
   declare function insertAll<T, S>(
     index: number,
     elems: Array<S>,
-    ...rest: Array<void>
   ): (src: Array<T>) => Array<S | T>;
   declare function insertAll<T, S>(
     index: number,
@@ -700,7 +686,6 @@ declare module ramda {
   declare function join(x: string, xs: Array<any>): string;
   declare function join(
     x: string,
-    ...rest: Array<void>
   ): (xs: Array<any>) => string;
 
   declare function last<T, V: Array<T>>(xs: V): ?T;
@@ -709,13 +694,11 @@ declare module ramda {
   declare function none<T>(fn: UnaryPredicateFn<T>, xs: Array<T>): boolean;
   declare function none<T>(
     fn: UnaryPredicateFn<T>,
-    ...rest: Array<void>
   ): (xs: Array<T>) => boolean;
 
   declare function nth<V, T: Array<V>>(i: number, xs: T): ?V;
   declare function nth<V, T: Array<V> | string>(
     i: number,
-    ...rest: Array<void>
   ): ((xs: string) => string) & ((xs: T) => ?V);
   declare function nth<T: string>(i: number, xs: T): T;
 
@@ -728,7 +711,6 @@ declare module ramda {
 
   declare function findLast<V, O: { [key: string]: * }, T: Array<V> | O>(
     fn: UnaryPredicateFn<V>,
-    ...rest: Array<void>
   ): (xs: T | O) => ?V | O;
   declare function findLast<V, O: { [key: string]: * }, T: Array<V> | O>(
     fn: UnaryPredicateFn<V>,
@@ -737,7 +719,6 @@ declare module ramda {
 
   declare function findIndex<K, V, T: Array<V> | { [key: K]: V }>(
     fn: UnaryPredicateFn<V>,
-    ...rest: Array<void>
   ): (xs: T) => number;
   declare function findIndex<K, V, T: Array<V> | { [key: K]: V }>(
     fn: UnaryPredicateFn<V>,
@@ -745,7 +726,6 @@ declare module ramda {
   ): number;
   declare function findLastIndex<K, V, T: Array<V> | { [key: K]: V }>(
     fn: UnaryPredicateFn<V>,
-    ...rest: Array<void>
   ): (xs: T) => number;
   declare function findLastIndex<K, V, T: Array<V> | { [key: K]: V }>(
     fn: UnaryPredicateFn<V>,
@@ -755,7 +735,6 @@ declare module ramda {
   declare function forEach<T, V>(fn: (x: T) => ?V, xs: Array<T>): Array<T>;
   declare function forEach<T, V>(
     fn: (x: T) => ?V,
-    ...rest: Array<void>
   ): (xs: Array<T>) => Array<T>;
 
   declare function forEachObjIndexed<O: Object, A, B>(
@@ -771,19 +750,17 @@ declare module ramda {
   declare function lastIndexOf<E>(x: E, xs: Array<E>): number;
   declare function lastIndexOf<E>(
     x: E,
-    ...rest: Array<void>
   ): (xs: Array<E>) => number;
 
   declare function map<T, R>(fn: (x: T) => R, xs: Array<T>): Array<R>;
+  declare function map<T, R>(fn: (x: T) => R): (xs: Array<T>) => Array<R>;
   declare function map<T, R, S: { map: Function }>(fn: (x: T) => R, xs: S): S;
   declare function map<T, R>(
     fn: (x: T) => R,
-    ...rest: Array<void>
   ): ((xs: { [key: string]: T }) => { [key: string]: R }) &
     ((xs: Array<T>) => Array<R>);
   declare function map<T, R, S: { map: Function }>(
     fn: (x: T) => R,
-    ...rest: Array<void>
   ): ((xs: S) => S) & ((xs: S) => S);
   declare function map<T, R>(
     fn: (x: T) => R,
@@ -798,7 +775,6 @@ declare module ramda {
   ): [R, Array<B>];
   declare function mapAccum<A, B, R>(
     fn: AccumIterator<A, B, R>,
-    ...rest: Array<void>
   ): (acc: R, xs: Array<A>) => [R, Array<B>];
 
   declare function mapAccumRight<A, B, R>(
@@ -808,17 +784,15 @@ declare module ramda {
   ): [R, Array<B>];
   declare function mapAccumRight<A, B, R>(
     fn: AccumIterator<A, B, R>,
-    ...rest: Array<void>
   ): (acc: R, xs: Array<A>) => [R, Array<B>];
 
   declare function intersperse<E>(x: E, xs: Array<E>): Array<E>;
   declare function intersperse<E>(
     x: E,
-    ...rest: Array<void>
   ): (xs: Array<E>) => Array<E>;
 
   declare function pair<A, B>(a: A, b: B): [A, B];
-  declare function pair<A, B>(a: A, ...rest: Array<void>): (b: B) => [A, B];
+  declare function pair<A, B>(a: A): (b: B) => [A, B];
 
   declare function partition<K, V, T: Array<V> | { [key: K]: V }>(
     fn: UnaryPredicateFn<V>,
@@ -826,55 +800,43 @@ declare module ramda {
   ): [T, T];
   declare function partition<K, V, T: Array<V> | { [key: K]: V }>(
     fn: UnaryPredicateFn<V>,
-    ...rest: Array<void>
   ): (xs: T) => [T, T];
 
   declare function pluck<
     V,
     K: string | number,
     T: Array<Array<V> | { [key: string]: V }>
-  >(
-    k: K,
-    xs: T
-  ): Array<V>;
+  >(k: K, xs: T): Array<V>;
   declare function pluck<
     V,
     K: string | number,
     T: Array<Array<V> | { [key: string]: V }>
-  >(
-    k: K,
-    ...rest: Array<void>
-  ): (xs: T) => Array<V>;
+  >(k: K): (xs: T) => Array<V>;
 
   declare var range: CurriedFunction2<number, number, Array<number>>;
 
+  declare function reduced<T>(x: T | $npm$ramda$Reduced<T>): $npm$ramda$Reduced<T>;
+
   declare function remove<T>(
     from: number,
-    ...rest: Array<void>
-  ): ((to: number, ...rest: Array<void>) => (src: Array<T>) => Array<T>) &
+  ): ((to: number) => (src: Array<T>) => Array<T>) &
     ((to: number, src: Array<T>) => Array<T>);
   declare function remove<T>(
     from: number,
     to: number,
-    ...rest: Array<void>
   ): (src: Array<T>) => Array<T>;
   declare function remove<T>(from: number, to: number, src: Array<T>): Array<T>;
 
   declare function repeat<T>(x: T, times: number): Array<T>;
-  declare function repeat<T>(
-    x: T,
-    ...rest: Array<void>
-  ): (times: number) => Array<T>;
+  declare function repeat<T>(x: T): (times: number) => Array<T>;
 
   declare function slice<V, T: Array<V> | string>(
     from: number,
-    ...rest: Array<void>
-  ): ((to: number, ...rest: Array<void>) => (src: T) => T) &
+  ): ((to: number) => (src: T) => T) &
     ((to: number, src: T) => T);
   declare function slice<V, T: Array<V> | string>(
     from: number,
     to: number,
-    ...rest: Array<void>
   ): (src: T) => T;
   declare function slice<V, T: Array<V> | string>(
     from: number,
@@ -885,7 +847,6 @@ declare module ramda {
   declare function sort<V, T: Array<V>>(fn: (a: V, b: V) => number, xs: T): T;
   declare function sort<V, T: Array<V>>(
     fn: (a: V, b: V) => number,
-    ...rest: Array<void>
   ): (xs: T) => T;
 
   declare function sortWith<V, T: Array<V>>(
@@ -894,7 +855,6 @@ declare module ramda {
   ): T;
   declare function sortWith<V, T: Array<V>>(
     fns: Array<(a: V, b: V) => number>,
-    ...rest: Array<void>
   ): (xs: T) => T;
 
   declare function descend<A, B>(A => B): (A => A) => number
@@ -903,7 +863,6 @@ declare module ramda {
   declare function times<T>(fn: (i: number) => T, n: number): Array<T>;
   declare function times<T>(
     fn: (i: number) => T,
-    ...rest: Array<void>
   ): (n: number) => Array<T>;
 
   declare function take<V, T: Array<V> | string>(n: number, xs: T): T;
@@ -927,7 +886,6 @@ declare module ramda {
 
   declare function unfold<T, R>(
     fn: (seed: T) => [R, T] | boolean,
-    ...rest: Array<void>
   ): (seed: T) => Array<R>;
   declare function unfold<T, R>(
     fn: (seed: T) => [R, T] | boolean,
@@ -936,13 +894,11 @@ declare module ramda {
 
   declare function uniqBy<T, V>(
     fn: (x: T) => V,
-    ...rest: Array<void>
   ): (xs: Array<T>) => Array<T>;
   declare function uniqBy<T, V>(fn: (x: T) => V, xs: Array<T>): Array<T>;
 
   declare function uniqWith<T>(
     fn: BinaryPredicateFn<T>,
-    ...rest: Array<void>
   ): (xs: Array<T>) => Array<T>;
   declare function uniqWith<T>(
     fn: BinaryPredicateFn<T>,
@@ -951,13 +907,11 @@ declare module ramda {
 
   declare function update<T>(
     index: number,
-    ...rest: Array<void>
-  ): ((elem: T, ...rest: Array<void>) => (src: Array<T>) => Array<T>) &
+  ): ((elem: T) => (src: Array<T>) => Array<T>) &
     ((elem: T, src: Array<T>) => Array<T>);
   declare function update<T>(
     index: number,
     elem: T,
-    ...rest: Array<void>
   ): (src: Array<T>) => Array<T>;
   declare function update<T>(index: number, elem: T, src: Array<T>): Array<T>;
 
@@ -965,19 +919,16 @@ declare module ramda {
   declare function without<T>(xs: Array<T>, src: Array<T>): Array<T>;
   declare function without<T>(
     xs: Array<T>,
-    ...rest: Array<void>
   ): (src: Array<T>) => Array<T>;
 
   declare function xprod<T, S>(xs: Array<T>, ys: Array<S>): Array<[T, S]>;
   declare function xprod<T, S>(
     xs: Array<T>,
-    ...rest: Array<void>
   ): (ys: Array<S>) => Array<[T, S]>;
 
   declare function zip<T, S>(xs: Array<T>, ys: Array<S>): Array<[T, S]>;
   declare function zip<T, S>(
     xs: Array<T>,
-    ...rest: Array<void>
   ): (ys: Array<S>) => Array<[T, S]>;
 
   declare function zipObj<T: string, S>(
@@ -986,7 +937,6 @@ declare module ramda {
   ): { [key: T]: S };
   declare function zipObj<T: string, S>(
     xs: Array<T>,
-    ...rest: Array<void>
   ): (ys: Array<S>) => { [key: T]: S };
 
   declare type NestedArray<T> = Array<T | NestedArray<T>>;
@@ -996,20 +946,20 @@ declare module ramda {
 
   declare function init<T, V: Array<T> | string>(xs: V): V;
 
-  declare function length<T>(xs: Array<T>): number;
+  declare function length<T>(xs: Array<T> | string | {length: number}): number;
 
   declare function reverse<T, V: Array<T> | string>(xs: V): V;
 
   declare type Reduce = (<A, B>(
-    fn: (acc: A, elm: B) => A
+    fn: (acc: A, elm: B) => $npm$ramda$Reduced<A> | A
   ) => ((init: A) => (xs: Array<B> | $ReadOnlyArray<B>) => A) &
     ((init: A, xs: Array<B> | $ReadOnlyArray<B>) => A)) &
     (<A, B>(
-      fn: (acc: A, elm: B) => A,
+      fn: (acc: A, elm: B) => $npm$ramda$Reduced<A> | A,
       init: A
     ) => (xs: Array<B> | $ReadOnlyArray<B>) => A) &
     (<A, B>(
-      fn: (acc: A, elm: B) => A,
+      fn: (acc: A, elm: B) => $npm$ramda$Reduced<A> | A,
       init: A,
       xs: Array<B> | $ReadOnlyArray<B>
     ) => A);
@@ -1018,19 +968,13 @@ declare module ramda {
 
   declare function reduceBy<A, B>(
     fn: (acc: B, elem: A) => B,
-    ...rest: Array<void>
-  ): ((
-    acc: B,
-    ...rest: Array<void>
-  ) => ((
+  ): ((acc: B) => ((
     keyFn: (elem: A) => string,
-    ...rest: Array<void>
   ) => (xs: Array<A>) => { [key: string]: B }) &
     ((keyFn: (elem: A) => string, xs: Array<A>) => { [key: string]: B })) &
     ((
       acc: B,
       keyFn: (elem: A) => string,
-      ...rest: Array<void>
     ) => (xs: Array<A>) => { [key: string]: B }) &
     ((
       acc: B,
@@ -1040,10 +984,8 @@ declare module ramda {
   declare function reduceBy<A, B>(
     fn: (acc: B, elem: A) => B,
     acc: B,
-    ...rest: Array<void>
   ): ((
     keyFn: (elem: A) => string,
-    ...rest: Array<void>
   ) => (xs: Array<A>) => { [key: string]: B }) &
     ((keyFn: (elem: A) => string, xs: Array<A>) => { [key: string]: B });
   declare function reduceBy<A, B>(
@@ -1060,13 +1002,11 @@ declare module ramda {
 
   declare function reduceRight<A, B>(
     fn: (elem: B, acc: A) => A,
-    ...rest: Array<void>
   ): ((init: A, xs: Array<B>) => A) &
-    ((init: A, ...rest: Array<void>) => (xs: Array<B>) => A);
+    ((init: A) => (xs: Array<B>) => A);
   declare function reduceRight<A, B>(
     fn: (elem: B, acc: A) => A,
     init: A,
-    ...rest: Array<void>
   ): (xs: Array<B>) => A;
   declare function reduceRight<A, B>(
     fn: (elem: B, acc: A) => A,
@@ -1074,34 +1014,24 @@ declare module ramda {
     xs: Array<B>
   ): A;
 
-  declare function reduceWhile<A, B>(
-    pred: (acc: A, curr: B) => boolean,
-    ...rest: Array<void>
-  ): ((
+  declare function reduceWhile<A, B>(pred: (acc: A, curr: B) => boolean): ((
     fn: (a: A, b: B) => A,
-    ...rest: Array<void>
-  ) => (
-    init: A,
-    ...rest: Array<void>
-  ) => (
+  ) => (init: A) => (
     xs: Array<B>
   ) => A &
     ((
       fn: (a: A, b: B) => A,
-      ...rest: Array<void>
     ) => (init: A, xs: Array<B>) => A)) &
     ((
       fn: (a: A, b: B) => A,
       init: A,
-      ...rest: Array<void>
     ) => (xs: Array<B>) => A) &
     ((fn: (a: A, b: B) => A, init: A, xs: Array<B>) => A);
 
   declare function reduceWhile<A, B>(
     pred: (acc: A, curr: B) => boolean,
     fn: (a: A, b: B) => A,
-    ...rest: Array<void>
-  ): ((init: A, ...rest: Array<void>) => (xs: Array<B>) => A) &
+  ): ((init: A) => (xs: Array<B>) => A) &
     ((init: A, xs: Array<B>) => A);
 
   declare function reduceWhile<A, B>(
@@ -1113,13 +1043,11 @@ declare module ramda {
 
   declare function scan<A, B>(
     fn: (acc: A, elem: B) => A,
-    ...rest: Array<void>
   ): ((init: A, xs: Array<B>) => Array<A>) &
-    ((init: A, ...rest: Array<void>) => (xs: Array<B>) => Array<A>);
+    ((init: A) => (xs: Array<B>) => Array<A>);
   declare function scan<A, B>(
     fn: (acc: A, elem: B) => A,
     init: A,
-    ...rest: Array<void>
   ): (xs: Array<B>) => Array<A>;
   declare function scan<A, B>(
     fn: (acc: A, elem: B) => A,
@@ -1156,13 +1084,11 @@ declare module ramda {
 
   declare function zipWith<T, S, R>(
     fn: (a: T, b: S) => R,
-    ...rest: Array<void>
   ): ((xs: Array<T>, ys: Array<S>) => Array<R>) &
-    ((xs: Array<T>, ...rest: Array<void>) => (ys: Array<S>) => Array<R>);
+    ((xs: Array<T>) => (ys: Array<S>) => Array<R>);
   declare function zipWith<T, S, R>(
     fn: (a: T, b: S) => R,
     xs: Array<T>,
-    ...rest: Array<void>
   ): (ys: Array<S>) => Array<R>;
   declare function zipWith<T, S, R>(
     fn: (a: T, b: S) => R,
@@ -1171,19 +1097,17 @@ declare module ramda {
   ): Array<R>;
 
   // *Relation
-  declare function equals<T>(x: T, ...rest: Array<void>): (y: T) => boolean;
+  declare function equals<T>(x: T): (y: T) => boolean;
   declare function equals<T>(x: T, y: T): boolean;
 
   declare function eqBy<A, B>(
     fn: (x: A) => B,
-    ...rest: Array<void>
-  ): ((x: A, y: A) => boolean) &
-    ((x: A, ...rest: Array<void>) => (y: A) => boolean);
+      ): ((x: A, y: A) => boolean) &
+    ((x: A) => (y: A) => boolean);
   declare function eqBy<A, B>(
     fn: (x: A) => B,
     x: A,
-    ...rest: Array<void>
-  ): (y: A) => boolean;
+      ): (y: A) => boolean;
   declare function eqBy<A, B>(fn: (x: A) => B, x: A, y: A): boolean;
 
   // Flow cares about the order in which these appear. Generally function
@@ -1205,30 +1129,25 @@ declare module ramda {
 
   declare function pathEq(
     path: Array<string>,
-    ...rest: Array<void>
   ): ((val: any, o: Object) => boolean) &
-    ((val: any, ...rest: Array<void>) => (o: Object) => boolean);
+    ((val: any) => (o: Object) => boolean);
   declare function pathEq(
     path: Array<string>,
     val: any,
-    ...rest: Array<void>
   ): (o: Object) => boolean;
   declare function pathEq(path: Array<string>, val: any, o: Object): boolean;
 
   declare function clamp<T: number | string | Date>(
     min: T,
-    ...rest: Array<void>
-  ): ((max: T, ...rest: Array<void>) => (v: T) => T) & ((max: T, v: T) => T);
+  ): ((max: T) => (v: T) => T) & ((max: T, v: T) => T);
   declare function clamp<T: number | string | Date>(
     min: T,
     max: T,
-    ...rest: Array<void>
   ): (v: T) => T;
   declare function clamp<T: number | string | Date>(min: T, max: T, v: T): T;
 
   declare function countBy<T>(
     fn: (x: T) => string,
-    ...rest: Array<void>
   ): (list: Array<T>) => { [key: string]: number };
   declare function countBy<T>(
     fn: (x: T) => string,
@@ -1237,19 +1156,16 @@ declare module ramda {
 
   declare function difference<T>(
     xs1: Array<T>,
-    ...rest: Array<void>
   ): (xs2: Array<T>) => Array<T>;
   declare function difference<T>(xs1: Array<T>, xs2: Array<T>): Array<T>;
 
   declare function differenceWith<T>(
     fn: BinaryPredicateFn<T>,
-    ...rest: Array<void>
   ): ((xs1: Array<T>) => (xs2: Array<T>) => Array<T>) &
     ((xs1: Array<T>, xs2: Array<T>) => Array<T>);
   declare function differenceWith<T>(
     fn: BinaryPredicateFn<T>,
     xs1: Array<T>,
-    ...rest: Array<void>
   ): (xs2: Array<T>) => Array<T>;
   declare function differenceWith<T>(
     fn: BinaryPredicateFn<T>,
@@ -1262,26 +1178,23 @@ declare module ramda {
   declare function eqBy<T>(fn: (x: T) => T, x: T): (y: T) => boolean;
   declare function eqBy<T>(fn: (x: T) => T): (x: T) => (y: T) => boolean;
 
-  declare function gt<T>(x: T, ...rest: Array<void>): (y: T) => boolean;
+  declare function gt<T>(x: T): (y: T) => boolean;
   declare function gt<T>(x: T, y: T): boolean;
 
-  declare function gte<T>(x: T, ...rest: Array<void>): (y: T) => boolean;
+  declare function gte<T>(x: T): (y: T) => boolean;
   declare function gte<T>(x: T, y: T): boolean;
 
-  declare function identical<T>(x: T, ...rest: Array<void>): (y: T) => boolean;
+  declare function identical<T>(x: T): (y: T) => boolean;
   declare function identical<T>(x: T, y: T): boolean;
 
   declare function innerJoin<A, B>(
     pred: (a: A, b: B) => boolean,
-    ...rest: Array<void>
   ): (
     a: Array<A>,
-    ...rest: Array<void>
   ) => (b: Array<B>) => Array<A> & ((a: Array<A>, b: Array<B>) => Array<A>);
   declare function innerJoin<A, B>(
     pred: (a: A, b: B) => boolean,
     a: Array<A>,
-    ...rest: Array<void>
   ): (b: Array<B>) => Array<A>;
   declare function innerJoin<A, B>(
     pred: (a: A, b: B) => boolean,
@@ -1294,13 +1207,11 @@ declare module ramda {
 
   declare function intersectionWith<T>(
     fn: BinaryPredicateFn<T>,
-    ...rest: Array<void>
   ): ((x: Array<T>, y: Array<T>) => Array<T>) &
     ((x: Array<T>) => (y: Array<T>) => Array<T>);
   declare function intersectionWith<T>(
     fn: BinaryPredicateFn<T>,
     x: Array<T>,
-    ...rest: Array<void>
   ): (y: Array<T>) => Array<T>;
   declare function intersectionWith<T>(
     fn: BinaryPredicateFn<T>,
@@ -1308,61 +1219,50 @@ declare module ramda {
     y: Array<T>
   ): Array<T>;
 
-  declare function lt<T>(x: T, ...rest: Array<void>): (y: T) => boolean;
+  declare function lt<T>(x: T): (y: T) => boolean;
   declare function lt<T>(x: T, y: T): boolean;
 
-  declare function lte<T>(x: T, ...rest: Array<void>): (y: T) => boolean;
+  declare function lte<T>(x: T): (y: T) => boolean;
   declare function lte<T>(x: T, y: T): boolean;
 
-  declare function max<T>(x: T, ...rest: Array<void>): (y: T) => T;
+  declare function max<T>(x: T): (y: T) => T;
   declare function max<T>(x: T, y: T): T;
 
   declare function maxBy<T, V>(
     fn: (x: T) => V,
-    ...rest: Array<void>
   ): ((x: T, y: T) => T) & ((x: T) => (y: T) => T);
   declare function maxBy<T, V>(
     fn: (x: T) => V,
     x: T,
-    ...rest: Array<void>
   ): (y: T) => T;
   declare function maxBy<T, V>(fn: (x: T) => V, x: T, y: T): T;
 
-  declare function min<T>(x: T, ...rest: Array<void>): (y: T) => T;
+  declare function min<T>(x: T): (y: T) => T;
   declare function min<T>(x: T, y: T): T;
 
   declare function minBy<T, V>(
     fn: (x: T) => V,
-    ...rest: Array<void>
   ): ((x: T, y: T) => T) & ((x: T) => (y: T) => T);
-  declare function minBy<T, V>(
-    fn: (x: T) => V,
-    x: T,
-    ...rest: Array<void>
-  ): (y: T) => T;
+  declare function minBy<T, V>(fn: (x: T) => V, x: T): (y: T) => T;
   declare function minBy<T, V>(fn: (x: T) => V, x: T, y: T): T;
 
   declare function sortBy<T, V>(
     fn: (x: T) => V,
-    ...rest: Array<void>
   ): (x: Array<T>) => Array<T>;
   declare function sortBy<T, V>(fn: (x: T) => V, x: Array<T>): Array<T>;
 
   declare function symmetricDifference<T>(
     x: Array<T>,
-    ...rest: Array<void>
   ): (y: Array<T>) => Array<T>;
   declare function symmetricDifference<T>(x: Array<T>, y: Array<T>): Array<T>;
 
   declare function symmetricDifferenceWith<T>(
     fn: BinaryPredicateFn<T>,
-    ...rest: Array<void>
-  ): ((x: Array<T>, ...rest: Array<void>) => (y: Array<T>) => Array<T>) &
+  ): ((x: Array<T>) => (y: Array<T>) => Array<T>) &
     ((x: Array<T>, y: Array<T>) => Array<T>);
   declare function symmetricDifferenceWith<T>(
     fn: BinaryPredicateFn<T>,
     x: Array<T>,
-    ...rest: Array<void>
   ): (y: Array<T>) => Array<T>;
   declare function symmetricDifferenceWith<T>(
     fn: BinaryPredicateFn<T>,
@@ -1372,19 +1272,16 @@ declare module ramda {
 
   declare function union<T>(
     x: Array<T>,
-    ...rest: Array<void>
   ): (y: Array<T>) => Array<T>;
   declare function union<T>(x: Array<T>, y: Array<T>): Array<T>;
 
   declare function unionWith<T>(
     fn: BinaryPredicateFn<T>,
-    ...rest: Array<void>
-  ): ((x: Array<T>, ...rest: Array<void>) => (y: Array<T>) => Array<T>) &
+  ): ((x: Array<T>) => (y: Array<T>) => Array<T>) &
     ((x: Array<T>, y: Array<T>) => Array<T>);
   declare function unionWith<T>(
     fn: BinaryPredicateFn<T>,
     x: Array<T>,
-    ...rest: Array<void>
   ): (y: Array<T>) => Array<T>;
   declare function unionWith<T>(
     fn: BinaryPredicateFn<T>,
@@ -1396,7 +1293,7 @@ declare module ramda {
   declare function assoc<T, S>(
     key: string,
     ...args: Array<void>
-  ): ((val: T, ...rest: Array<void>) => (src: S) => { [k: string]: T }) &
+  ): ((val: T) => (src: S) => { [k: string]: T }) &
     ((val: T, src: S) => { [k: string]: T } & S);
   declare function assoc<T, S>(
     key: string,
@@ -1412,7 +1309,7 @@ declare module ramda {
   declare function assocPath<T, S>(
     key: Array<string>,
     ...args: Array<void>
-  ): ((val: T, ...rest: Array<void>) => (src: S) => { [k: string]: T }) &
+  ): ((val: T) => (src: S) => { [k: string]: T }) &
     ((val: T) => (src: S) => { [k: string]: T } & S);
   declare function assocPath<T, S>(
     key: Array<string>,
@@ -1451,7 +1348,7 @@ declare module ramda {
   declare function eqProps(
     key: string,
     ...args: Array<void>
-  ): ((o1: Object, ...rest: Array<void>) => (o2: Object) => boolean) &
+  ): ((o1: Object) => (o2: Object) => boolean) &
     ((o1: Object, o2: Object) => boolean);
   declare function eqProps(
     key: string,
@@ -1469,7 +1366,7 @@ declare module ramda {
   declare function invert(o: Object): { [k: string]: Array<string> };
   declare function invertObj(o: Object): { [k: string]: string };
 
-  declare function keys(o: Object): Array<string>;
+  declare function keys(o: ?Object): Array<string>;
 
   declare type Lens = <T, V>(x: T) => V;
 
@@ -1497,7 +1394,7 @@ declare module ramda {
   ): (o: { [key: string]: A }) => { [key: string]: B };
 
   declare type Merge = (<A, B>(a: A, b: B) => A & B) &
-    (<A, B>(a: A, ...rest: Array<void>) => (b: B) => A & B);
+    (<A, B>(a: A) => (b: B) => A & B);
 
   declare var merge: Merge;
 
@@ -1508,7 +1405,7 @@ declare module ramda {
   declare var mergeDeepLeft: Merge;
 
   declare var mergeDeepRight: (<A, B>(a: A, b: B) => B & A) &
-    (<A, B>(a: A, ...rest: Array<void>) => (b: B) => B & A);
+    (<A, B>(a: A) => (b: B) => B & A);
 
   declare type MergeWith = (<A: { [k: string]: T }, B: { [k: string]: T }, T>(
     fn: (a: T, b: T) => T,
@@ -1517,16 +1414,13 @@ declare module ramda {
   ) => A & B) &
     (<A, B, T>(
       fn: (a: T, b: T) => T,
-      ...rest: Array<void>
-    ) => (a: A, ...rest: Array<void>) => (b: B) => A & B) &
+    ) => (a: A) => (b: B) => A & B) &
     (<A, B, T>(
       fn: (a: T, b: T) => T,
-      ...rest: Array<void>
     ) => (a: A, b: B) => A & B) &
     (<A, B, T>(
       fn: (a: T, b: T) => T,
       a: A,
-      ...rest: Array<void>
     ) => (b: B) => A & B);
 
   declare type MergeWithKey = (<
@@ -1541,16 +1435,13 @@ declare module ramda {
   ) => A & B) &
     (<S: string, A: { [k: string]: T }, B: { [k: string]: T }, T>(
       fn: (s: S, a: T, b: T) => T,
-      ...rest: Array<void>
     ) => (a: A, b: B) => A & B) &
     (<S: string, A: { [k: string]: T }, B: { [k: string]: T }, T>(
       fn: (s: S, a: T, b: T) => T,
-      ...rest: Array<void>
-    ) => (a: A, ...rest: Array<void>) => (b: B) => A & B) &
+    ) => (a: A) => (b: B) => A & B) &
     (<S: string, A: { [k: string]: T }, B: { [k: string]: T }, T>(
       fn: (s: S, a: T, b: T) => T,
       a: A,
-      ...rest: Array<void>
     ) => (b: B) => A & B);
 
   declare var mergeDeepWith: MergeWith;
@@ -1563,33 +1454,27 @@ declare module ramda {
 
   declare function objOf<T>(
     key: string,
-    ...rest: Array<void>
   ): (val: T) => { [key: string]: T };
   declare function objOf<T>(key: string, val: T): { [key: string]: T };
 
   declare function omit<T: Object>(
     keys: Array<string>,
-    ...rest: Array<void>
   ): (val: T) => Object;
   declare function omit<T: Object>(keys: Array<string>, val: T): Object;
 
   declare function over<T, V, U>(lens: Lens, x: (any) => mixed, val: V): U;
   declare function over<T, V, U>(
     lens: Lens,
-    ...rest: Array<void>
-  ): ((x: (any) => mixed, ...rest: Array<void>) => (val: V) => U) & ((x: (any) => mixed, val: V) => U);
+  ): ((x: (any) => mixed) => (val: V) => U) & ((x: (any) => mixed, val: V) => U);
 
   declare function path<V>(
     p: Array<mixed>,
-    ...rest: Array<void>
   ): (o: NestedObject<V>) => V;
   declare function path<V>(
     p: Array<mixed>,
-    ...rest: Array<void>
   ): (o: null | void) => void;
   declare function path<V>(
     p: Array<mixed>,
-    ...rest: Array<void>
   ): (o: mixed) => ?V;
   declare function path<V, A: NestedObject<V>>(p: Array<mixed>, o: A): V;
   declare function path<V, A: null | void>(p: Array<mixed>, o: A): void;
@@ -1597,15 +1482,12 @@ declare module ramda {
 
   declare function path<V>(
     p: Array<string>,
-    ...rest: Array<void>
   ): (o: NestedObject<V>) => V;
   declare function path<V>(
     p: Array<string>,
-    ...rest: Array<void>
   ): (o: null | void) => void;
   declare function path<V>(
     p: Array<string>,
-    ...rest: Array<void>
   ): (o: mixed) => ?V;
   declare function path<V, A: NestedObject<V>>(p: Array<string>, o: A): V;
   declare function path<V, A: null | void>(p: Array<string>, o: A): void;
@@ -1613,13 +1495,11 @@ declare module ramda {
 
   declare function pathOr<T, V, A: NestedObject<V>>(
     or: T,
-    ...rest: Array<void>
-  ): ((p: Array<string>, ...rest: Array<void>) => (o: ?A) => V | T) &
+  ): ((p: Array<string>) => (o: ?A) => V | T) &
     ((p: Array<string>, o: ?A) => V | T);
   declare function pathOr<T, V, A: NestedObject<V>>(
     or: T,
     p: Array<string>,
-    ...rest: Array<void>
   ): (o: ?A) => V | T;
   declare function pathOr<T, V, A: NestedObject<V>>(
     or: T,
@@ -1629,7 +1509,6 @@ declare module ramda {
 
   declare function pick<A>(
     keys: Array<string>,
-    ...rest: Array<void>
   ): (val: { [key: string]: A }) => { [key: string]: A };
   declare function pick<A>(
     keys: Array<string>,
@@ -1638,7 +1517,6 @@ declare module ramda {
 
   declare function pickAll<A>(
     keys: Array<string>,
-    ...rest: Array<void>
   ): (val: { [key: string]: A }) => { [key: string]: ?A };
   declare function pickAll<A>(
     keys: Array<string>,
@@ -1647,7 +1525,6 @@ declare module ramda {
 
   declare function pickBy<A>(
     fn: BinaryPredicateFn2<A, string>,
-    ...rest: Array<void>
   ): (val: { [key: string]: A }) => { [key: string]: A };
   declare function pickBy<A>(
     fn: BinaryPredicateFn2<A, string>,
@@ -1656,7 +1533,6 @@ declare module ramda {
 
   declare function project<T>(
     keys: Array<string>,
-    ...rest: Array<void>
   ): (val: Array<{ [key: string]: T }>) => Array<{ [key: string]: T }>;
   declare function project<T>(
     keys: Array<string>,
@@ -1665,7 +1541,6 @@ declare module ramda {
 
   declare function prop<T: string, O>(
     key: T,
-    ...rest: Array<void>
   ): (o: O) => $ElementType<O, T>;
   declare function prop<T: string, O>(
     __: $npm$ramda$Placeholder,
@@ -1675,13 +1550,11 @@ declare module ramda {
 
   declare function propOr<T, V, A: { [k: string]: V }>(
     or: T,
-    ...rest: Array<void>
-  ): ((p: string, ...rest: Array<void>) => (o: A) => V | T) &
+  ): ((p: string) => (o: A) => V | T) &
     ((p: string, o: A) => V | T);
   declare function propOr<T, V, A: { [k: string]: V }>(
     or: T,
     p: string,
-    ...rest: Array<void>
   ): (o: A) => V | T;
   declare function propOr<T, V, A: { [k: string]: V }>(
     or: T,
@@ -1693,7 +1566,6 @@ declare module ramda {
 
   declare function props<T: string, O>(
     keys: Array<T>,
-    ...rest: Array<void>
   ): (o: O) => Array<$ElementType<O, T>>;
   declare function props<T: string, O>(
     keys: Array<T>,
@@ -1703,8 +1575,7 @@ declare module ramda {
   declare function set<T, V, U>(lens: Lens, x: T, val: V): U;
   declare function set<T, V, U>(
     lens: Lens,
-    ...rest: Array<void>
-  ): ((x: (any) => mixed, ...rest: Array<void>) => (val: V) => U) & ((x: (any) => mixed, val: V) => U);
+  ): ((x: (any) => mixed) => (val: V) => U) & ((x: (any) => mixed, val: V) => U);
 
   declare function toPairs<T, O: { [k: string]: T }>(
     o: O
@@ -1728,7 +1599,6 @@ declare module ramda {
 
   declare function whereEq<T, S, O: { [k: string]: T }, Q: { [k: string]: S }>(
     predObj: O,
-    ...rest: Array<void>
   ): (o: $Shape<O & Q>) => boolean;
   declare function whereEq<T, S, O: { [k: string]: T }, Q: { [k: string]: S }>(
     predObj: O,
@@ -1752,13 +1622,11 @@ declare module ramda {
 
   declare function ap<T, V>(
     fns: Array<(x: T) => V>,
-    ...rest: Array<void>
   ): (xs: Array<T>) => Array<V>;
   declare function ap<T, V>(fns: Array<(x: T) => V>, xs: Array<T>): Array<V>;
 
   declare function apply<T, V>(
     fn: (...args: Array<T>) => V,
-    ...rest: Array<void>
   ): (xs: Array<T>) => V;
   declare function apply<T, V>(fn: (...args: Array<T>) => V, xs: Array<T>): V;
 
@@ -1771,10 +1639,7 @@ declare module ramda {
     spec: T
   ): (...args: A) => NestedObject<S>;
 
-  declare function applyTo<A, B>(
-    a: A,
-    ...rest: Array<void>
-  ): (fn: (x: A) => B) => B;
+  declare function applyTo<A, B>(a: A): (fn: (x: A) => B) => B;
   declare function applyTo<A, B>(a: A, fn: (x: A) => B): B;
 
   declare function binary<T>(
@@ -1816,14 +1681,13 @@ declare module ramda {
   ): CurriedFunction2<B, A, TResult>;
   declare function flip<A, B, C, TResult>(
     fn: (arg0: A, arg1: B, arg2: C) => TResult
-  ): ((arg0: B, arg1: A, ...rest: Array<void>) => (arg2: C) => TResult) &
+  ): ((arg0: B, arg1: A) => (arg2: C) => TResult) &
     ((arg0: B, arg1: A, arg2: C) => TResult);
   declare function flip<A, B, C, D, TResult>(
     fn: (arg0: A, arg1: B, arg2: C, arg3: D) => TResult
   ): ((
     arg1: B,
     arg0: A,
-    ...rest: Array<void>
   ) => (arg2: C, arg3: D) => TResult) &
     ((arg1: B, arg0: A, arg2: C, arg3: D) => TResult);
   declare function flip<A, B, C, D, E, TResult>(
@@ -1831,7 +1695,6 @@ declare module ramda {
   ): ((
     arg1: B,
     arg0: A,
-    ...rest: Array<void>
   ) => (arg2: C, arg3: D, arg4: E) => TResult) &
     ((arg1: B, arg0: A, arg2: C, arg3: D, arg4: E) => TResult);
 
@@ -1887,9 +1750,85 @@ declare module ramda {
 
   declare var partial: Partial;
   // TODO partialRight
-  // TODO pipeK
 
-  declare function tap<T>(fn: (x: T) => any, ...rest: Array<void>): (x: T) => T;
+  declare type UnaryMonadFn<A, R> = UnaryFn<A, Monad<R>>;
+  declare type PipeK = (<A, B, C, D, E, F, G, H, I, J, K, L: Monad<K>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: UnaryMonadFn<C, D>,
+        de: UnaryMonadFn<D, E>,
+        ef: UnaryMonadFn<E, F>,
+        fg: UnaryMonadFn<F, G>,
+        gh: UnaryMonadFn<G, H>,
+        hi: UnaryMonadFn<H, I>,
+        ij: UnaryMonadFn<I, J>,
+        jk: J => L,
+    ) => A => L) &
+    (<A, B, C, D, E, F, G, H, I, J, K: Monad<J>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: UnaryMonadFn<C, D>,
+        de: UnaryMonadFn<D, E>,
+        ef: UnaryMonadFn<E, F>,
+        fg: UnaryMonadFn<F, G>,
+        gh: UnaryMonadFn<G, H>,
+        hi: UnaryMonadFn<H, I>,
+        ij: I => K,
+    ) => A => K) &
+    (<A, B, C, D, E, F, G, H, I, J: Monad<I>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: UnaryMonadFn<C, D>,
+        de: UnaryMonadFn<D, E>,
+        ef: UnaryMonadFn<E, F>,
+        fg: UnaryMonadFn<F, G>,
+        gh: UnaryMonadFn<G, H>,
+        hi: H => J,
+    ) => A => J) &
+    (<A, B, C, D, E, F, G, H, I: Monad<H>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: UnaryMonadFn<C, D>,
+        de: UnaryMonadFn<D, E>,
+        ef: UnaryMonadFn<E, F>,
+        fg: UnaryMonadFn<F, G>,
+        gh: G => I,
+    ) => A => I) &
+    (<A, B, C, D, E, F, G, H: Monad<G>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: UnaryMonadFn<C, D>,
+        de: UnaryMonadFn<D, E>,
+        ef: UnaryMonadFn<E, F>,
+        fg: F => H,
+    ) => A => H) &
+    (<A, B, C, D, E, F, G: Monad<F>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: UnaryMonadFn<C, D>,
+        de: UnaryMonadFn<D, E>,
+        ef: E => G,
+    ) => A => G) &
+    (<A, B, C, D, E, F: Monad<E>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: UnaryMonadFn<C, D>,
+        de: D => F,
+    ) => A => F) &
+    (<A, B, C, D, E: Monad<D>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: UnaryMonadFn<B, C>,
+        cd: C => E,
+    ) => A => E) &
+    (<A, B, C, D: Monad<C>>(
+        ab: UnaryMonadFn<A, B>,
+        bc: B => D,
+    ) => A => D) &
+    (<A, B, C: Monad<B>>(
+        ab: A => C
+    ) => A => C);
+
+  declare function tap<T>(fn: (x: T) => any): (x: T) => T;
   declare function tap<T>(fn: (x: T) => any, x: T): T;
 
   declare function tryCatch<A, B, E>(
@@ -1945,10 +1884,7 @@ declare module ramda {
     fns: Array<(...args: Array<T>) => boolean>
   ): (...args: Array<T>) => boolean;
 
-  declare function and(
-    x: boolean,
-    ...rest: Array<void>
-  ): (y: boolean) => boolean;
+  declare function and(x: boolean): (y: boolean) => boolean;
   declare function and(x: boolean, y: boolean): boolean;
 
   declare function anyPass<T>(
@@ -1957,7 +1893,6 @@ declare module ramda {
 
   declare function both<T>(
     x: (...args: Array<T>) => boolean,
-    ...rest: Array<void>
   ): (y: (...args: Array<T>) => boolean) => (...args: Array<T>) => boolean;
   declare function both<T>(
     x: (...args: Array<T>) => boolean,
@@ -1972,15 +1907,11 @@ declare module ramda {
     fns: Array<[(...args: Array<A>) => boolean, (...args: Array<A>) => B]>
   ): (...args: Array<A>) => B;
 
-  declare function defaultTo<T, V>(
-    d: T,
-    ...rest: Array<void>
-  ): (x: ?V) => V | T;
+  declare function defaultTo<T, V>(d: T): (x: ?V) => V | T;
   declare function defaultTo<T, V>(d: T, x: ?V): V | T;
 
   declare function either(
     x: (...args: Array<any>) => *,
-    ...rest: Array<void>
   ): (y: (...args: Array<any>) => *) => (...args: Array<any>) => *;
   declare function either(
     x: (...args: Array<any>) => *,
@@ -1989,10 +1920,8 @@ declare module ramda {
 
   declare function ifElse<A, B, C>(
     cond: (...args: Array<A>) => boolean,
-    ...rest: Array<void>
   ): ((
     f1: (...args: Array<A>) => B,
-    ...rest: Array<void>
   ) => (f2: (...args: Array<A>) => C) => (...args: Array<A>) => B | C) &
     ((
       f1: (...args: Array<A>) => B,
@@ -2026,23 +1955,19 @@ declare module ramda {
   declare function propSatisfies<T>(
     cond: (x: T) => boolean,
     prop: string,
-    ...rest: Array<void>
   ): (o: NestedObject<T>) => boolean;
   declare function propSatisfies<T>(
     cond: (x: T) => boolean,
-    ...rest: Array<void>
-  ): ((prop: string, ...rest: Array<void>) => (o: NestedObject<T>) => boolean) &
+  ): ((prop: string) => (o: NestedObject<T>) => boolean) &
     ((prop: string, o: NestedObject<T>) => boolean);
 
   declare function unless<T, V, S>(
     pred: UnaryPredicateFn<T>,
-    ...rest: Array<void>
-  ): ((fn: (x: S) => V, ...rest: Array<void>) => (x: T | S) => T | V) &
+  ): ((fn: (x: S) => V) => (x: T | S) => T | V) &
     ((fn: (x: S) => V, x: T | S) => T | V);
   declare function unless<T, V, S>(
     pred: UnaryPredicateFn<T>,
     fn: (x: S) => V,
-    ...rest: Array<void>
   ): (x: T | S) => V | T;
   declare function unless<T, V, S>(
     pred: UnaryPredicateFn<T>,
@@ -2052,13 +1977,11 @@ declare module ramda {
 
   declare function until<T>(
     pred: UnaryPredicateFn<T>,
-    ...rest: Array<void>
-  ): ((fn: (x: T) => T, ...rest: Array<void>) => (x: T) => T) &
+  ): ((fn: (x: T) => T) => (x: T) => T) &
     ((fn: (x: T) => T, x: T) => T);
   declare function until<T>(
     pred: UnaryPredicateFn<T>,
     fn: (x: T) => T,
-    ...rest: Array<void>
   ): (x: T) => T;
   declare function until<T>(
     pred: UnaryPredicateFn<T>,
@@ -2068,13 +1991,11 @@ declare module ramda {
 
   declare function when<T, V, S>(
     pred: UnaryPredicateFn<T>,
-    ...rest: Array<void>
-  ): ((fn: (x: S) => V, ...rest: Array<void>) => (x: T | S) => T | V) &
+  ): ((fn: (x: S) => V) => (x: T | S) => T | V) &
     ((fn: (x: S) => V, x: T | S) => T | V);
   declare function when<T, V, S>(
     pred: UnaryPredicateFn<T>,
     fn: (x: S) => V,
-    ...rest: Array<void>
   ): (x: T | S) => V | T;
   declare function when<T, V, S>(
     pred: UnaryPredicateFn<T>,
